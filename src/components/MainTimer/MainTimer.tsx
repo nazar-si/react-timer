@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Button from '../Button/Button';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import ModeSwitch from '../ModeSwitch/ModeSwitch';
@@ -88,7 +88,7 @@ export default function MainTimer() {
   return (
     <div className="flex flex-col gap-4 transition-all duration-500" style={{transform: `translateY(calc(${hasTasks?"100px":"50vh - 50%"}))`}}>
       <div className="flex justify-center w-80 sm:w-96">
-        <h1 className="text-7xl sm:text-8xl md:text-9xl -mt-20 mb-10 font-bold text-gray-200 dark:text-black/20">Pomodoro</h1>
+        <h1 className="text-7xl sm:text-8xl md:text-9xl -mt-20 mb-10 font-bold text-gray-200 dark:text-black/50">Pomodoro</h1>
       </div>
       <ModeSwitch/>
       <div className='p-[3px] rounded-2xl relative' style={{
