@@ -158,6 +158,8 @@
     "prop-types" "^15.7.2"
 
 "@tabler/icons@2.23.0":
+  "integrity" "sha512-dU54aBwaxG0H+jQ4BdrqtYFN5L7PZevvlnzyL6XeOZgfDS3+sVNCtuG3JmpTEqQSwGLYC1IEwogPGA/Iit2bOA=="
+  "resolved" "https://registry.npmjs.org/@tabler/icons/-/icons-2.23.0.tgz"
   "version" "2.23.0"
 
 "@types/json-schema@^7.0.9":
@@ -1201,6 +1203,8 @@
   "version" "1.2.1"
 
 "prop-types@^15.7.2":
+  "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
+  "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
   dependencies:
     "loose-envify" "^1.4.0"
@@ -1226,6 +1230,8 @@
     "scheduler" "^0.23.0"
 
 "react-is@^16.13.1":
+  "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
+  "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
 "react@^16 || ^17 || ^18", "react@^16.5.1 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.2.0", "react@>=16.8":

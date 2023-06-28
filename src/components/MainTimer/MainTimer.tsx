@@ -3,7 +3,8 @@ import Button from '../Button/Button';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import ModeSwitch from '../ModeSwitch/ModeSwitch';
 import useTimerStore from '../../store/timer';
-import {IconPlus} from "@tabler/icons-react";
+import TaskList from '../TaskList/TaskList';
+import useTasksStore from '../../store/tasks';
 
 function leftpad(num : number) {
   const str = num.toString();
@@ -43,18 +44,7 @@ export default function MainTimer() {
   const [time, setTime] = useState(maxTime);
   const [active, setActive] = useState(false);
   const intervalRef = useRef<number | null>(null);
-  const [hasTasks, setHasTasks] = useState(false);
-
-  useEffect(() => {
-    const listener = (e: KeyboardEvent) => {
-      if (e.key === " " || e.key === "Enter") {
-        if (time <= 0) return;
-        setActive(active=>!active);
-      }
-    }
-    window.addEventListener("keydown", listener);
-    return () => window.removeEventListener("keydown", listener);
-  }, []);
+  const anyTasks = useTasksStore(state => state.tasks.length > 0);
 
   useEffect(() => {
     Reset();
@@ -86,7 +76,7 @@ export default function MainTimer() {
   }
 
   return (
-    <div className="flex flex-col gap-4 transition-all duration-500" style={{transform: `translateY(calc(${hasTasks?"100px":"50vh - 50%"}))`}}>
+    <div className="flex flex-col gap-4 transition-all duration-500" style={{transform: `translateY(calc(${anyTasks?"100px":"50vh - 50%"}))`}}>
       <div className="flex justify-center w-80 sm:w-96">
         <h1 className="text-7xl sm:text-8xl md:text-9xl -mt-20 mb-10 font-bold text-gray-200 dark:text-black/50">Pomodoro</h1>
       </div>
@@ -137,8 +127,11 @@ export default function MainTimer() {
         <Button className="flex-1" onClick={()=>{setTime(time=>time + 60); setRealMaxTime(time=>time + 60)}}>
           + 1 min
         </Button>
+        <Button className="flex-1" onClick={()=>{setTime(time=>time + 300); setRealMaxTime(time=>time + 300)}}>
+          + 5 min
+        </Button>
       </div>
-      <button onClick={()=>setHasTasks(t=>!t)} className="font-medium text-zinc-400 dark:text-zinc-500 flex justify-center items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-800/50 rounded-md px-2 py-1">Add task <IconPlus size={18}/></button>
+      <TaskList/>
     </div>
   )
 }

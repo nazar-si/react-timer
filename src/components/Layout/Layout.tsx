@@ -7,7 +7,7 @@ type Props = {
 
 export default function Layout({children}: Props) {
   return (
-    <div className='w-full min-h-[100vh] flex justify-center items-start transition-all overflow-x-hidden'>
+    <div className='w-full min-h-[100vh] flex justify-center items-start transition-all'>
         {children}
     </div>
   )
