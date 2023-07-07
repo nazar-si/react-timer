@@ -64,8 +64,8 @@ export default function MainTimer() {
   useEffect(() => {
     if (active) {
       intervalRef.current = setInterval(()=>{
-        setTime(time=>time-0.1);
-      }, 100);
+        setTime(time=>time-0.3);
+      }, 300);
     } else {
       clearInterval(intervalRef.current!);
     }

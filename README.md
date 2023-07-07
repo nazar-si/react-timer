@@ -7,3 +7,7 @@ Project is created with:
 * Vite
 * Yarn
 * Tailwind CSS
+
+## TODO
+* Go from setInterval to Date to remove reliance on intervals and asynchronous code
+
