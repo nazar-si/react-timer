@@ -5,6 +5,8 @@ import ModeSwitch from '../ModeSwitch/ModeSwitch';
 import useTimerStore from '../../store/timer';
 import TaskList from '../TaskList/TaskList';
 import useTasksStore from '../../store/tasks';
+import { REFRESH_DELAY, REFRESH_RATE } from './refresh';
+import { addTime, diff } from './moment';
 
 function leftpad(num : number) {
   const str = num.toString();
@@ -40,26 +42,31 @@ export default function MainTimer() {
   const mode = useTimerStore(state => state.mode);
   const shadowActive = ` ${modes[mode].neon} ${modes[mode].border}`;
   const clockActive = ` ${modes[mode].text}`;
+  
+  const [finishDate, setFinishDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
   const [realMaxTime, setRealMaxTime] = useState(maxTime);
   const [time, setTime] = useState(maxTime);
   const [active, setActive] = useState(false);
+
+  // interval used to update UI
   const intervalRef = useRef<number | null>(null);
   const anyTasks = useTasksStore(state => state.tasks.length > 0);
 
   useEffect(() => {
     Reset();
     setTime(maxTime);
-  }, [maxTime])
+  }, [mode]);
 
   useEffect(() => {
+    clearInterval(intervalRef.current!);
     if (active) {
       intervalRef.current = setInterval(()=>{
-        setTime(time=>time-0.3);
-      }, 300);
-    } else {
-      clearInterval(intervalRef.current!);
+        setTime(diff(finishDate, new Date()));
+      }, REFRESH_DELAY);
     }
-  }, [active]);
+  }, [active, finishDate]);
+
   useEffect(() => {
     if (!active) return;
     if (time <= 0) {
@@ -68,8 +75,11 @@ export default function MainTimer() {
       clearInterval(intervalRef.current!);
     }
   }, [time, active]);
+
   const Reset = () => {
     setRealMaxTime(maxTime);
+    setFinishDate(addTime(new Date(), maxTime));
+    setStartDate(new Date());
     setTime(maxTime);
     setActive(false);
     clearInterval(intervalRef.current!);
@@ -109,6 +119,10 @@ export default function MainTimer() {
             return;
           }
           setActive(active=>!active);
+          if (!active) {
+            setStartDate(new Date());
+            setFinishDate(addTime(new Date(), realMaxTime));
+          }
         }}>
           {active?"Stop":"Start"}
         </Button>
@@ -118,18 +132,19 @@ export default function MainTimer() {
         <ThemeSwitch updateClass/>
       </div>
       <div className="flex gap-4">
-        <Button className="flex-1" onClick={()=>{setTime(time=>time + 5); setRealMaxTime(time=>time + 5)}}>
-          + 5 sec
-        </Button>
-        <Button className="flex-1" onClick={()=>{setTime(time=>time + 20); setRealMaxTime(time=>time + 20)}}>
-          + 20 sec
-        </Button>
-        <Button className="flex-1" onClick={()=>{setTime(time=>time + 60); setRealMaxTime(time=>time + 60)}}>
-          + 1 min
-        </Button>
-        <Button className="flex-1" onClick={()=>{setTime(time=>time + 300); setRealMaxTime(time=>time + 300)}}>
-          + 5 min
-        </Button>
+        {
+          [
+            {time:20.5, label: "+ 20 sec"}, 
+            {time:60.5, label: "+ 1 min"}, 
+            {time:300.5, label: "+ 5 min"}].map(a=>
+            <Button key={a.label} className="flex-1" onClick={()=>{
+              setRealMaxTime(maxTime=>maxTime + a.time);
+              setFinishDate(maxTime=>addTime(maxTime, a.time));
+              setTime(time=>time + a.time);
+            }}>
+              {a.label}
+            </Button>)
+        }
       </div>
       <TaskList/>
     </div>

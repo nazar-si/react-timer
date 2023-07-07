@@ -9,5 +9,5 @@ Project is created with:
 * Tailwind CSS
 
 ## TODO
-* Go from setInterval to Date to remove reliance on intervals and asynchronous code
-
+* Go from setInterval to Date to remove reliance on intervals and asynchronous code + allow timer to go while device is in sleep.
+* Add sound effects
