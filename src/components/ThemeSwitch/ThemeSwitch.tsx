@@ -28,7 +28,7 @@ export default function ThemeSwitch({updateClass = false}) {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-            <Menu.Items className={containerStyle + " !p-1 absolute top-12"}>
+            <Menu.Items className={containerStyle + " !p-1 absolute top-12 z-20"}>
                 <Menu.Item>
                     {({ active }) => (
                         <button onClick={$=>setSelected("dark")} className={itemStyle + (active?activeStyle:"")}>  
