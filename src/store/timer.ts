@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const DEV = import.meta.env.DEV;
+const PROD = import.meta.env.PROD;
 
 export interface ITimerStore {
     mode: "work" | "break" | "longBreak";
@@ -18,9 +18,9 @@ const useTimerStore = create(persist<ITimerStore>((set, get) => ({
         mode: "work",
         setMode: (mode) => set({ mode }),
         duration: {
-            work:       25 * (DEV ? 1 : 60),
-            break:      5  * (DEV ? 1 : 60),
-            longBreak:  15 * (DEV ? 1 : 60),
+            work:       25 * (PROD ? 60 : 1),
+            break:      5  * (PROD ? 60 : 1),
+            longBreak:  15 * (PROD ? 60 : 1),
         },
         setDuration: (mode, duration) => set({ duration: { ...get().duration, [mode]: duration } }),
     }), 
