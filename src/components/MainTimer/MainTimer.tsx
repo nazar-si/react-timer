@@ -1,26 +1,28 @@
-import { useEffect, useRef, useState } from "react";
-import Button from "../ui/Button/Button";
-import ThemeSwitch from "../ui/ThemeSwitch/ThemeSwitch";
-import ModeSwitch from "../ModeSwitch/ModeSwitch";
-import useTimerStore from "../../store/timer/timer";
-import TaskList from "../TaskList/TaskList";
-import useTasksStore from "../../store/tasks";
-import { REFRESH_DELAY } from "./refresh";
-import { addTime, diff } from "./moment";
-import Display from "./Display/Display";
-import Title from "./Title/Title";
-import toClock from "./Display/toClock";
+import { useEffect, useRef, useState } from 'react';
+import Button from '../ui/Button/Button';
+import ThemeSwitch from '../ui/ThemeSwitch/ThemeSwitch';
+import ModeSwitch from '../ModeSwitch/ModeSwitch';
+import useTimerStore from '../../store/timer/timer';
+import TaskList from '../TaskList/TaskList';
+import useTasksStore from '../../store/tasks';
+import { REFRESH_DELAY } from './refresh';
+import { addTime, diff } from './moment';
+import Display from './Display/Display';
+import Title from './Title/Title';
+import toClock from './Display/toClock';
 
 const addMoreTime = [
-  { time: 20, label: "+ 20 sec" },
-  { time: 60, label: "+ 1 min" },
-  { time: 300, label: "+ 5 min" },
-]
+  { time: 20, label: '+ 20 sec' },
+  { time: 60, label: '+ 1 min' },
+  { time: 300, label: '+ 5 min' },
+];
 
 export default function MainTimer() {
   const maxTime = useTimerStore((state) => state.duration[state.mode]);
   const mode = useTimerStore((state) => state.mode);
-  const modeName = {"work": "Focus!", "break": "Break", "longBreak": "Long Break"}[mode];
+  const modeName = { work: 'Focus!', break: 'Break', longBreak: 'Long Break' }[
+    mode
+  ];
 
   const [finishDate, setFinishDate] = useState(new Date());
   const [realMaxTime, setRealMaxTime] = useState(maxTime);
@@ -40,10 +42,10 @@ export default function MainTimer() {
     clearInterval(intervalRef.current!);
     const getWakeLock = async () => {
       return await navigator.wakeLock?.request();
-    }
+    };
     if (wakeLockRef.current) wakeLockRef.current.release();
     if (active) {
-      getWakeLock().then(r=>wakeLockRef.current=r);
+      getWakeLock().then((r) => (wakeLockRef.current = r));
       intervalRef.current = setInterval(() => {
         setTime(diff(finishDate, new Date()));
       }, REFRESH_DELAY);
@@ -51,10 +53,11 @@ export default function MainTimer() {
   }, [active, finishDate]);
 
   useEffect(() => {
-    document.title = active?
-      `${modeName} - ${toClock(time).join(":")}`:time===0?
-      `${modeName} - time is up!`:
-      "Pomodoro";
+    document.title = active
+      ? `${modeName} - ${toClock(time).join(':')}`
+      : time === 0
+      ? `${modeName} - time is up!`
+      : 'Pomodoro';
     if (!active) return;
     if (time <= 0) {
       wakeLockRef.current.release();
@@ -77,10 +80,10 @@ export default function MainTimer() {
     <div
       className="flex flex-col gap-4 transition-all duration-500"
       style={{
-        transform: `translateY(calc(${anyTasks ? "100px" : "50vh - 50%"}))`,
+        transform: `translateY(calc(${anyTasks ? '100px' : '50vh - 50%'}))`,
       }}
     >
-      <Title content="Pomodoro"/>
+      <Title content="Pomodoro" />
       <ModeSwitch />
       <Display active={active} time={time} realMaxTime={realMaxTime} />
       <div className="flex gap-4">
@@ -97,7 +100,7 @@ export default function MainTimer() {
             }
           }}
         >
-          {active ? "Stop" : time<=0 ? "Repeat" : "Start"}
+          {active ? 'Stop' : time <= 0 ? 'Repeat' : 'Start'}
         </Button>
         <Button className="flex-1" onClick={() => Reset()}>
           Reset

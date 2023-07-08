@@ -36,6 +36,7 @@ You can also run linting and testing with:
 npm run lint
 npm run test
 ```
+
 ## License
 The Pomodoro Timer is open-source software licensed under the [MIT License](./LICENSE). Feel free to use, modify, and distribute the timer according to the terms of the license.
 
@@ -60,6 +61,7 @@ For any questions, feedback, or support requests, please contact me at [technotc
 - [ ] Fix first second being missed on launch
 - [ ] Refactor first time 
   - [ ] Sparate styles from component 
-  - [ ] Decompose components into multiple smaller ones 
+  - [x] Decompose components into multiple smaller ones 
 - [ ] Setup some E2E tests with playwright
+- [ ] Improve code test coverage
 - [ ] All uncomplited in [features](##Features)
