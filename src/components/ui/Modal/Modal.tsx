@@ -18,10 +18,10 @@ const style = {
 }
 
 function Modal(props : Props){
-    const handleOusideClick : React.MouseEventHandler<HTMLDivElement> = () => {
-        props.setShow(false);
+    const handleOusideClick : React.MouseEventHandler<HTMLDivElement> = (e) => {
+        if(e.target === e.currentTarget) props.setShow(false);
     }
-    return createPortal(<div className={classNames(style.wrapper, !props.show && style.wrapperClosed)} onClick={handleOusideClick}>
+    return createPortal(<div role='dialog' className={classNames(style.wrapper, !props.show && style.wrapperClosed)} onClick={handleOusideClick}>
         <div className={style.container}>
             <button aria-label='close modal' className={style.closeButton} onClick={()=>props.setShow(false)}>
                 <IconPlus strokeWidth={2} size={16}/>
