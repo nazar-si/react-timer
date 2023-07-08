@@ -1,7 +1,7 @@
 import { Menu, Transition } from '@headlessui/react'
 import { IconMoon, IconSun, IconDeviceDesktop } from "@tabler/icons-react"
 import React from 'react';
-import useTheme from '../../hooks/useTheme';
+import useTheme from '../../../hooks/useTheme';
 
 const containerStyle = "rounded-md p-2 border border-gray-300 bg-white text-gray-700 shadow-sm outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 transition-all";
 const itemStyle = "rounded-md p-1 transition-all";

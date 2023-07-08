@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "../Button/Button";
-import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
+import Button from "../ui/Button/Button";
+import ThemeSwitch from "../ui/ThemeSwitch/ThemeSwitch";
 import ModeSwitch from "../ModeSwitch/ModeSwitch";
-import useTimerStore from "../../store/timer";
+import useTimerStore from "../../store/timer/timer";
 import TaskList from "../TaskList/TaskList";
 import useTasksStore from "../../store/tasks";
 import { REFRESH_DELAY } from "./refresh";
@@ -11,10 +11,16 @@ import Display from "./Display/Display";
 import Title from "./Title/Title";
 import toClock from "./Display/toClock";
 
+const addMoreTime = [
+  { time: 20, label: "+ 20 sec" },
+  { time: 60, label: "+ 1 min" },
+  { time: 300, label: "+ 5 min" },
+]
 
 export default function MainTimer() {
   const maxTime = useTimerStore((state) => state.duration[state.mode]);
   const mode = useTimerStore((state) => state.mode);
+  const modeName = {"work": "Focus!", "break": "Break", "longBreak": "Long Break"}[mode];
 
   const [finishDate, setFinishDate] = useState(new Date());
   const [realMaxTime, setRealMaxTime] = useState(maxTime);
@@ -40,7 +46,10 @@ export default function MainTimer() {
   }, [active, finishDate]);
 
   useEffect(() => {
-    document.title = `Pomodoro ${active?toClock(time).join(":"):""}`;
+    document.title = active?
+      `${modeName} - ${toClock(time).join(":")}`:time===0?
+      `${modeName} - time is up!`:
+      "Pomodoro";
     if (!active) return;
     if (time <= 0) {
       setActive(false);
@@ -91,11 +100,7 @@ export default function MainTimer() {
         <ThemeSwitch updateClass />
       </div>
       <div className="flex gap-4">
-        {[
-          { time: 20, label: "+ 20 sec" },
-          { time: 60, label: "+ 1 min" },
-          { time: 300, label: "+ 5 min" },
-        ].map((a) => (
+        {addMoreTime.map((a) => (
           <Button
             key={a.label}
             className="flex-1"

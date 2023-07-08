@@ -1,5 +1,5 @@
 import React from 'react'
-import useTimerStore from '../../../store/timer';
+import useTimerStore from '../../../store/timer/timer';
 import toClock, { leftpad } from './toClock';
 import { classNames } from '../../../utls/classnames';
 

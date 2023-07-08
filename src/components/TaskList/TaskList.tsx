@@ -1,7 +1,7 @@
 import { IconCheck, IconPlus, IconTrash } from '@tabler/icons-react'
 import React, { useEffect } from 'react'
 import useTasksStore from '../../store/tasks';
-import Button from '../Button/Button';
+import Button from '../ui/Button/Button';
 import { Transition } from '@headlessui/react';
 
 

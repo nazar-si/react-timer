@@ -1,18 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import migrate, { ITimerStore } from "./migration.pipline";
 
 const PROD = import.meta.env.PROD;
-
-export interface ITimerStore {
-    mode: "work" | "break" | "longBreak";
-    setMode: (mode: "work" | "break" | "longBreak") => void;
-    duration : {
-        work: number;
-        break: number;
-        longBreak: number;
-    },
-    setDuration: (mode: "work" | "break" | "longBreak", duration: number) => void;
-}
 
 const useTimerStore = create(persist<ITimerStore>((set, get) => ({
         mode: "work",
@@ -26,7 +16,8 @@ const useTimerStore = create(persist<ITimerStore>((set, get) => ({
     }), 
     {
         name: "timer-storage",
-        version: 1
+        version: 1,
+        migrate
     }
 ));
 
