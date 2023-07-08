@@ -31,21 +31,21 @@ export default function ThemeSwitch({updateClass = false}) {
             <Menu.Items className={containerStyle + " !p-1 absolute top-12 z-20"}>
                 <Menu.Item>
                     {({ active }) => (
-                        <button onClick={$=>setSelected("dark")} className={itemStyle + (active?activeStyle:"")}>  
+                        <button aria-label="dark theme" onClick={$=>setSelected("dark")} className={itemStyle + (active?activeStyle:"")}>  
                             <IconMoon strokeWidth={1.5} color={selected==="dark"? '#08f':undefined}/>
                         </button>
                     )}
                 </Menu.Item>
                 <Menu.Item>
                     {({ active }) => (
-                        <button onClick={$=>setSelected("light")} className={itemStyle + (active?activeStyle:"")}>  
+                        <button aria-label="light theme" onClick={$=>setSelected("light")} className={itemStyle + (active?activeStyle:"")}>  
                             <IconSun strokeWidth={1.5} color={selected==="light"?'#08f':undefined}/>
                         </button>
                     )}
                 </Menu.Item>
                 <Menu.Item>
                     {({ active }) => (
-                        <button onClick={$=>setSelected("system")} className={itemStyle + (active?activeStyle:"")}>  
+                        <button aria-label="system prefered theme" onClick={$=>setSelected("system")} className={itemStyle + (active?activeStyle:"")}>  
                             <IconDeviceDesktop strokeWidth={1.5} color={selected==="system"?'#08f':undefined}/>
                         </button>
                     )}

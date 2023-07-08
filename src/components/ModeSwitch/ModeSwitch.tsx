@@ -26,7 +26,7 @@ export default function ModeSwitch() {
     const mode = useTimerStore(state => state.mode);
     const setMode = useTimerStore(state => state.setMode);
     return (
-    <Button className="px-1 !py-0 flex items-center relative group flex-1">
+    <Button aria-label="switch-timer-mode" className="px-1 !py-0 flex items-center relative group flex-1">
         <div className="bg-zinc-200/75 dark:bg-zinc-500/25 box-content h-8 rounded-md absolute z-index-0 pointer-events-none transition-all opacity-0 group-hover:opacity-100" 
             style={{left: `calc(${32 * hovered}% + 4px)`, right: `calc(${32 * (2 - hovered) }% + 4px)`}}></div>
         {Object.entries(modes).map(([key, value], i) => <div key={key} className={modeStyle} onMouseOver={()=>setHovered(i)} onClick={()=>setMode(key as keyof typeof modes)}>

@@ -69,7 +69,7 @@ export default function MainTimer() {
       <ModeSwitch/>
       <Display active={active} time={time} realMaxTime={realMaxTime}/>
       <div className="flex gap-4">
-        <Button className='flex-1' onClick={()=>{
+        <Button aria-label={active?"stop":"start"} className='flex-1' onClick={()=>{
           if (time <= 0) {
             Reset();
             setActive(true);
@@ -84,7 +84,7 @@ export default function MainTimer() {
         }}>
           {active?"Stop":"Start"}
         </Button>
-        <Button className='flex-1' onClick={()=>Reset()}>
+        <Button aria-label='reset' className='flex-1' onClick={()=>Reset()}>
           Reset
         </Button>
         <ThemeSwitch updateClass/>
@@ -95,7 +95,7 @@ export default function MainTimer() {
             {time:20, label: "+ 20 sec"}, 
             {time:60, label: "+ 1 min"}, 
             {time:300, label: "+ 5 min"}].map(a=>
-            <Button key={a.label} className="flex-1" onClick={()=>{
+            <Button aria-label={a.label} key={a.label} className="flex-1" onClick={()=>{
               setRealMaxTime(maxTime=>maxTime + a.time);
               setFinishDate(maxTime=>addTime(maxTime, a.time));
               setTime(time=>time + a.time);
