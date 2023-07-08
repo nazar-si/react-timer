@@ -53,10 +53,10 @@ For any questions, feedback, or support requests, please contact me at [technotc
 - [x] Fix first second being missed on launch
 - [x] Add eslint and prettier then add vscode actions on save
 - [x] Add footer to with Copyright and project repo link
+- [x] Add CI/CD with github actions
+- [x] Add some task UI on hover - options  
 - [ ] Clean up before making repo public
 - [ ] Extends tasks to support description
-- [ ] Add some task UI on hover - options  
-- [ ] Add CI/CD with github actions
 - [ ] Add DnD for tasks
 - [ ] BUG: Set interval stops after some time while working on another tab
 - [ ] Refactor first time 

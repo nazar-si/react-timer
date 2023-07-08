@@ -1,7 +1,16 @@
 import React, { useRef } from 'react';
 import Button from '../../ui/Button/Button';
 import useTasksStore, { Task } from '../../../store/tasks';
-import { IconCheck, IconGripVertical, IconTrash } from '@tabler/icons-react';
+import {
+  IconBlockquote,
+  IconCheck,
+  IconDotsVertical,
+  IconGripVertical,
+  IconIndentDecrease,
+  IconIndentIncrease,
+  IconLink,
+  IconTrash,
+} from '@tabler/icons-react';
 import { classNames } from '../../../utls/classnames';
 
 type Props = {
@@ -13,7 +22,13 @@ const style = {
     'grid grid-cols-[2rem_1fr_2rem] w-full gap-2 transition-all relative duration-200 ease-in-out',
   input:
     'flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black',
-  grip: 'absolute top-0 bottom-[2px] -left-6 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-0',
+  grip: 'absolute top-0 bottom-[2px] -left-5 sm:-left-6 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-0',
+  actions:
+    'absolute h-fit top-1/2 -translate-y-1/2 bottom-0 -right-4 flex flex-col gap-0 items-center opacity-0 transition-all',
+  actionsActive: 'opacity-100 !-right-8',
+  actionButton:
+    'transition-all !p-0 opacity-0 h-6 w-6 flex justify-center items-center -m-3 pointer-events-none',
+  actionButtonActive: 'm-[0.125rem] opacity-100 pointer-events-auto',
 };
 
 export default function Task({ task }: Props) {
@@ -22,6 +37,7 @@ export default function Task({ task }: Props) {
   const removeTask = useTasksStore((s) => s.removeTask);
   const hideTask = useTasksStore((s) => s.hideTask);
   const [isUsed, setIsUsed] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -40,20 +56,25 @@ export default function Task({ task }: Props) {
       style={
         task.hide
           ? {
-              marginTop: `-${elementRef.current!.clientHeight / 2 + 4}px`, // element height + half of the gap
-              marginBottom: `-${elementRef.current!.clientHeight / 2 + 4}px`,
+              marginTop: `-${elementRef.current!.clientHeight / 2}px`, // element height + half of the gap
+              marginBottom: `-${elementRef.current!.clientHeight / 2}px`,
             }
-          : {}
+          : {
+              marginTop: 4,
+              marginBottom: 4,
+            }
       }
       onFocus={() => setIsUsed(true)}
       onMouseOver={() => setIsUsed(true)}
       onMouseLeave={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (e.currentTarget.contains(document.activeElement)) return;
         setIsUsed(false);
+        setIsMenuOpen(false);
       }}
       onBlur={(e: React.FocusEvent<HTMLDivElement, Element>) => {
         if (e.currentTarget.contains(e.relatedTarget)) return;
         setIsUsed(false);
+        setIsMenuOpen(false);
       }}
     >
       <Button
@@ -92,6 +113,33 @@ export default function Task({ task }: Props) {
         )}
       >
         <IconGripVertical size={20} />
+      </div>
+      <div className={classNames(style.actions, isUsed && style.actionsActive)}>
+        <Button
+          className={classNames(
+            style.actionButton,
+            isUsed && !isMenuOpen && style.actionButtonActive,
+          )}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <IconDotsVertical size={16} />
+        </Button>
+        <Button
+          className={classNames(
+            style.actionButton,
+            isUsed && isMenuOpen && style.actionButtonActive,
+          )}
+        >
+          <IconLink size={16} />
+        </Button>
+        <Button
+          className={classNames(
+            style.actionButton,
+            isUsed && isMenuOpen && style.actionButtonActive,
+          )}
+        >
+          <IconIndentIncrease size={16} />
+        </Button>
       </div>
       {task.description && (
         <input
