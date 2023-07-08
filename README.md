@@ -1,6 +1,8 @@
 # Pomodoro Timer
 The Pomodoro Timer is a simple yet powerful tool designed to enhance productivity and create a more focused work environment. Inspired by the Pomodoro Technique, this timer helps you break down your work into manageable intervals, allowing you to work with laser-like focus and take regular breaks to recharge.
 
+![Pomodoro Timer](./docs/images/caption.png)
+
 ## Key Features
 - **Flexible Timer**: The timer is set to a default work session of 25 minutes followed by a 5-minute break. After completing 4 work sessions, the break is extended to 15 minutes. However, you have the flexibility to customize the timer duration according to your preferences.
 - **Task List**: Stay organized and track your tasks with the built-in task list feature. Add, edit, and prioritize your tasks, ensuring that you stay on top of your work and maximize your productivity.
