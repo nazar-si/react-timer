@@ -33,7 +33,6 @@ export default function MainTimer() {
 
   useEffect(() => {
     Reset();
-    setTime(maxTime);
   }, [mode]);
 
   useEffect(() => {
@@ -82,17 +81,15 @@ export default function MainTimer() {
           onClick={() => {
             if (time <= 0) {
               Reset();
-              setActive(true);
-              setTime((t) => t + 0.5);
               return;
             }
             setActive((active) => !active);
             if (!active) {
-              setFinishDate(addTime(new Date(), realMaxTime));
+              setFinishDate(addTime(new Date(), time));
             }
           }}
         >
-          {active ? "Stop" : "Start"}
+          {active ? "Stop" : time<=0 ? "Repeat" : "Start"}
         </Button>
         <Button className="flex-1" onClick={() => Reset()}>
           Reset

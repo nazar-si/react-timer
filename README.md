@@ -23,15 +23,16 @@ Project is created with:
 ## TODO
 - [x] Go from setInterval to Date to remove reliance on intervals and asynchronous code + allow timer to go while device is in sleep
 - [x] Setup localStorage migration pipeline
+- [x] BUG: Starting timer after 0:0 and adding some time to it results in adding this time to maxTime
 - [ ] Clean up before making repo public
 - [ ] Add footer to with Copyright and project repo link
 - [ ] Add screen awaking feature to keep timer on screen
 - [ ] Extends tasks to support description
 - [ ] Add some task UI on hover - options  
 - [ ] Extract tasks into components
+- [ ] Add CI/CD with github actions
 - [ ] Rewrite interval instantiation to ensure that only one istance is running at a time
 - [ ] Add DnD for tasks
-- [ ] BUG: Starting timer after 0:0 and adding some time to it results in adding this time to maxTime
 - [ ] Fix first second being missed on launch
 - [ ] Refactor first time 
   - [ ] Sparate styles from component 
