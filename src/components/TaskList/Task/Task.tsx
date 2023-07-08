@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import Button from '../../ui/Button/Button'
 import useTasksStore, { Task } from '../../../store/tasks'
-import { IconCheck, IconTrash } from '@tabler/icons-react'
+import { IconCheck, IconGripVertical, IconTrash } from '@tabler/icons-react'
 import { classNames } from '../../../utls/classnames'
 
 type Props = {
@@ -9,8 +9,9 @@ type Props = {
 }
 
 const style = {
-    wrapper: "grid grid-cols-[2rem_1fr_2rem] w-full gap-2 transition-all relative duration-300 ease-in-out",
-    input: "flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black"
+    wrapper: "grid grid-cols-[2rem_1fr_2rem] w-full gap-2 transition-all relative duration-300 ease-in-out group",
+    input: "flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black",
+    grip: "absolute top-0 bottom-[2px] -left-6 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all opacity-0 group-hover:opacity-100"
 }
 
 export default function Task({task}: Props) {
@@ -34,7 +35,8 @@ export default function Task({task}: Props) {
     }:{}}>
         <Button 
             aria-label="mark as done"
-            className={`w-8 h-8 !p-0 flex justify-center items-center ${task.done?"text-inherit hover:text-blue-500":"text-transparent hover:text-gray-500"}`} 
+            // className={`w-8 h-8 !p-0 flex justify-center items-center ${task.done?"text-inherit hover:text-blue-500":"text-transparent hover:text-gray-500"}`} 
+            className={`w-8 h-8 !p-0 flex justify-center items-center ${task.done?"!bg-blue-500 !border-blue-300  text-white hover:text-white/50":"text-transparent hover:text-gray-500"}`} 
             onClick={()=>toggleTask(task.id)}>
             <IconCheck size={18}/>
         </Button>
@@ -43,10 +45,13 @@ export default function Task({task}: Props) {
             placeholder='Task name' 
             onChange={e=>setName(task.id, e.target.value)}
             type="text" 
-            className={classNames(task.done && "text-gray-500 dark:text-gray-400", style.input)} />
+            className={classNames(task.done && "text-gray-400 dark:text-gray-500", style.input)} />
         <Button aria-label="delete task" onClick={()=>deleteTask(task.id)} className="w-8 h-8 !p-0 flex justify-center items-center hover:!border-red-500 hover:text-red-600 dark:hover:text-red-400 !ring-red-500">
             <IconTrash strokeWidth={1.5} size={18}/>
         </Button>
+        <div className={style.grip}>
+            <IconGripVertical size={20}/>
+        </div>
         {task.description && <input type="text" role='description' placeholder='Description' className={classNames('col-span-3', style.input)} />}
     </div>)
 }
