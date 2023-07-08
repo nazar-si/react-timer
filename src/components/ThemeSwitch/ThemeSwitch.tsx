@@ -14,7 +14,7 @@ export default function ThemeSwitch({updateClass = false}) {
     const [selected, setSelected] = useTheme(updateClass);
     return (
         <Menu as="div" className="relative inline-block ring-0 ring-offset-0 ring-blue-500 focus-within:ring-2 focus-within:ring-offset-2 dark:ring-offset-black rounded-md transition-all">
-            <Menu.Button className={containerStyle + buttonStyle}>
+            <Menu.Button aria-label='theme switch' className={containerStyle + buttonStyle}>
                 <IconMoon strokeWidth={1.5} className={iconStyle + (selected==="dark"?showIconStyle:"")}/>
                 <IconSun  strokeWidth={1.5} className={iconStyle + (selected==="light"?showIconStyle:"")}/>
                 <IconDeviceDesktop strokeWidth={1.5} className={iconStyle + (selected==="system"?showIconStyle:"")  + " rotate-[0]" }/>
