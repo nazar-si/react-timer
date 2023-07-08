@@ -25,6 +25,9 @@ Project is created with:
 - [ ] Clean up before making repo public
 - [ ] Add footer to with Copyright and project repo link
 - [ ] Add screen awaking feature to keep timer on screen
+- [ ] Extends tasks to support description
+- [ ] Add some task UI on hover - options  
+- [ ] Extract tasks into components
 - [ ] Setup localStorage migration piple
 - [ ] Rewrite interval instantiation to ensure that only one istance is running at a time
 - [ ] Add DnD for tasks
