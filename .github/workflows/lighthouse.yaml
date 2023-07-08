@@ -14,7 +14,7 @@ jobs:
         run: |
           npm ci
           npm run build
-          npm run start
+          npm run preview
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.11.x
