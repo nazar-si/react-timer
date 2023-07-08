@@ -92,9 +92,9 @@ export default function MainTimer() {
       <div className="flex gap-4">
         {
           [
-            {time:20.5, label: "+ 20 sec"}, 
-            {time:60.5, label: "+ 1 min"}, 
-            {time:300.5, label: "+ 5 min"}].map(a=>
+            {time:20, label: "+ 20 sec"}, 
+            {time:60, label: "+ 1 min"}, 
+            {time:300, label: "+ 5 min"}].map(a=>
             <Button key={a.label} className="flex-1" onClick={()=>{
               setRealMaxTime(maxTime=>maxTime + a.time);
               setFinishDate(maxTime=>addTime(maxTime, a.time));
