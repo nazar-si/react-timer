@@ -5,7 +5,8 @@ export type Task = {
     name: string,
     done : boolean,
     id : number,
-    hide ?: boolean
+    hide ?: boolean,
+    description?: string,
 }
 
 export interface ITaskStore {
@@ -15,7 +16,7 @@ export interface ITaskStore {
     removeTask : (id : number) => void,
     toggleTask : (id : number) => void,
     hideTask : (id : number) => void,
-    setName : (id : number, name : string) => void
+    setName : (id : number, name : string) => void,
 }
 
 const useTasksStore = create(persist<ITaskStore>(

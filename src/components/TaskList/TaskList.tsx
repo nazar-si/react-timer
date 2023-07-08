@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import useTasksStore from '../../store/tasks';
 import Button from '../ui/Button/Button';
 import { Transition } from '@headlessui/react';
+import Task from './Task/Task';
 
 
 export default function TaskList() {
@@ -12,10 +13,7 @@ export default function TaskList() {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const tasks = useTasksStore(s=>s.tasks);
   const addTask = useTasksStore(s=>s.addTask);
-  const removeTask = useTasksStore(s=>s.removeTask);
-  const hideTask = useTasksStore(s=>s.hideTask);
-  const setName = useTasksStore(s=>s.setName);
-  const toggleTask = useTasksStore(s=>s.toggleTask);
+  
 
   const startCreating = () => {
     setCreating(true);
@@ -24,14 +22,6 @@ export default function TaskList() {
   useEffect(() => {
     inputRef.current?.focus();
   }, [focus])
-
-  const deleteTask = (id: number) => {
-    hideTask(id);
-    setTimeout(() => {
-      removeTask(id);
-    }, 300);
-  }
-  
 
   const stopCreating = () => {
     setFocus(false);
@@ -48,23 +38,7 @@ export default function TaskList() {
   return (
     <div className="flex items-center flex-col gap-2 w-full">
 
-        {tasks.map(task => <div key={task.id} className={"flex w-full gap-2 transition-all " + (task.hide?"-my-5 opacity-0":"")}>
-            <Button 
-              aria-label="mark as done"
-              className={`w-8 h-8 !p-0 flex justify-center items-center ${task.done?"text-inherit hover:text-blue-500":"text-transparent hover:text-gray-500"}`} 
-              onClick={()=>toggleTask(task.id)}>
-              <IconCheck size={18}/>
-            </Button>
-            <input 
-              value={task.name} 
-              placeholder='Task name' 
-              onChange={e=>setName(task.id, e.target.value)}
-              type="text" 
-              className={`${task.done?"text-gray-500 dark:text-gray-400":""} flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black`} />
-            <Button aria-label="delete task" onClick={()=>deleteTask(task.id)} className="w-8 h-8 !p-0 flex justify-center items-center hover:!border-red-500 hover:text-red-600 dark:hover:text-red-400 !ring-red-500">
-              <IconTrash strokeWidth={1.5} size={18}/>
-            </Button>
-          </div>)}
+        {tasks.map(task => <Task task={task}/>)}
         
         <input disabled={!creating} ref={inputRef} onKeyDown={stopCreatingOnKey} onChange={e=>setNewTaskName(e.target.value)} onBlur={stopCreating} value={newTaskName} placeholder='New task name' type="text" className='w-full rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black disabled:-my-4 disabled:duration-0 disabled:opacity-0 disabled:py-0 disabled:text-transparent disabled:placeholder:text-transparent' />
 

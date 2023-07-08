@@ -46,12 +46,12 @@ For any questions, feedback, or support requests, please contact me at [technotc
 - [x] BUG: Starting timer after 0:0 and adding some time to it results in adding this time to maxTime
 - [x] Rewrite interval instantiation to ensure that only one istance is running at a time
 - [x] Add screen awaking feature to keep timer on screen
+- [x] Extract tasks into components
 - [ ] Add eslint and prettier then add vscode actions on save
 - [ ] Clean up before making repo public
 - [ ] Add footer to with Copyright and project repo link
 - [ ] Extends tasks to support description
 - [ ] Add some task UI on hover - options  
-- [ ] Extract tasks into components
 - [ ] Add CI/CD with github actions
 - [ ] Add DnD for tasks
 - [ ] BUG: Set interval stops after some time while working on another tab
