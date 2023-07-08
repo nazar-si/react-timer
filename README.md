@@ -39,10 +39,10 @@ npm run test
 - [x] Setup localStorage migration pipeline
 - [x] BUG: Starting timer after 0:0 and adding some time to it results in adding this time to maxTime
 - [x] Rewrite interval instantiation to ensure that only one istance is running at a time
+- [x] Add screen awaking feature to keep timer on screen
 - [ ] Add eslint and prettier then add vscode actions on save
 - [ ] Clean up before making repo public
 - [ ] Add footer to with Copyright and project repo link
-- [ ] Add screen awaking feature to keep timer on screen
 - [ ] Extends tasks to support description
 - [ ] Add some task UI on hover - options  
 - [ ] Extract tasks into components

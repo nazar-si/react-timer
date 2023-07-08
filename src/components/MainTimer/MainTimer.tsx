@@ -29,6 +29,7 @@ export default function MainTimer() {
 
   // interval used to update UI
   const intervalRef = useRef<number | null | NodeJS.Timer>(null);
+  const wakeLockRef = useRef<any>(null);
   const anyTasks = useTasksStore((state) => state.tasks.length > 0);
 
   useEffect(() => {
@@ -37,7 +38,9 @@ export default function MainTimer() {
 
   useEffect(() => {
     clearInterval(intervalRef.current!);
+    if (wakeLockRef.current) wakeLockRef.current.release();
     if (active) {
+      wakeLockRef.current = navigator.wakeLock?.request();
       intervalRef.current = setInterval(() => {
         setTime(diff(finishDate, new Date()));
       }, REFRESH_DELAY);
@@ -51,6 +54,7 @@ export default function MainTimer() {
       "Pomodoro";
     if (!active) return;
     if (time <= 0) {
+      wakeLockRef.current.release();
       setActive(false);
       setTime(0);
       clearInterval(intervalRef.current!);
@@ -62,6 +66,7 @@ export default function MainTimer() {
     setFinishDate(addTime(new Date(), maxTime));
     setTime(maxTime);
     setActive(false);
+    wakeLockRef.current?.release();
     clearInterval(intervalRef.current!);
   };
 
