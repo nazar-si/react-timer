@@ -50,7 +50,7 @@ export default function MainTimer() {
   const [active, setActive] = useState(false);
 
   // interval used to update UI
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null | NodeJS.Timer>(null);
   const anyTasks = useTasksStore(state => state.tasks.length > 0);
 
   useEffect(() => {
@@ -68,6 +68,7 @@ export default function MainTimer() {
   }, [active, finishDate]);
 
   useEffect(() => {
+    document.title = `Pomodoro ${leftpad(Math.floor(time / 60))}:${leftpad(time % 60)}`
     if (!active) return;
     if (time <= 0) {
       setActive(false);
@@ -91,7 +92,7 @@ export default function MainTimer() {
         <h1 className="text-7xl sm:text-8xl md:text-9xl -mt-20 mb-10 font-bold text-gray-200 dark:text-black/50">Pomodoro</h1>
       </div>
       <ModeSwitch/>
-      <div className='p-[3px] rounded-2xl relative' style={{
+      <div className='p-[3px] rounded-[1.1rem] relative' style={{
         background: `conic-gradient(${time===0?"#f040":modes[mode].color}, ${time===0?"#f040":modes[mode].color} ${100 - time / realMaxTime * 100}%, #0000 ${102 - time / realMaxTime * 102}%, #0000)`
       }}>
         <div className="absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10"

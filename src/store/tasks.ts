@@ -29,7 +29,7 @@ const useTasksStore = create(persist<ITaskStore>(
         setName : (id, name) => set({tasks : get().tasks.map(task => task.id === id ? {...task, name : name} : task)})
     }),
     {
-        name: "tasks-storage"
+        name: "tasks-storage",
     }
 ))
 

@@ -22,9 +22,13 @@ Project is created with:
 
 ## TODO
 - [x] Go from setInterval to Date to remove reliance on intervals and asynchronous code + allow timer to go while device is in sleep
-- [ ] Add footer to with Copyright and project repo link.
+- [ ] Clean up before making repo public
+- [ ] Add footer to with Copyright and project repo link
 - [ ] Add screen awaking feature to keep timer on screen
 - [ ] Setup localStorage migration piple
+- [ ] Rewrite interval instantiation to ensure that only one istance is running at a time
+- [ ] Add DnD for tasks
+- [ ] BUG: Starting timer after 0:0 and adding some time to it results in adding this time to maxTime
 - [ ] Fix first second being missed on launch
 - [ ] Refactor first time 
   - [ ] Sparate styles from component 
