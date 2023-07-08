@@ -51,9 +51,9 @@ For any questions, feedback, or support requests, please contact me at [technotc
 - [x] Add screen awaking feature to keep timer on screen
 - [x] Extract tasks into components
 - [x] Fix first second being missed on launch
-- [ ] Add eslint and prettier then add vscode actions on save
+- [x] Add eslint and prettier then add vscode actions on save
+- [x] Add footer to with Copyright and project repo link
 - [ ] Clean up before making repo public
-- [ ] Add footer to with Copyright and project repo link
 - [ ] Extends tasks to support description
 - [ ] Add some task UI on hover - options  
 - [ ] Add CI/CD with github actions
