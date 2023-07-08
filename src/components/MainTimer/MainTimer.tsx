@@ -38,9 +38,12 @@ export default function MainTimer() {
 
   useEffect(() => {
     clearInterval(intervalRef.current!);
+    const getWakeLock = async () => {
+      return await navigator.wakeLock?.request();
+    }
     if (wakeLockRef.current) wakeLockRef.current.release();
     if (active) {
-      wakeLockRef.current = navigator.wakeLock?.request();
+      getWakeLock().then(r=>wakeLockRef.current=r);
       intervalRef.current = setInterval(() => {
         setTime(diff(finishDate, new Date()));
       }, REFRESH_DELAY);
