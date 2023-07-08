@@ -10,6 +10,7 @@ import { addTime, diff } from './moment';
 import Display from './Display/Display';
 import Title from './Title/Title';
 import toClock from './Display/toClock';
+import plays from './audio';
 
 const addMoreTime = [
   { time: 20, label: '+ 20 sec' },
@@ -61,6 +62,7 @@ export default function MainTimer() {
     if (!active) return;
     if (time <= 0) {
       wakeLockRef.current.release();
+      plays['digital']();
       setActive(false);
       setTime(0);
       clearInterval(intervalRef.current!);

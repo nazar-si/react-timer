@@ -50,6 +50,7 @@ For any questions, feedback, or support requests, please contact me at [technotc
 - [x] Rewrite interval instantiation to ensure that only one istance is running at a time
 - [x] Add screen awaking feature to keep timer on screen
 - [x] Extract tasks into components
+- [x] Fix first second being missed on launch
 - [ ] Add eslint and prettier then add vscode actions on save
 - [ ] Clean up before making repo public
 - [ ] Add footer to with Copyright and project repo link
@@ -58,7 +59,6 @@ For any questions, feedback, or support requests, please contact me at [technotc
 - [ ] Add CI/CD with github actions
 - [ ] Add DnD for tasks
 - [ ] BUG: Set interval stops after some time while working on another tab
-- [ ] Fix first second being missed on launch
 - [ ] Refactor first time 
   - [ ] Sparate styles from component 
   - [x] Decompose components into multiple smaller ones 
