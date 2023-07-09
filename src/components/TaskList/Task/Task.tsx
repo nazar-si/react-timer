@@ -3,6 +3,8 @@ import Button from '../../ui/Button/Button';
 import useTasksStore, { Task } from '../../../store/tasks';
 import { IconCheck, IconGripVertical, IconTrash } from '@tabler/icons-react';
 import { classNames } from '../../../utls/classnames';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 type Props = {
   task: Task;
@@ -20,7 +22,7 @@ interface DragTask {
 const style = {
   wrapper:
     'grid grid-cols-[2rem_1fr_2rem] p-1 w-full gap-2 transition-all relative duration-200 ease-in-out rounded-md',
-  wrapperDragged: 'bg-gray-200 dark:bg-zinc-700 opacity-50',
+  wrapperDragged: 'opacity-50',
   input:
     'flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black',
   grip: 'absolute top-0 bottom-[2px] -left-8 !mr-10 pl-4 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-0',
@@ -39,19 +41,21 @@ export default function Task({ task, index }: Props) {
   const hideTask = useTasksStore((s) => s.hideTask);
   const [isUsed, setIsUsed] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const moveTask = useTasksStore((s) => s.moveTask);
+
+  const sortable = useSortable({ id: task.id });
 
   const elementRef = useRef<HTMLDivElement>(null);
 
-  const isDragging = false;
-
   const deleteTask = (id: number) => {
-    hideTask(id);
+    // hideTask(id);
 
-    setTimeout(() => {
-      removeTask(id);
-    }, 300);
+    // setTimeout(() => {
+    //   removeTask(id);
+    // }, 300);
+    removeTask(id);
   };
+
+  sortable.setNodeRef(elementRef.current);
 
   return (
     <div
@@ -60,16 +64,20 @@ export default function Task({ task, index }: Props) {
       className={classNames(
         style.wrapper,
         task.hide && 'opacity-0',
-        isDragging && style.wrapperDragged,
+        sortable.isDragging && style.wrapperDragged,
       )}
-      style={
-        task.hide
+      style={{
+        ...(task.hide
           ? {
               marginTop: `-${elementRef.current!.clientHeight / 2}px`,
               marginBottom: `-${elementRef.current!.clientHeight / 2}px`,
             }
-          : {}
-      }
+          : {}),
+        transform: CSS.Transform.toString(
+          sortable.transform ? { ...sortable.transform, x: 0 } : null,
+        ),
+        transition: sortable.transition,
+      }}
       onFocus={() => setIsUsed(true)}
       onMouseOver={() => setIsUsed(true)}
       onMouseLeave={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -82,6 +90,7 @@ export default function Task({ task, index }: Props) {
         setIsUsed(false);
         setIsMenuOpen(false);
       }}
+      {...sortable.attributes}
     >
       <Button
         aria-label="mark as done"
@@ -112,10 +121,11 @@ export default function Task({ task, index }: Props) {
         <IconTrash strokeWidth={1.5} size={18} />
       </Button>
       <div
+        {...sortable.listeners}
         className={classNames(
           style.grip,
-          (isUsed || isDragging) && 'opacity-100',
-          !(isUsed || isDragging) && 'scale-50 -left-4',
+          (isUsed || sortable.isDragging) && 'opacity-100',
+          !(isUsed || sortable.isDragging) && 'scale-50 -left-4',
         )}
       >
         <IconGripVertical size={20} />
