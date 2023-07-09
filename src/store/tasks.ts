@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import update from 'immutability-helper';
 
 export type Task = {
   name: string;
@@ -17,6 +18,7 @@ export interface ITaskStore {
   toggleTask: (id: number) => void;
   hideTask: (id: number) => void;
   setName: (id: number, name: string) => void;
+  moveTask: (id: number, to: number) => void;
 }
 
 const useTasksStore = create(
@@ -52,6 +54,16 @@ const useTasksStore = create(
             task.id === id ? { ...task, name: name } : task,
           ),
         }),
+      moveTask: (dragIndex: number, hoverIndex: number) => {
+        set((state) => ({
+          tasks: update(state.tasks, {
+            $splice: [
+              [dragIndex, 1],
+              [hoverIndex, 0, state.tasks[dragIndex]],
+            ],
+          }),
+        }));
+      },
     }),
     {
       name: 'tasks-storage',

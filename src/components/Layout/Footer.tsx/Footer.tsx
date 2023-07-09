@@ -1,6 +1,3 @@
-import { IconBrandGithub } from '@tabler/icons-react';
-import React from 'react';
-
 export default function Footer() {
   return (
     <footer className="absolute bottom-4 flex items-center gap-8">

@@ -1,29 +1,31 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Button from '../../ui/Button/Button';
 import useTasksStore, { Task } from '../../../store/tasks';
-import {
-  IconBlockquote,
-  IconCheck,
-  IconDotsVertical,
-  IconGripVertical,
-  IconIndentDecrease,
-  IconIndentIncrease,
-  IconLink,
-  IconTrash,
-} from '@tabler/icons-react';
+import { IconCheck, IconGripVertical, IconTrash } from '@tabler/icons-react';
 import { classNames } from '../../../utls/classnames';
+import { useDrag, useDrop } from 'react-dnd';
+import type { Identifier, XYCoord } from 'dnd-core';
 
 type Props = {
   task: Task;
+  index: number;
 };
+
+export const TASK_TYPE = 'TASK_TYPE';
+
+interface DragTask {
+  id: number;
+  index: number;
+  type: string;
+}
 
 const style = {
   wrapper:
     'grid grid-cols-[2rem_1fr_2rem] p-1 w-full gap-2 transition-all relative duration-200 ease-in-out rounded-md',
-  wrapperDragged: 'bg-gray-200 dark:bg-gray-700',
+  wrapperDragged: 'bg-gray-200 dark:bg-zinc-700 opacity-50',
   input:
     'flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black',
-  grip: 'absolute top-0 bottom-[2px] -left-5 sm:-left-6 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-0',
+  grip: 'absolute top-0 bottom-[2px] -left-8 !mr-10 pl-4 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-0',
   actions:
     'absolute h-fit top-1/2 -translate-y-1/2 bottom-0 -right-4 flex flex-col gap-0 items-center opacity-0 transition-all',
   actionsActive: 'opacity-100 !-right-8',
@@ -32,28 +34,85 @@ const style = {
   actionButtonActive: 'm-[0.125rem] opacity-100 pointer-events-auto',
 };
 
-export default function Task({ task }: Props) {
+export default function Task({ task, index }: Props) {
   const setName = useTasksStore((s) => s.setName);
   const toggleTask = useTasksStore((s) => s.toggleTask);
   const removeTask = useTasksStore((s) => s.removeTask);
   const hideTask = useTasksStore((s) => s.hideTask);
   const [isUsed, setIsUsed] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const moveTask = useTasksStore((s) => s.moveTask);
 
   const elementRef = useRef<HTMLDivElement>(null);
 
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: TASK_TYPE,
+    collect: (m) => ({
+      isDragging: !!m.isDragging(),
+    }),
+    item: () => {
+      return { id: task.id, index, type: TASK_TYPE };
+    },
+  }));
+  const [{ handlerId }, drop] = useDrop<
+    DragTask,
+    void,
+    { handlerId: Identifier | null }
+  >(() => ({
+    accept: TASK_TYPE,
+    collect(m) {
+      return {
+        handlerId: m.getHandlerId(),
+      };
+    },
+    hover(item, m) {
+      if (!elementRef.current) {
+        return;
+      }
+      const dragIndex = item.index;
+      const hoverIndex = index;
+
+      if (dragIndex === hoverIndex) {
+        return;
+      }
+
+      const hoverBoundingRect = elementRef.current?.getBoundingClientRect();
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom + hoverBoundingRect.top) / 2;
+      const clientOffset = m.getClientOffset();
+      const hoverClientY = (clientOffset as XYCoord).y;
+
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return;
+      }
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return;
+      }
+      moveTask(dragIndex, hoverIndex);
+
+      item.index = hoverIndex;
+    },
+  }));
+
   const deleteTask = (id: number) => {
     hideTask(id);
+
     setTimeout(() => {
       removeTask(id);
     }, 300);
   };
 
+  // drag(drop(elementRef));
+
   return (
     <div
       key={task.id}
       ref={elementRef}
-      className={classNames(style.wrapper, task.hide && 'opacity-0')}
+      className={classNames(
+        style.wrapper,
+        task.hide && 'opacity-0',
+        isDragging && style.wrapperDragged,
+      )}
       style={
         task.hide
           ? {
@@ -106,8 +165,8 @@ export default function Task({ task }: Props) {
       <div
         className={classNames(
           style.grip,
-          isUsed && 'opacity-100',
-          !isUsed && 'scale-50 -left-4',
+          (isUsed || isDragging) && 'opacity-100',
+          !(isUsed || isDragging) && 'scale-50 -left-4',
         )}
       >
         <IconGripVertical size={20} />

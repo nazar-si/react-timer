@@ -17,7 +17,10 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@tabler/icons-react": "^2.23.0",
+    "immutability-helper": "^3.1.1",
     "react": "^18.2.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "zustand": "^4.3.8"
   },
