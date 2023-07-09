@@ -19,7 +19,8 @@ type Props = {
 
 const style = {
   wrapper:
-    'grid grid-cols-[2rem_1fr_2rem] w-full gap-2 transition-all relative duration-200 ease-in-out',
+    'grid grid-cols-[2rem_1fr_2rem] p-1 w-full gap-2 transition-all relative duration-200 ease-in-out rounded-md',
+  wrapperDragged: 'bg-gray-200 dark:bg-gray-700',
   input:
     'flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black',
   grip: 'absolute top-0 bottom-[2px] -left-5 sm:-left-6 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-0',
@@ -56,13 +57,10 @@ export default function Task({ task }: Props) {
       style={
         task.hide
           ? {
-              marginTop: `-${elementRef.current!.clientHeight / 2}px`, // element height + half of the gap
+              marginTop: `-${elementRef.current!.clientHeight / 2}px`,
               marginBottom: `-${elementRef.current!.clientHeight / 2}px`,
             }
-          : {
-              marginTop: 4,
-              marginBottom: 4,
-            }
+          : {}
       }
       onFocus={() => setIsUsed(true)}
       onMouseOver={() => setIsUsed(true)}
@@ -115,7 +113,8 @@ export default function Task({ task }: Props) {
         <IconGripVertical size={20} />
       </div>
       <div className={classNames(style.actions, isUsed && style.actionsActive)}>
-        <Button
+        {/* Reserved for future use */}
+        {/* <Button
           className={classNames(
             style.actionButton,
             isUsed && !isMenuOpen && style.actionButtonActive,
@@ -139,7 +138,7 @@ export default function Task({ task }: Props) {
           )}
         >
           <IconIndentIncrease size={16} />
-        </Button>
+        </Button> */}
       </div>
       {task.description && (
         <input
