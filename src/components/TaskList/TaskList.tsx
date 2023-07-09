@@ -2,8 +2,11 @@ import { IconPlus } from '@tabler/icons-react';
 import React, { useCallback, useEffect } from 'react';
 import useTasksStore from '../../store/tasks';
 import Task from './Task/Task';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndContext, DragEndEvent, closestCenter } from '@dnd-kit/core';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 
 export default function TaskList() {
   const [creating, setCreating] = React.useState(false);
@@ -12,6 +15,7 @@ export default function TaskList() {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const tasks = useTasksStore((s) => s.tasks);
   const addTask = useTasksStore((s) => s.addTask);
+  const moveTask = useTasksStore((s) => s.moveTask);
 
   const startCreating = () => {
     setCreating(true);
@@ -39,32 +43,44 @@ export default function TaskList() {
       stopCreating();
     }
   };
+  const onDragEnd = (event: DragEndEvent) => {
+    const idx = tasks.map((t) => t.id);
+    const activeIndex = idx.indexOf(event.active.id as number);
+    const overIndex = idx.indexOf(event.over?.id as number);
+
+    if (activeIndex === overIndex) return;
+    moveTask(activeIndex, overIndex);
+  };
+
   return (
-    <div className="flex items-center flex-col w-full">
-      <DndProvider backend={HTML5Backend}>
-        {tasks.map((task, index) => (
-          <Task task={task} key={task.id.toString()} index={index} />
-        ))}
-      </DndProvider>
+    <div className="w-full">
+      <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
+        <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
+          {tasks.map((task, index) => (
+            <Task task={task} key={task.id.toString()} index={index} />
+          ))}
+        </SortableContext>
+      </DndContext>
 
-      <input
-        disabled={!creating}
-        ref={inputRef}
-        onKeyDown={stopCreatingOnKey}
-        onChange={(e) => setNewTaskName(e.target.value)}
-        onBlur={stopCreating}
-        value={newTaskName}
-        placeholder="New task name"
-        type="text"
-        className="w-full rounded-md my-2 py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black disabled:-my-4 disabled:duration-0 disabled:opacity-0 disabled:py-0 disabled:text-transparent disabled:placeholder:text-transparent"
-      />
-
-      <button
-        onClick={startCreating}
-        className="w-full mb-10 mt-2 font-medium text-zinc-400 dark:text-zinc-500 flex justify-center items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-800/50 rounded-md px-2 py-1"
-      >
-        Add task <IconPlus size={18} />
-      </button>
+      <div className="flex flex-col">
+        <input
+          disabled={!creating}
+          ref={inputRef}
+          onKeyDown={stopCreatingOnKey}
+          onChange={(e) => setNewTaskName(e.target.value)}
+          onBlur={stopCreating}
+          value={newTaskName}
+          placeholder="New task name"
+          type="text"
+          className="w-full rounded-md my-2 py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black disabled:-my-4 disabled:duration-0 disabled:opacity-0 disabled:py-0 disabled:text-transparent disabled:placeholder:text-transparent"
+        />
+        <button
+          onClick={startCreating}
+          className="w-full mb-10 mt-2 font-medium text-zinc-400 dark:text-zinc-500 flex justify-center items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-800/50 rounded-md px-2 py-1"
+        >
+          Add task <IconPlus size={18} />
+        </button>
+      </div>
     </div>
   );
 }
