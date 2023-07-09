@@ -3,8 +3,6 @@ import Button from '../../ui/Button/Button';
 import useTasksStore, { Task } from '../../../store/tasks';
 import { IconCheck, IconGripVertical, IconTrash } from '@tabler/icons-react';
 import { classNames } from '../../../utls/classnames';
-import { useDrag, useDrop } from 'react-dnd';
-import type { Identifier, XYCoord } from 'dnd-core';
 
 type Props = {
   task: Task;
@@ -45,54 +43,7 @@ export default function Task({ task, index }: Props) {
 
   const elementRef = useRef<HTMLDivElement>(null);
 
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: TASK_TYPE,
-    collect: (m) => ({
-      isDragging: !!m.isDragging(),
-    }),
-    item: () => {
-      return { id: task.id, index, type: TASK_TYPE };
-    },
-  }));
-  const [{ handlerId }, drop] = useDrop<
-    DragTask,
-    void,
-    { handlerId: Identifier | null }
-  >(() => ({
-    accept: TASK_TYPE,
-    collect(m) {
-      return {
-        handlerId: m.getHandlerId(),
-      };
-    },
-    hover(item, m) {
-      if (!elementRef.current) {
-        return;
-      }
-      const dragIndex = item.index;
-      const hoverIndex = index;
-
-      if (dragIndex === hoverIndex) {
-        return;
-      }
-
-      const hoverBoundingRect = elementRef.current?.getBoundingClientRect();
-      const hoverMiddleY =
-        (hoverBoundingRect.bottom + hoverBoundingRect.top) / 2;
-      const clientOffset = m.getClientOffset();
-      const hoverClientY = (clientOffset as XYCoord).y;
-
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
-      moveTask(dragIndex, hoverIndex);
-
-      item.index = hoverIndex;
-    },
-  }));
+  const isDragging = false;
 
   const deleteTask = (id: number) => {
     hideTask(id);
@@ -101,8 +52,6 @@ export default function Task({ task, index }: Props) {
       removeTask(id);
     }, 300);
   };
-
-  // drag(drop(elementRef));
 
   return (
     <div

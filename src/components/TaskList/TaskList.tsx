@@ -2,8 +2,6 @@ import { IconPlus } from '@tabler/icons-react';
 import React, { useCallback, useEffect } from 'react';
 import useTasksStore from '../../store/tasks';
 import Task from './Task/Task';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export default function TaskList() {
   const [creating, setCreating] = React.useState(false);
@@ -41,11 +39,9 @@ export default function TaskList() {
   };
   return (
     <div className="flex items-center flex-col w-full">
-      <DndProvider backend={HTML5Backend}>
-        {tasks.map((task, index) => (
-          <Task task={task} key={task.id.toString()} index={index} />
-        ))}
-      </DndProvider>
+      {tasks.map((task, index) => (
+        <Task task={task} key={task.id.toString()} index={index} />
+      ))}
 
       <input
         disabled={!creating}
