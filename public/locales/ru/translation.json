@@ -1,8 +1,8 @@
 {
   "title": "Pomodoro",
   "focus": "Фокус",
-  "break": "Отдых",
-  "longBreak": "Долгий отдых",
+  "break": "Перерыв",
+  "longBreak": "Отдых",
   "timer" : {
     "start": "Старт",
     "reset": "Сбросить",
