@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Button from '../../ui/Button/Button';
 import useTasksStore, { Task } from '../../../store/tasks';
-import { IconCheck, IconGripVertical, IconTrash } from '@tabler/icons-react';
+import { IconCheck, IconCornerDownRight, IconGripVertical, IconIndentIncrease, IconTrash } from '@tabler/icons-react';
 import { classNames } from '../../../utls/classnames';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -166,12 +166,17 @@ export default function Task({ task, index }: Props) {
         </Button> */}
       </div>
       {task.description && (
-        <input
+        <>
+          <div className='w-8 h-8 flex items-center justify-center text-zinc-500 dark:text-zinc-400'>
+            <IconCornerDownRight />
+          </div>
+          <input
           type="text"
           role="description"
           placeholder="Description"
-          className={classNames('col-span-3', style.input)}
+          className={classNames('col-span-2 flex-1', style.input)}
         />
+        </>
       )}
     </div>
   );
