@@ -44,17 +44,6 @@ The Pomodoro Timer is open-source software licensed under the [MIT License](./LI
 For any questions, feedback, or support requests, please contact me at [technotche@gmail.com](technotche@gmail.com) or leave an issue in this repository.
 
 ## TODO
-- [x] Go from setInterval to Date to remove reliance on intervals and asynchronous code + allow timer to go while device is in sleep
-- [x] Setup localStorage migration pipeline
-- [x] BUG: Starting timer after 0:0 and adding some time to it results in adding this time to maxTime
-- [x] Rewrite interval instantiation to ensure that only one istance is running at a time
-- [x] Add screen awaking feature to keep timer on screen
-- [x] Extract tasks into components
-- [x] Fix first second being missed on launch
-- [x] Add eslint and prettier then add vscode actions on save
-- [x] Add footer to with Copyright and project repo link
-- [x] Add CI/CD with github actions
-- [x] Add some task UI on hover - options  
 - [ ] Clean up before making repo public
 - [ ] Extends tasks to support description
 - [ ] Add DnD for tasks
@@ -64,4 +53,6 @@ For any questions, feedback, or support requests, please contact me at [technotc
   - [x] Decompose components into multiple smaller ones 
 - [ ] Setup some E2E tests with playwright
 - [ ] Improve code test coverage
+- [ ] Return delete animations for tasks
 - [ ] All uncomplited in [features](##Features)
+- [ ] Test DnD on mobile 

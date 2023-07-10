@@ -73,9 +73,7 @@ export default function Task({ task, index }: Props) {
               marginBottom: `-${elementRef.current!.clientHeight / 2}px`,
             }
           : {}),
-        transform: CSS.Transform.toString(
-          sortable.transform ? { ...sortable.transform, x: 0 } : null,
-        ),
+        transform: CSS.Transform.toString(sortable.transform),
         transition: sortable.transition,
       }}
       onFocus={() => setIsUsed(true)}
