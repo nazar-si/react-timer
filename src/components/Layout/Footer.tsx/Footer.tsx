@@ -5,7 +5,7 @@ import { classNames } from '../../../utls/classnames';
 export default function Footer() {
   const { t, i18n } = useTranslation();
   return (
-    <footer className="mt-20 mb-2 flex flex-wrap items-center w-full px-8 gap-8">
+    <footer className="mt-10 mb-2 flex flex-wrap items-center w-full px-8 gap-8">
       <aside>
         <Menu as="div" className="opacity-75 relative">
           <Menu.Button

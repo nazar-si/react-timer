@@ -9,3 +9,20 @@ body {
 body.dark{
     @apply bg-zinc-900 text-gray-100;
 }
+
+body::-webkit-scrollbar {
+    width: 18px;
+    height: 18px;
+}
+body::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+body::-webkit-scrollbar-thumb {
+    @apply bg-gray-500/25 hover:bg-gray-500/30 rounded-xl transition-all;
+    border: 5px solid;
+    @apply border-gray-100;
+}
+
+body.dark::-webkit-scrollbar-thumb {
+    @apply border-zinc-900;
+}

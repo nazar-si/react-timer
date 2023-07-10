@@ -87,7 +87,7 @@ export default function MainTimer() {
     <div
       className="flex flex-col gap-4 transition-all duration-500"
       style={{
-        transform: `translateY(calc(${anyTasks ? '100px' : '50vh - 50%'}))`,
+        transform: `translateY(calc(${anyTasks ? '32px' : '50vh - 50%'}))`,
       }}
     >
       <Title content="Pomodoro" />

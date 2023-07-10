@@ -81,11 +81,11 @@ export default function TaskList() {
         />
         <button
           onClick={startCreating}
-          className="w-full mb-10 mt-2 font-medium text-zinc-400 dark:text-zinc-500 flex justify-center items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-800/50 rounded-md px-2 py-1"
+          className="w-full my-2 font-medium text-zinc-400 dark:text-zinc-500 flex justify-center items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-800/50 rounded-md px-2 py-1"
         >
           {t('tasks.add')} <IconPlus size={18} />
         </button>
-        {!import.meta.env.PROD && (
+        {/* {!import.meta.env.PROD && (
           <div className="flex gap-2 items-center">
             Debug:
             <Button
@@ -108,7 +108,7 @@ export default function TaskList() {
               <IconTrash />
             </Button>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
