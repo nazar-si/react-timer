@@ -1,4 +1,4 @@
-import { IconPlus } from '@tabler/icons-react';
+import { IconPlus, IconTrash } from '@tabler/icons-react';
 import React, { useCallback, useEffect } from 'react';
 import useTasksStore from '../../store/tasks';
 import Task from './Task/Task';
@@ -8,6 +8,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { useTranslation } from 'react-i18next';
+import Button from '../ui/Button/Button';
 
 export default function TaskList() {
   const [creating, setCreating] = React.useState(false);
@@ -17,6 +18,7 @@ export default function TaskList() {
   const tasks = useTasksStore((s) => s.tasks);
   const addTask = useTasksStore((s) => s.addTask);
   const moveTask = useTasksStore((s) => s.moveTask);
+  const removeTask = useTasksStore((s) => s.removeTask);
 
   const { t } = useTranslation();
 
@@ -83,6 +85,30 @@ export default function TaskList() {
         >
           {t('tasks.add')} <IconPlus size={18} />
         </button>
+        {!import.meta.env.PROD && (
+          <div className="flex gap-2 items-center">
+            Debug:
+            <Button
+              onClick={() => {
+                addTask('Prepare for tests');
+                addTask('Write tests');
+                addTask('Fix bugs');
+                addTask('Find job');
+                addTask('Delete root folder');
+                addTask('Exploit the planet');
+              }}
+            >
+              Mock tasks
+            </Button>
+            <Button
+              onClick={() => {
+                tasks.forEach((t) => removeTask(t.id));
+              }}
+            >
+              <IconTrash />
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

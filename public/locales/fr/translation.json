@@ -1,0 +1,24 @@
+{
+  "title": "Pomodoro",
+  "focus": "Travail",
+  "break": "Pause",
+  "longBreak": "Longue Pause",
+  "timer" : {
+    "start": "Debut",
+    "repeat": "Répéter",
+    "reset": "Réinitialiser",
+    "stop": "Arreter",
+    "sec": "sec",
+    "min": "min",
+    "overdue": "Le temps est écoulé!"
+  },
+  "tasks": {
+    "add": "Ajouter une tâche",
+    "new-task-placeholder": "Nom de la novelle tâche",
+    "task-placeholder": "Node de la tâche"
+  },
+  "footer": {
+    "created": "Créé par",
+    "project": "Decouvrez le projet sur"
+  }
+}

@@ -75,8 +75,10 @@ export default function Task({ task, index }: Props) {
               marginBottom: `-${elementRef.current!.clientHeight / 2}px`,
             }
           : {}),
-        transform: CSS.Transform.toString(sortable.transform),
-        transition: sortable.isDragging ? sortable.transition : '0.3s',
+        transform: sortable.isDragging
+          ? CSS.Transform.toString(sortable.transform)
+          : '',
+        transition: sortable.transition,
       }}
       onFocus={() => setIsUsed(true)}
       onMouseOver={() => setIsUsed(true)}

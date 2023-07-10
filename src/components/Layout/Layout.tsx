@@ -7,8 +7,8 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="w-full min-h-[100vh] flex justify-center items-start transition-all absolute">
-      {children}
+    <div className="w-full min-h-[100vh] flex flex-col items-center transition-all absolute">
+      <div className="flex-1">{children}</div>
       <Footer></Footer>
     </div>
   );
