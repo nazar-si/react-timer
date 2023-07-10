@@ -43,17 +43,10 @@ The Pomodoro Timer is open-source software licensed under the [MIT License](./LI
 ## Contact
 For any questions, feedback, or support requests, please contact me at [technotche@gmail.com](technotche@gmail.com) or leave an issue in this repository.
 
-## TODO
-- [x] Return deleted animations for tasks
-- [x] Count negative time (overtime should be showed in red color, but still go on, even if it's overdue)
-- [x] Add DnD for tasks
-- [ ] Clean up before making repo public
-- [ ] Extends tasks to support description
-- [ ] BUG: Set interval stops after some time while working on another tab
-- [ ] Refactor first time 
-  - [ ] Sparate styles from component 
-  - [x] Decompose components into multiple smaller ones 
-- [ ] Setup some E2E tests with playwright
-- [ ] Improve code test coverage
-- [ ] All uncomplited in [features](##Features)
-- [ ] Test DnD on mobile 
+## Next comming features:
+- Support adding description for the tasks
+- Settings menu and custom time
+
+## Known Issues
+- Some components styles need to be cleaned up
+- Test coverage is low and more test are needed
