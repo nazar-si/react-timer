@@ -22,6 +22,17 @@
     "project": "Find project on"
   },
   "what": {
-    "button-tip": "What is it?"
+    "button-tip": "What is it?",
+    "title": "What is pomodoro?",
+    "description": "The Pomodoro Technique is a time management method that helps improve productivity and focus. The technique involves breaking tasks into small, manageable intervals called 'Pomodoros' that last for 25 minutes, followed by short breaks of 5 minutes.",
+    "steps-start": "To implement the Pomodoro Technique, follow these steps:",
+    "step-1": "Choose a task to work on.",
+    "step-2": "Set a timer for 25 minutes, known as a Pomodoro.",
+    "step-3": "Work on the task with focused attention until the timer goes off.",
+    "step-4": "Take a short break of 5 minutes.",
+    "step-5": "Repeat the process for four Pomodoros.",
+    "step-6": "After completing four Pomodoros, take a longer break of 15 to 30 minutes.",
+    "step-7": "Repeat the cycle as needed.",
+    "conclusion": "By working in focused intervals and taking regular breaks, the Pomodoro Technique helps improve concentration, combat procrastination, and increase productivity."
   }
 }

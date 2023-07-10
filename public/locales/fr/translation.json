@@ -20,5 +20,19 @@
   "footer": {
     "created": "Créé par",
     "project": "Decouvrez le projet sur"
+  },
+  "what": {
+    "button-tip": "Qu'est-ce que c'est?",
+    "title": "Qu'est-ce que Pomodoro?",
+    "description": "La technique Pomodoro est une méthode de gestion du temps qui permet d'améliorer la productivité et la concentration. La technique consiste à diviser les tâches en petits intervalles gérables appelés 'Pomodoros' qui durent 25 minutes, suivis de courtes pauses de 5 minutes.",
+    "steps-start": "Pour mettre en œuvre la technique Pomodoro, procédez comme suit:",
+    "step-1": "Choisissez une tâche sur laquelle travailler.",
+    "step-2": "Réglez une minuterie sur 25 minutes, connue sous le nom de Pomodoro.",
+    "step-3": "Travaillez sur la tâche avec une attention concentrée jusqu'à ce que le minuteur s'éteigne.",
+    "step-4": "Faites une courte pause de 5 minutes.",
+    "step-5": "Répétez le processus pour quatre Pomodoros.",
+    "step-6": "Après avoir terminé quatre Pomodoros, faites une pause plus longue de 15 à 30 minutes.",
+    "step-7": "Répétez le cycle au besoin.",
+    "conclusion": "En travaillant à intervalles réguliers et en prenant des pauses régulières, la technique Pomodoro aide à améliorer la concentration, à combattre la procrastination et à augmenter la productivité."
   }
 }

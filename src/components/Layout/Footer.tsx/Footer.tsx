@@ -85,7 +85,21 @@ export default function Footer() {
         <IconHelpHexagonFilled />
       </aside>
       <Modal show={showHelpModal} setShow={setShowHelpModal}>
-        Test
+        <div className="text-gray-500 dark:text-zinc-400">
+          <h2 className="text-lg font-medium mb-2 text-black dark:text-white">
+            {t('what.title')}
+          </h2>
+          <p className="my-2">{t('what.description')}</p>
+          <p className="my-2">{t('what.steps-start')}</p>
+          <ol className="list-decimal pl-4 list-inside">
+            {Array(7)
+              .fill(0)
+              .map((_, i) => (
+                <li key={i}>{t(`what.step-${i + 1}`)}</li>
+              ))}
+          </ol>
+          <p className="my-2">{t('what.conclusion')}</p>
+        </div>
       </Modal>
     </footer>
   );
