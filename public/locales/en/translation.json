@@ -9,7 +9,8 @@
     "reset": "Reset",
     "stop": "Stop",
     "sec": "sec",
-    "min": "min"
+    "min": "min",
+    "overdue": "Time is up!"
   },
   "tasks": {
     "add": "Add task",

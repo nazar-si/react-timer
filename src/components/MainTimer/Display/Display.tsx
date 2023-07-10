@@ -1,6 +1,8 @@
 import useTimerStore from '../../../store/timer/timer';
 import toClock from './toClock';
 import { classNames } from '../../../utls/classnames';
+import { useTranslation } from 'react-i18next';
+import { IconClockExclamation } from '@tabler/icons-react';
 
 type Props = {
   time: number;
@@ -38,14 +40,15 @@ export default function Display({ time, realMaxTime, active }: Props) {
   const mode = useTimerStore((state) => state.mode);
   const clockActive = `${modes[mode].text}`;
   const shadowActive = `${modes[mode].neon} ${modes[mode].border}`;
+  const { t } = useTranslation();
 
   return (
     <div
       className="p-[3px] rounded-[1.1rem] relative"
       style={{
         background: `conic-gradient(${
-          time === 0 ? '#f040' : modes[mode].color
-        }, ${time === 0 ? '#f040' : modes[mode].color} ${
+          time <= 0 ? '#f040' : modes[mode].color
+        }, ${time <= 0 ? '#f040' : modes[mode].color} ${
           100 - (time / realMaxTime) * 100
         }%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
       }}
@@ -54,29 +57,37 @@ export default function Display({ time, realMaxTime, active }: Props) {
         className="absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10"
         style={{
           background: `conic-gradient(${
-            time === 0 ? '#f040' : modes[mode].color
-          }, ${time === 0 ? '#f040' : modes[mode].color} ${
+            time <= 0 ? '#f040' : modes[mode].color
+          }, ${time <= 0 ? '#f040' : modes[mode].color} ${
             100 - (time / realMaxTime) * 100
           }%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
         }}
       ></div>
       <div
         className="absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10 bg-red-500 opacity-0 duration-500 transition-all"
-        style={{ opacity: time === 0 ? '1' : '0' }}
+        style={{ opacity: time <= 0 ? '1' : '0' }}
       ></div>
       <main
         className={classNames(
           'shadow-[0_0_10px_#0003,0_0_0_#0000] p-4 rounded-2xl',
           'bg-white border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all duration-300 border',
-          `${active ? shadowActive : time === 0 ? shadowOut : ''}`,
+          `${active ? shadowActive : time <= 0 ? shadowOut : ''}`,
         )}
       >
         <div
           className={classNames(
             clockStile,
-            active ? clockActive : time === 0 ? clockOut : '',
+            active ? clockActive : time <= 0 ? clockOut : '',
           )}
         >
+          <div
+            className={classNames(
+              'opacity-0 absolute top-4 left-4 transition-all duration-500',
+              time < 0 && 'opacity-100',
+            )}
+          >
+            <IconClockExclamation />
+          </div>
           {toClock(time).map((s, i) => (
             <span
               key={

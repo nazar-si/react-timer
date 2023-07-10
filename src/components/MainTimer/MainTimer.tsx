@@ -12,6 +12,7 @@ import Title from './Title/Title';
 import toClock from './Display/toClock';
 import plays from './audio';
 import { useTranslation } from 'react-i18next';
+import useSetttingsStore from '../../store/settings';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },
@@ -24,6 +25,7 @@ export default function MainTimer() {
   const mode = useTimerStore((state) => state.mode);
   const { t } = useTranslation();
   const modeName = t(mode);
+  const settings = useSetttingsStore((s) => s);
 
   const [finishDate, setFinishDate] = useState(new Date());
   const [realMaxTime, setRealMaxTime] = useState(maxTime);
@@ -54,18 +56,21 @@ export default function MainTimer() {
   }, [active, finishDate]);
 
   useEffect(() => {
-    document.title = active
-      ? `${modeName} - ${toClock(time).join(':')}`
-      : time === 0
-      ? `${modeName} - time is up!`
-      : 'Pomodoro';
+    document.title =
+      active && time > 0
+        ? `${modeName} - ${toClock(time).join(':')}`
+        : time <= 0
+        ? `${modeName} - ${t('timer.overdue')}`
+        : 'Pomodoro';
     if (!active) return;
-    if (time <= 0) {
+    if (time == 0) {
       wakeLockRef.current.release();
       plays['digital']();
-      setActive(false);
-      setTime(0);
-      clearInterval(intervalRef.current!);
+      if (!settings.allowOverdue) {
+        setActive(false);
+        setTime(0);
+        clearInterval(intervalRef.current!);
+      }
     }
   }, [time, active]);
 
@@ -87,7 +92,11 @@ export default function MainTimer() {
     >
       <Title content="Pomodoro" />
       <ModeSwitch />
-      <Display active={active} time={time} realMaxTime={realMaxTime} />
+      <Display
+        active={active && time > 0}
+        time={time}
+        realMaxTime={realMaxTime}
+      />
       <div className="flex gap-4">
         <Button
           className="flex-1"

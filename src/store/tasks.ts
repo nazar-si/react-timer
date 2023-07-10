@@ -25,7 +25,7 @@ const useTasksStore = create(
   persist<ITaskStore>(
     (set, get) => ({
       tasks: [],
-      globalId: 0,
+      globalId: 1,
       addTask: (taskName) =>
         set({
           tasks: [
