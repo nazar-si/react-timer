@@ -1,24 +1,24 @@
 {
   "title": "Pomodoro",
-  "focus": "Focus",
-  "break": "Break",
-  "longBreak": "Long Break",
+  "focus": "Fokus",
+  "break": "Pause",
+  "longBreak": "Lange Pause",
   "timer" : {
     "start": "Start",
-    "repeat": "Repeat",
+    "repeat": "Wiederholung",
     "reset": "Reset",
     "stop": "Stop",
-    "sec": "sec",
+    "sec": "sek",
     "min": "min",
-    "overdue": "Time is up!"
+    "overdue": "Zeit ist abgelaufen!"
   },
   "tasks": {
-    "add": "Add task",
-    "new-task-placeholder": "New task name",
-    "task-placeholder": "Task name"
+    "add": "Aufgabe hinzufügen",
+    "new-task-placeholder": "Name der neuen Aufgabe",
+    "task-placeholder": "Name der Aufgabe"
   },
   "footer": {
-    "created": "Created by",
-    "project": "Find project on"
+    "created": "Erstellt von",
+    "project": "Projekt finden auf"
   }
 }

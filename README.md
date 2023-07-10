@@ -46,9 +46,9 @@ For any questions, feedback, or support requests, please contact me at [technotc
 ## TODO
 - [x] Return deleted animations for tasks
 - [x] Count negative time (overtime should be showed in red color, but still go on, even if it's overdue)
+- [x] Add DnD for tasks
 - [ ] Clean up before making repo public
 - [ ] Extends tasks to support description
-- [ ] Add DnD for tasks
 - [ ] BUG: Set interval stops after some time while working on another tab
 - [ ] Refactor first time 
   - [ ] Sparate styles from component 
