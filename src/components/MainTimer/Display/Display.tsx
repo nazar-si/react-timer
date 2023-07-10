@@ -92,7 +92,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
           >
             <IconClockExclamation />
           </div>
-          <button aria-label="settings" onClick={()=>setShowSettingsModal(true)} className="text-gray-100 dark:text-zinc-700 transition-all absolute top-4 right-4 hover:text-gray-500 dark:hover:text-gray-400">
+          <button aria-label="settings" onClick={()=>setShowSettingsModal(true)} className="text-gray-300 dark:text-zinc-700 transition-all absolute top-4 right-4 hover:text-gray-500 dark:hover:text-gray-400">
             <IconSettings2/>
           </button>
           {toClock(time).map((s, i) => (
@@ -107,7 +107,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
           ))}
         </div>
       </main>
-      <Modal show={showSettingsModal} setShow={setShowSettingsModal} className='max-w-sm'>
+      <Modal show={showSettingsModal} setShow={setShowSettingsModal} className='!max-w-sm'>
         <div className="w-full flex justify-center items-center">
           <span className="font-medium">Settings</span>: Comming soon
         </div>
