@@ -56,3 +56,4 @@ For any questions, feedback, or support requests, please contact me at [technotc
 - [ ] Return delete animations for tasks
 - [ ] All uncomplited in [features](##Features)
 - [ ] Test DnD on mobile 
+- [ ] Count negative time (overtime should be showed in red color, but still go on, even if it's overdue)

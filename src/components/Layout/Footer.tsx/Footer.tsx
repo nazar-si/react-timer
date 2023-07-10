@@ -1,8 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="absolute bottom-4 flex items-center gap-8">
       <p className="text-center text-gray-400 text-sm">
-        Created by{' '}
+        {t('footer.created')}{' '}
         <a
           href="https://github.com/nazar-si/"
           className="font-medium hover:text-blue-500"
@@ -19,7 +22,7 @@ export default function Footer() {
           className="flex items-center gap-2 hover:text-blue-500"
           target="_blank"
         >
-          Find project on
+          {t('footer.project')}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

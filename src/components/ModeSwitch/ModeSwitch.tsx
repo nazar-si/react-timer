@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '../ui/Button/Button';
 import useTimerStore from '../../store/timer/timer';
+import { useTranslation } from 'react-i18next';
 
 const modeStyle = 'rounded-md px-1 py-2 flex-1 relative';
 const indicatorStyle =
@@ -8,17 +9,17 @@ const indicatorStyle =
 const indicatorActiveStyle = 'opacity-100 w-2/3';
 
 const modes = {
-  work: {
+  focus: {
     color: 'bg-blue-500',
-    name: 'Work',
+    name: 'focus',
   },
   break: {
     color: 'bg-teal-500',
-    name: 'Break',
+    name: 'break',
   },
   longBreak: {
     color: 'bg-indigo-500',
-    name: 'Long Break',
+    name: 'longBreak',
   },
 };
 
@@ -26,6 +27,8 @@ export default function ModeSwitch() {
   const [hovered, setHovered] = useState(0);
   const mode = useTimerStore((state) => state.mode);
   const setMode = useTimerStore((state) => state.setMode);
+  const { t } = useTranslation();
+
   return (
     <Button
       aria-label="switch-timer-mode"
@@ -45,7 +48,7 @@ export default function ModeSwitch() {
           onMouseOver={() => setHovered(i)}
           onClick={() => setMode(key as keyof typeof modes)}
         >
-          {value.name}
+          {t(value.name)}
           <div
             className={
               indicatorStyle +

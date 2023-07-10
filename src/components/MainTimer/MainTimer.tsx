@@ -11,19 +11,19 @@ import Display from './Display/Display';
 import Title from './Title/Title';
 import toClock from './Display/toClock';
 import plays from './audio';
+import { useTranslation } from 'react-i18next';
 
 const addMoreTime = [
-  { time: 20, label: '+ 20 sec' },
-  { time: 60, label: '+ 1 min' },
-  { time: 300, label: '+ 5 min' },
+  { time: 20, label: '+ 20', measure: 'sec' },
+  { time: 60, label: '+ 1', measure: 'min' },
+  { time: 300, label: '+ 5', measure: 'min' },
 ];
 
 export default function MainTimer() {
   const maxTime = useTimerStore((state) => state.duration[state.mode]);
   const mode = useTimerStore((state) => state.mode);
-  const modeName = { work: 'Focus!', break: 'Break', longBreak: 'Long Break' }[
-    mode
-  ];
+  const { t } = useTranslation();
+  const modeName = t(mode);
 
   const [finishDate, setFinishDate] = useState(new Date());
   const [realMaxTime, setRealMaxTime] = useState(maxTime);
@@ -102,10 +102,14 @@ export default function MainTimer() {
             }
           }}
         >
-          {active ? 'Stop' : time <= 0 ? 'Repeat' : 'Start'}
+          {active
+            ? t('timer.stop')
+            : time <= 0
+            ? t('timer.repeat')
+            : t('timer.start')}
         </Button>
         <Button className="flex-1" onClick={() => Reset()}>
-          Reset
+          {t('timer.reset')}
         </Button>
         <ThemeSwitch updateClass />
       </div>
@@ -120,7 +124,7 @@ export default function MainTimer() {
               setTime((time) => time + a.time);
             }}
           >
-            {a.label}
+            {a.label} {t(`timer.${a.measure}`)}
           </Button>
         ))}
       </div>

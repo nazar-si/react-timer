@@ -8,7 +8,7 @@ export function leftpad(num: number) {
  * @returns {string} Displayed clock time in format HH:MM:SS or MM:SS if less than hour
  */
 export default function toClock(time: number): string[] {
-  if (time <= 0) return ['00', '00'];
+  if (time <= 0) time *= -1; // reflect time sign
   const t = Math.floor(time);
   const minutes = leftpad(Math.floor(t / 60) % 60);
   const seconds = leftpad(t % 60);

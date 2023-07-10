@@ -1,23 +1,29 @@
 export interface ITimerStorePrevious {
-  mode: 'work' | 'break' | 'longBreak';
-  setMode: (mode: 'work' | 'break' | 'longBreak') => void;
+  mode: 'focus' | 'break' | 'longBreak';
+  setMode: (mode: 'focus' | 'break' | 'longBreak') => void;
   duration: {
-    work: number;
+    focus: number;
     break: number;
     longBreak: number;
   };
-  setDuration: (mode: 'work' | 'break' | 'longBreak', duration: number) => void;
+  setDuration: (
+    mode: 'focus' | 'break' | 'longBreak',
+    duration: number,
+  ) => void;
 }
 
 export interface ITimerStoreNew {
-  mode: 'work' | 'break' | 'longBreak';
-  setMode: (mode: 'work' | 'break' | 'longBreak') => void;
+  mode: 'focus' | 'break' | 'longBreak';
+  setMode: (mode: 'focus' | 'break' | 'longBreak') => void;
   duration: {
-    work: number;
+    focus: number;
     break: number;
     longBreak: number;
   };
-  setDuration: (mode: 'work' | 'break' | 'longBreak', duration: number) => void;
+  setDuration: (
+    mode: 'focus' | 'break' | 'longBreak',
+    duration: number,
+  ) => void;
 }
 
 export function migrate(previousStore: ITimerStorePrevious): ITimerStoreNew {

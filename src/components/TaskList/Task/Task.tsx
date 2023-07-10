@@ -5,6 +5,7 @@ import { IconCheck, IconGripVertical, IconTrash } from '@tabler/icons-react';
 import { classNames } from '../../../utls/classnames';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   task: Task;
@@ -43,6 +44,7 @@ export default function Task({ task, index }: Props) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const sortable = useSortable({ id: task.id });
+  const { t } = useTranslation();
 
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -103,7 +105,7 @@ export default function Task({ task, index }: Props) {
       </Button>
       <input
         value={task.name}
-        placeholder="Task name"
+        placeholder={t('tasks.task-placeholder')}
         onChange={(e) => setName(task.id, e.target.value)}
         type="text"
         className={classNames(

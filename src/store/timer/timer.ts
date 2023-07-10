@@ -7,10 +7,10 @@ const PROD = import.meta.env.PROD;
 const useTimerStore = create(
   persist<ITimerStore>(
     (set, get) => ({
-      mode: 'work',
+      mode: 'focus',
       setMode: (mode) => set({ mode }),
       duration: {
-        work: 25 * (PROD ? 60 : 1),
+        focus: 25 * (PROD ? 60 : 1),
         break: 5 * (PROD ? 60 : 1),
         longBreak: 15 * (PROD ? 60 : 1),
       },

@@ -1,3 +1,23 @@
 {
-  "title": "Hello, World!"
+  "title": "Pomodoro",
+  "focus": "Focus",
+  "break": "Break",
+  "longBreak": "Long Break",
+  "timer" : {
+    "start": "Start",
+    "repeat": "Repeat",
+    "reset": "Reset",
+    "stop": "Stop",
+    "sec": "sec",
+    "min": "min"
+  },
+  "tasks": {
+    "add": "Add task",
+    "new-task-placeholder": "New task name",
+    "task-placeholder": "Task name"
+  },
+  "footer": {
+    "created": "Created by",
+    "project": "Find project on"
+  }
 }

@@ -1,0 +1,23 @@
+{
+  "title": "Pomodoro",
+  "focus": "Фокус",
+  "break": "Отдых",
+  "longBreak": "Долгий отдых",
+  "timer" : {
+    "start": "Старт",
+    "reset": "Сбросить",
+    "repeat": "Повтор",
+    "stop": "Стоп",
+    "sec": "сек",
+    "min": "мин"
+  },
+  "tasks": {
+    "add": "Добавить задачу",
+    "new-task-placeholder": "Имя новой задачи",
+    "task-placeholder": "Имя задачи"
+  },
+  "footer": {
+    "created": "Проект создал",
+    "project": "Исходный код"
+  }
+}

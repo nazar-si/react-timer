@@ -14,7 +14,7 @@ const clockOut = '!text-red-500 dark:!text-red-300';
 const shadowOut = '!shadow-[0_0_30px_#f898] !border-red-500';
 
 const modes = {
-  work: {
+  focus: {
     color: '#04f',
     border: '!border-blue-500',
     neon: '!shadow-[0_0_30px_#4af8]',
