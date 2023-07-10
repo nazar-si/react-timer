@@ -4,9 +4,9 @@ The Pomodoro Timer is a simple yet powerful tool designed to enhance productivit
 ![Pomodoro Timer](./docs/images/caption.png)
 
 ## Key Features
-- **Flexible Timer**: The timer is set to a default work session of 25 minutes followed by a 5-minute break. After completing 4 work sessions, the break is extended to 15 minutes. However, you have the flexibility to customize the timer duration according to your preferences.
+- **Flexible Timer**: The timer is set to a default work session of 25 minutes followed by a 5-minute break. After completing 4 work sessions, the break is extended to 15 minutes. 
 - **Task List**: Stay organized and track your tasks with the built-in task list feature. Add, edit, and prioritize your tasks, ensuring that you stay on top of your work and maximize your productivity.
-- **Dark and Light Theme**: Customize the appearance of the timer with a choice of dark and light themes. Whether you prefer a sleek and modern look or a softer and more calming ambiance, the Pomodoro Timer adapts to your visual preferences.
+- **Dark and Light Theme**: Customize the appearance of the timer with a choice of dark and light themes.
 - **Sound Effects (*Coming Soon*)**: Immerse yourself in a focused work environment with optional sound effects. Choose from a selection of soothing sounds to help you stay in the zone and maintain your concentration.
 - **Statistics Charts (*Coming Soon*)**: Gain valuable insights into your work habits and productivity with detailed statistics charts. Visualize your work sessions, breaks, and task completion rates, empowering you to analyze your performance and make informed adjustments.
 - **Notification System (*Coming Soon*)**: Never miss a work session or break with the Pomodoro Timer's notification system. Receive timely reminders and alerts, ensuring that you stay on track and maintain a consistent work rhythm.
