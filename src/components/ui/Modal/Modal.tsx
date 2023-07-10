@@ -7,6 +7,7 @@ type Props = {
   children?: React.ReactNode;
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  className?: string
 };
 
 const style = {
@@ -33,7 +34,7 @@ function Modal(props: Props) {
       className={classNames(style.wrapper, !props.show && style.wrapperClosed)}
       onClick={handleOusideClick}
     >
-      <div className={style.container}>
+      <div className={classNames(style.container, props.className)}>
         <button
           aria-label="close modal"
           className={style.closeButton}

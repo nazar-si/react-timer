@@ -1,4 +1,4 @@
-# Pomodoro Timer
+# [Pomodoro Timer](https://timer.nazarsi.com)
 The Pomodoro Timer is a simple yet powerful tool designed to enhance productivity and create a more focused work environment. Inspired by the Pomodoro Technique, this timer helps you break down your work into manageable intervals, allowing you to work with laser-like focus and take regular breaks to recharge.
 
 ![Pomodoro Timer](./docs/images/caption.png)

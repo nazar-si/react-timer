@@ -2,7 +2,9 @@ import useTimerStore from '../../../store/timer/timer';
 import toClock from './toClock';
 import { classNames } from '../../../utls/classnames';
 import { useTranslation } from 'react-i18next';
-import { IconClockExclamation } from '@tabler/icons-react';
+import { IconClockExclamation, IconSettings2 } from '@tabler/icons-react';
+import Modal from '../../ui/Modal/Modal';
+import { useState } from 'react';
 
 type Props = {
   time: number;
@@ -41,6 +43,8 @@ export default function Display({ time, realMaxTime, active }: Props) {
   const clockActive = `${modes[mode].text}`;
   const shadowActive = `${modes[mode].neon} ${modes[mode].border}`;
   const { t } = useTranslation();
+
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
 
   return (
     <div
@@ -88,6 +92,9 @@ export default function Display({ time, realMaxTime, active }: Props) {
           >
             <IconClockExclamation />
           </div>
+          <button aria-label="settings" onClick={()=>setShowSettingsModal(true)} className="text-gray-100 dark:text-zinc-700 transition-all absolute top-4 right-4 hover:text-gray-500 dark:hover:text-gray-400">
+            <IconSettings2/>
+          </button>
           {toClock(time).map((s, i) => (
             <span
               key={
@@ -100,6 +107,11 @@ export default function Display({ time, realMaxTime, active }: Props) {
           ))}
         </div>
       </main>
+      <Modal show={showSettingsModal} setShow={setShowSettingsModal} className='max-w-md'>
+        <div className="w-full flex justify-center items-center">
+          <span className="font-medium">Settings</span>: Comming soon
+        </div>
+      </Modal>
     </div>
   );
 }
