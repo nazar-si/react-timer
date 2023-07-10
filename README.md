@@ -23,19 +23,21 @@ The Pomodoro Timer project is built using the following technologies:
 - **Tailwind CSS**: A utility-first CSS framework that provides a comprehensive set of pre-built styles and components, enabling rapid and responsive UI development.
 
 ## Run locally
-To run this project locally, install it using npm:
+To run this project locally, install libraries using `yarn`:
 ```
-npm install
+yarn
 ```
 Then run it with:
 ```
-npm run dev
+yarn dev
 ```
 You can also run linting and testing with:
 ```
-npm run lint
-npm run test
+yarn lint
+yarn test
 ```
+
+Or with `npm` if you prefer.
 
 ## License
 The Pomodoro Timer is open-source software licensed under the [MIT License](./LICENSE). Feel free to use, modify, and distribute the timer according to the terms of the license.
