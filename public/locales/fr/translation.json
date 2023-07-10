@@ -2,7 +2,7 @@
   "title": "Pomodoro",
   "focus": "Travail",
   "break": "Pause",
-  "longBreak": "Longue Pause",
+  "longBreak": "Détente",
   "timer" : {
     "start": "Debut",
     "repeat": "Répéter",

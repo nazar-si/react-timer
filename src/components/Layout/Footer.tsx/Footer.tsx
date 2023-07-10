@@ -1,13 +1,17 @@
 import { Menu } from '@headlessui/react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '../../../utls/classnames';
+import { IconHelpHexagonFilled } from '@tabler/icons-react';
+import { Suspense, useState } from 'react';
+import Modal from '../../ui/Modal/Modal';
 
 export default function Footer() {
   const { t, i18n } = useTranslation();
+  const [showHelpModal, setShowHelpModal] = useState(false);
   return (
-    <footer className="mt-10 mb-2 flex flex-wrap items-center w-full px-8 gap-8">
+    <footer className="mt-10 mb-2 flex flex-wrap items-center w-full px-4 gap-8">
       <aside>
-        <Menu as="div" className="opacity-75 relative">
+        <Menu as="div" className="opacity-75 relative font-medium text-sm">
           <Menu.Button
             as="button"
             aria-label="language switch"
@@ -18,6 +22,7 @@ export default function Footer() {
           <Menu.Items className="absolute bottom-8">
             {['fr', 'ru', 'en', 'de'].map((lang) => (
               <Menu.Item
+                key={lang}
                 as="button"
                 className="uppercase"
                 onClick={() => {
@@ -72,7 +77,16 @@ export default function Footer() {
           </a>
         </p>
       </main>
-      <aside> </aside>
+      <aside
+        title={t('what.button-tip')}
+        className="text-gray-400 transition-all hover:text-blue-500 cursor-pointer"
+        onClick={() => setShowHelpModal(true)}
+      >
+        <IconHelpHexagonFilled />
+      </aside>
+      <Modal show={showHelpModal} setShow={setShowHelpModal}>
+        Test
+      </Modal>
     </footer>
   );
 }

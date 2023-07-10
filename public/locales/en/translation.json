@@ -20,5 +20,8 @@
   "footer": {
     "created": "Created by",
     "project": "Find project on"
+  },
+  "what": {
+    "button-tip": "What is it?"
   }
 }

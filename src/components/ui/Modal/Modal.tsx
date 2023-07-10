@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { classNames } from '../../../utls/classnames';
 import { IconPlus } from '@tabler/icons-react';
 
 type Props = {
   children?: React.ReactNode;
-  closed?: boolean;
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -21,11 +20,15 @@ const style = {
 };
 
 function Modal(props: Props) {
+  const ref = useRef(null);
   const handleOusideClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    if (e.target === e.currentTarget) props.setShow(false);
+    if (e.target !== ref.current) return;
+    props.setShow(false);
+    console.log(e);
   };
   return createPortal(
     <div
+      ref={ref}
       role="dialog"
       className={classNames(style.wrapper, !props.show && style.wrapperClosed)}
       onClick={handleOusideClick}

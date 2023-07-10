@@ -4,10 +4,10 @@
   "break": "Pause",
   "longBreak": "Lange Pause",
   "timer" : {
-    "start": "Start",
-    "repeat": "Wiederholung",
-    "reset": "Reset",
-    "stop": "Stop",
+    "start": "Starten",
+    "repeat": "Wiederholen",
+    "reset": "Zurücksetzen",
+    "stop": "Stoppen",
     "sec": "sek",
     "min": "min",
     "overdue": "Zeit ist abgelaufen!"
