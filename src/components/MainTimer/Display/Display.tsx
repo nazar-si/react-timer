@@ -107,7 +107,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
           ))}
         </div>
       </main>
-      <Modal show={showSettingsModal} setShow={setShowSettingsModal} className='max-w-md'>
+      <Modal show={showSettingsModal} setShow={setShowSettingsModal} className='max-w-sm'>
         <div className="w-full flex justify-center items-center">
           <span className="font-medium">Settings</span>: Comming soon
         </div>
