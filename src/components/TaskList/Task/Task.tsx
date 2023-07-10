@@ -22,7 +22,7 @@ interface DragTask {
 
 const style = {
   wrapper:
-    'grid grid-cols-[2rem_1fr_2rem] p-1 w-full gap-2 transition-all relative duration-200 ease-in-out rounded-md',
+    'grid grid-cols-[2rem_1fr_2rem] p-1 w-full gap-2 transition-opacity relative ease-in-out rounded-md',
   wrapperDragged: 'opacity-50',
   input:
     'flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black',
@@ -71,6 +71,7 @@ export default function Task({ task, index }: Props) {
       style={{
         ...(task.hide
           ? {
+              transition: 'opacity 0.3s, margin 0.3s',
               marginTop: `-${elementRef.current!.clientHeight / 2}px`,
               marginBottom: `-${elementRef.current!.clientHeight / 2}px`,
             }
