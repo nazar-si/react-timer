@@ -31,7 +31,7 @@ function Modal(props: Props) {
   useEffect(()=>{
     document.body.classList.toggle('overflow-hidden', props.show) // remove scroll
     const layout = document.querySelector("#layout") as Element;
-    if (!props.show || (props.show && layout.clientHeight > window.innerHeight)) // if has scrollbar
+    if (!props.show || (props.show && document.documentElement.scrollHeight > window.innerHeight)) // if has scrollbar
       layout.classList.toggle('pr-[18px]', props.show) // compensate removed scroll
   }, [props.show])
   return createPortal(
