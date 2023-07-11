@@ -15,6 +15,8 @@ const NumberInput = Object.assign(forwardRef<HTMLSpanElement, NumberInputProps>(
   const [hardSet, setHardSet] = useState(0); // adds 10 to value to prevent it's animation 
   const preventAnimation = ()=>setHardSet(s=>1-s);
   const [lastPres, setLastPress] = useState(new Date());
+  const [lastTouch, setLastTouch] = useState([0, 0]);
+  const [lastDragTime, setLastDragTime] = useState(new Date());
 
   const reduceValue = () =>{
     if (value === 0) {
@@ -60,15 +62,27 @@ const NumberInput = Object.assign(forwardRef<HTMLSpanElement, NumberInputProps>(
     preventAnimation();
     if (props.toNext) props?.toNext();
   }
+  const handleTouch = (event: React.TouchEvent<HTMLSpanElement>)=>{
+    const touch = [event.changedTouches[0].clientX, event.changedTouches[0].clientY];
+    setLastTouch(touch);
+    const len = (lastTouch[0] - touch[0]) ** 2 + (lastTouch[1] - touch[1]) ** 2;
+    const dir = Math.atan2(touch[1] - lastTouch[1],touch[0] - lastTouch[0]);
+    if (len > 4 && (new Date().valueOf() - lastDragTime.valueOf()) > 300){
+      if (dir > 0) addValue();
+      else reduceValue();
+      setLastDragTime(new Date());
+    }
+  };
 
   return (
     <span 
       tabIndex={0}
       className="flex flex-col inline-block w-fit items-center ring-0 ring-offset-0 ring-offset-white dark:ring-offset-zinc-800 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500 rounded-md cursor-pointer outline-none"
-      onKeyDown={handleKeyboard}
+      onKeyUp={handleKeyboard}
+      onTouchMove={handleTouch}
       ref={ref}
     >
-      <div onClick={addValue} className='-my-1 text-gray-400 dark:text-zinc-500 '>
+      <div onClick={addValue} className='-my-1 z-10 text-gray-400 dark:text-zinc-500 '>
         <IconChevronUp />
       </div>
       <div className="text-3xl font-bold h-8 w-8 items-center justify-center flex relative overflow-hidden">
@@ -90,7 +104,7 @@ const NumberInput = Object.assign(forwardRef<HTMLSpanElement, NumberInputProps>(
             </div>;
           })}
       </div>
-      <div onClick={reduceValue} className='-my-1 text-gray-400 dark:text-zinc-500'>
+      <div onClick={reduceValue} className='-my-1 z-10 text-gray-400 dark:text-zinc-500'>
         <IconChevronDown />
       </div>
     </span>
@@ -113,7 +127,7 @@ export default function ClockInput({value, setValue}: Props) {
     const minutes = Math.floor(value / 60) % 100;
     valueState[3][1](seconds % 10);
     valueState[2][1](Math.floor(seconds / 10));
-    valueState[1][1](minutes % 60);
+    valueState[1][1](minutes % 10);
     valueState[0][1](Math.floor(minutes / 10));
   }, [value])
   const useSetValue = (n: number) => ((v: number | ((v:number)=>number)) => {
