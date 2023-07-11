@@ -9,16 +9,7 @@ function play(link: string) {
 
 const plays = {
   digital: () => {
-    const link = links.digital;
-    setTimeout(() => {
-      play(link);
-    }, 0);
-    setTimeout(() => {
-      play(link);
-    }, 1000);
-    setTimeout(() => {
-      play(link);
-    }, 2000);
+    play(links.digital);
   },
 };
 

@@ -1,0 +1,24 @@
+.innerDiv{
+    width: 100%;
+    height: 100%;
+    max-height: calc(90vh - 20px);
+    @apply px-4;
+    overflow-y: scroll;
+}
+
+.innerDiv::-webkit-scrollbar {
+    width: 18px;
+    height: 18px;
+}
+.innerDiv::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+.innerDiv::-webkit-scrollbar-thumb {
+    @apply bg-zinc-500/25 hover:bg-zinc-500/40 rounded-xl transition-all;
+    border: 5px solid;
+    @apply border-white dark:border-rose-500;
+}
+
+:global(body.dark) .innerDiv::-webkit-scrollbar-thumb{
+    @apply border-zinc-800
+}
