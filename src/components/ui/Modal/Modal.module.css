@@ -1,8 +1,8 @@
 .innerDiv{
     width: 100%;
     height: 100%;
-    max-height: calc(90vh - 20px);
-    @apply px-4;
+    max-height: calc(90vh - 1.5rem);
+    @apply px-4 pb-4;
     overflow-y: scroll;
 }
 

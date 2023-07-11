@@ -19,15 +19,15 @@ const shadowOut = '!shadow-[0_0_30px_#f898] !border-red-500';
 
 const modes = {
   focus: {
-    color: '#04f',
+    color: '#49f',
     border: '!border-blue-500',
-    neon: '!shadow-[0_0_30px_#4af8]',
+    neon: '!shadow-[0_0_30px_#26fa]',
     text: '!text-blue-500 dark:!text-blue-200',
   },
   break: {
-    color: '#0cf',
+    color: '#0af',
     border: '!border-teal-500',
-    neon: '!shadow-[0_0_30px_#4fc8]',
+    neon: '!shadow-[0_0_30px_#0f88]',
     text: '!text-teal-500 dark:!text-teal-200',
   },
   longBreak: {
@@ -48,13 +48,16 @@ export default function Display({ time, realMaxTime, active }: Props) {
 
   return (
     <div
-      className="p-[3px] rounded-[1.1rem] relative"
+      className="p-[2px] rounded-[1.1rem] relative"
+      // style={{
+      //   background: `conic-gradient(${
+      //     time <= 0 ? '#f040' : modes[mode].color
+      //   }, ${time <= 0 ? '#f040' : modes[mode].color} ${
+      //     100 - (time / realMaxTime) * 100
+      //   }%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
+      // }}
       style={{
-        background: `conic-gradient(${
-          time <= 0 ? '#f040' : modes[mode].color
-        }, ${time <= 0 ? '#f040' : modes[mode].color} ${
-          100 - (time / realMaxTime) * 100
-        }%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
+        background: time <= 0 ? "#f66" : `conic-gradient(${modes[mode].color}, ${modes[mode].color} ${100 - (time / realMaxTime) * 100}%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
       }}
     >
       <div
