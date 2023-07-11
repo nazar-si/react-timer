@@ -13,6 +13,8 @@ import toClock from './Display/toClock';
 import plays from './audio';
 import { useTranslation } from 'react-i18next';
 import useSetttingsStore from '../../store/settings';
+import { IconChartAreaLine, IconChartAreaLineFilled, IconChartBar, IconChartDonut, IconChartHistogram, IconChartInfographic, IconHistory } from '@tabler/icons-react';
+import { IconGraph } from '@tabler/icons-react';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },
@@ -98,6 +100,9 @@ export default function MainTimer() {
         realMaxTime={realMaxTime}
       />
       <div className="flex gap-4">
+        {/* <Button className='w-10 h-10'>
+          <IconChartBar strokeWidth={1.5}/>
+        </Button> */}
         <Button
           className="flex-1"
           onClick={() => {
