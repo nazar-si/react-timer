@@ -1,5 +1,6 @@
-import { ITimerStoreNew, migrate as migrateV1 } from './migrations/v1';
+import { ITimerStoreNew, IDuration as IDurationNew, migrate as migrateV1 } from './migrations/v1';
 export type ITimerStore = ITimerStoreNew;
+export type IDuration = IDurationNew;
 
 // migration pipline
 const migrations: Array<(s: any) => any> = [migrateV1];

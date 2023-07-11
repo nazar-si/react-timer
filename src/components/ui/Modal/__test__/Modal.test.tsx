@@ -1,12 +1,19 @@
 import { render, screen, act } from '@testing-library/react';
 import React from 'react';
 import Modal from '../Modal';
+import { beforeEach } from 'vitest';
+
+beforeEach(()=>{
+  Object.defineProperty(window, "innerHeight", 0);
+})
 
 describe('Modal', () => {
   it('should display same children', () => {
+    
     render(
       <Modal show={true} setShow={(a) => a}>
         TEST HERE
+        <div id="#layout"></div>
       </Modal>,
     );
     expect(screen.getByRole('dialog')).toHaveTextContent('TEST HERE');

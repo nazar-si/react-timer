@@ -15,6 +15,8 @@ import { useTranslation } from 'react-i18next';
 import useSetttingsStore from '../../store/settings';
 import { IconChartAreaLine, IconChartAreaLineFilled, IconChartBar, IconChartDonut, IconChartHistogram, IconChartInfographic, IconHistory } from '@tabler/icons-react';
 import { IconGraph } from '@tabler/icons-react';
+import Select from '../ui/Select/Select';
+import { Listbox } from '@headlessui/react';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },

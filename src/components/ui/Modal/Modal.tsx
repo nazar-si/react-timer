@@ -27,7 +27,6 @@ function Modal(props: Props) {
   const handleOusideClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target !== ref.current) return;
     props.setShow(false);
-    console.log(e);
   };
   useEffect(()=>{
     document.body.classList.toggle('overflow-hidden', props.show) // remove scroll
