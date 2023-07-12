@@ -43,7 +43,7 @@ export default function MainTimer() {
 
   useEffect(() => {
     Reset();
-  }, [mode]);
+  }, [mode, maxTime]);
 
   useEffect(() => {
     clearInterval(intervalRef.current!);

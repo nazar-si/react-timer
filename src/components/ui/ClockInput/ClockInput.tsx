@@ -78,7 +78,7 @@ const NumberInput = Object.assign(forwardRef<HTMLSpanElement, NumberInputProps>(
     <span 
       tabIndex={0}
       className="flex flex-col inline-block w-fit items-center ring-0 ring-offset-0 ring-offset-white dark:ring-offset-zinc-800 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500 rounded-md cursor-pointer outline-none"
-      onKeyUp={handleKeyboard}
+      onKeyDown={handleKeyboard}
       onTouchMove={handleTouch}
       ref={ref}
     >
@@ -113,7 +113,7 @@ const NumberInput = Object.assign(forwardRef<HTMLSpanElement, NumberInputProps>(
 
 type Props = {
   value: number;
-  setValue: Dispatch<React.SetStateAction<number>>;
+  setValue: (v: number)=>void;
   // onChange?: (value: number) => void;
 };
 export default function ClockInput({value, setValue}: Props) {
