@@ -34,5 +34,11 @@
     "step-6": "After completing four Pomodoros, take a longer break of 15 to 30 minutes.",
     "step-7": "Repeat the cycle as needed.",
     "conclusion": "By working in focused intervals and taking regular breaks, the Pomodoro Technique helps improve concentration, combat procrastination, and increase productivity."
+  },
+  "settings": {
+    "title": "Settings",
+    "duration-focus": "Focus duration:",
+    "duration-break": "Break duration:",
+    "duration-longBreak": "Long break duration:"
   }
 }
