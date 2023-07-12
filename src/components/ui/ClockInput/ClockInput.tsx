@@ -85,7 +85,7 @@ const NumberInput = Object.assign(forwardRef<HTMLSpanElement, NumberInputProps>(
       <div onClick={addValue} className='-my-1 z-10 text-gray-400 dark:text-zinc-500 '>
         <IconChevronUp />
       </div>
-      <div className="text-3xl font-bold h-8 w-8 items-center justify-center flex relative overflow-hidden">
+      <div className="text-3xl font-bold h-8 w-8 items-center justify-center flex relative overflow-hidden bg-gray-100 rounded-md dark:bg-zinc-700/50">
         <div className='h-2 absolute left-0 right-0 top-0 z-10 bg-gradient-to-t from-transparent to-white dark:to-zinc-800 pointer-events-none'></div>
         <div className='h-2 absolute left-0 right-0 bottom-0 z-10 bg-gradient-to-b from-transparent to-white dark:to-zinc-800 pointer-events-none'></div>
         {Array(props.max)
@@ -143,11 +143,11 @@ export default function ClockInput({value, setValue}: Props) {
   return (
     <div className='flex gap-2 items-center relative group justify-center pt-6 my-2'>
       <span className='absolute right-0 top-0 text-sm text-zinc-400 dark:text-zinc-500 transition-all duration-500 opacity-0 group-focus-within:opacity-100 '>
-        Use arrow keys or number input
+        {/* Use arrow keys or number input */}
       </span>
       <NumberInput value={valueState[0][0]} setValue={useSetValue(0)} max={9} ref={refs[0]} toNext={()=>Focus(1)}/>
       <NumberInput value={valueState[1][0]} setValue={useSetValue(1)} max={9} ref={refs[1]} toNext={()=>Focus(2)} toPrevious={()=>Focus(0)}/>
-      <span className='text-3xl font-bold'>:</span>
+      <span className='text-3xl font-bold opacity-50'>:</span>
       <NumberInput value={valueState[2][0]} setValue={useSetValue(2)} max={5} ref={refs[2]} toNext={()=>Focus(3)} toPrevious={()=>Focus(1)}/>
       <NumberInput value={valueState[3][0]} setValue={useSetValue(3)} max={9} ref={refs[3]} toPrevious={()=>Focus(2)}/>
     </div>
