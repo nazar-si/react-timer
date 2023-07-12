@@ -5,6 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 type Props = {};
 
+function H({children}:{children:React.ReactNode}) {
+  return <h3 className='text-lg font-medium mt-3 -mb-8'>
+    {children}
+  </h3>
+}
 
 
 export default function Settings({}: Props) {
@@ -17,11 +22,11 @@ export default function Settings({}: Props) {
   return (
     <div>
       <div className='text-xl font-bold -mt-1'>{t('settings.title')}</div>
-      <div className='text-lg font-medium mt-3 -mb-8'>{t("settings.duration-focus")}</div>
+      <H>{t("settings.duration-focus")}</H>
       <ClockInput value={focusTime} setValue={(a)=>setDuration("focus", a)}/>
-      <div className='text-lg font-medium mt-3 -mb-8'>{t("settings.duration-break")}</div>
+      <H>{t("settings.duration-break")}</H>
       <ClockInput value={breakTime} setValue={(a)=>setDuration("break", a)}/>
-      <div className='text-lg font-medium mt-3 -mb-8'>{t("settings.duration-longBreak")}</div>
+      <H>{t("settings.duration-longBreak")}</H>
       <ClockInput value={longBreakTime} setValue={(a)=>setDuration("longBreak", a)}/>
     </div>
   );

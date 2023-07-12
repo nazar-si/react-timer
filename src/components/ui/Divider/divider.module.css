@@ -1,0 +1,29 @@
+.line{
+    height: 1px;
+    flex: 1;
+    @apply bg-gray-300;
+    &.gradient:first-of-type{
+        @apply bg-gradient-to-r;
+    }
+    &.gradient:last-of-type{
+        @apply bg-gradient-to-l;
+    }
+    &.gradient{
+        @apply bg-transparent from-transparent via-gray-300 to-gray-300;
+    }
+}
+.divider{
+    width: auto;
+    @apply flex items-center text-gray-500;
+    &.hoverable:hover, &.hoverable:focus-within{
+        @apply text-primary-500;
+        .line{
+            @apply !bg-primary-500;
+            &.gradient{
+                @apply !bg-transparent !via-primary-300 !to-primary-300;
+            }
+        }
+    }
+}
+
+.container{}
