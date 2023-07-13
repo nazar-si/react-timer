@@ -34,5 +34,17 @@
     "step-6": "Machen Sie nach Abschluss von vier Pomodoros eine längere Pause von 15 bis 30 Minuten.",
     "step-7": "Wiederholen Sie den Zyklus nach Bedarf.",
     "conclusion": "Durch konzentriertes Arbeiten in Intervallen und regelmäßige Pausen hilft die Pomodoro-Technik, die Konzentration zu verbessern, Aufschub zu bekämpfen und die Produktivität zu steigern."
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "duration-focus": "Fokusdauer:",
+    "duration-break": "Pausendauer:",
+    "duration-longBreak": "Pausendauer:",
+    "other": {
+      "title": "Andere",
+      "allowOverdue": "Timer überfällig zulassen",
+      "allowOverdueHint": "Nach 00:00 Uhr zählt der Timer die überfällige Zeit weiter",
+      "playAlarm": "Play alarm"
+    }
   }
 }
