@@ -52,7 +52,7 @@ export default function Settings({}: Props) {
         value={longBreakTime}
         setValue={(a) => setDuration('longBreak', a)}
       />
-      <Divider>Other</Divider>
+      <Divider>{t('settings.other.title')}</Divider>
 
       <LabeledSwitch
         value={useSetttingsStore((s) => s.allowOverdue)}
