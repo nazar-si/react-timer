@@ -57,15 +57,15 @@ export default function Settings({}: Props) {
       <LabeledSwitch
         value={useSetttingsStore((s) => s.allowOverdue)}
         onChange={useSetttingsStore((s) => s.setAllowOverdue)}
-        hint="After 00:00 timer will continue counting overdue time"
+        hint={t('settings.other.allowOverdueHint')}
       >
-        Allow timer overdue
+        {t('settings.other.allowOverdue')}
       </LabeledSwitch>
       <LabeledSwitch
         value={useSetttingsStore((s) => s.playAlarm)}
         onChange={useSetttingsStore((s) => s.setPlayAlarm)}
       >
-        Play alarm
+        {t('settings.other.playAlarm')}
       </LabeledSwitch>
     </div>
   );

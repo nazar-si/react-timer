@@ -39,6 +39,11 @@
     "title": "Settings",
     "duration-focus": "Focus duration:",
     "duration-break": "Break duration:",
-    "duration-longBreak": "Long break duration:"
+    "duration-longBreak": "Long break duration:",
+    "other": {
+      "allowOverdue": "Allow timer overdue",
+      "allowOverdueHint": "After 00:00 timer will continue counting overdue time",
+      "playAlarm": "Play alarm"
+    }
   }
 }
