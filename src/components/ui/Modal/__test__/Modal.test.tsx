@@ -3,13 +3,12 @@ import React from 'react';
 import Modal from '../Modal';
 import { beforeEach } from 'vitest';
 
-beforeEach(()=>{
-  Object.defineProperty(window, "innerHeight", {value: ()=>0});
-})
+beforeEach(() => {
+  Object.defineProperty(window, 'innerHeight', { value: () => 0 });
+});
 
 describe('Modal', () => {
   it('should display same children', () => {
-    
     render(
       <Modal show={true} setShow={(a) => a}>
         TEST HERE

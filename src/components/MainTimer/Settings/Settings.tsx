@@ -3,14 +3,12 @@ import ClockInput from '../../ui/ClockInput/ClockInput';
 import useTimerStore from '../../../store/timer/timer';
 import { useTranslation } from 'react-i18next';
 import Divider from '../../ui/Divider/Divider';
-import Switch from '../../ui/Switch/Switch';
+import Switch, { Props as SwitchProps } from '../../ui/Switch/Switch';
 import useSetttingsStore from '../../../store/settings';
-import type { Props as SwitchProps } from '../../ui/Switch/Switch';
 import { IconHelpSquareRounded } from '@tabler/icons-react';
 
-type Props = {};
-
-function H({ children }: { children: React.ReactNode }) {
+type HProps = { children: React.ReactNode };
+function H({ children }: HProps) {
   return <h3 className="text-lg font-medium mt-3 -mb-8">{children}</h3>;
 }
 
@@ -33,7 +31,7 @@ function LabeledSwitch(
   );
 }
 
-export default function Settings({}: Props) {
+export default function Settings() {
   const focusTime = useTimerStore((s) => s.duration.focus);
   const breakTime = useTimerStore((s) => s.duration.break);
   const longBreakTime = useTimerStore((s) => s.duration.longBreak);

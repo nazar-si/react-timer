@@ -58,7 +58,12 @@ export default function Display({ time, realMaxTime, active }: Props) {
       //   }%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
       // }}
       style={{
-        background: time <= 0 ? "#f66" : `conic-gradient(${modes[mode].color}, ${modes[mode].color} ${100 - (time / realMaxTime) * 100}%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
+        background:
+          time <= 0
+            ? '#f66'
+            : `conic-gradient(${modes[mode].color}, ${modes[mode].color} ${
+                100 - (time / realMaxTime) * 100
+              }%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
       }}
     >
       <div
@@ -96,8 +101,12 @@ export default function Display({ time, realMaxTime, active }: Props) {
           >
             <IconClockExclamation />
           </div>
-          <button aria-label="settings" onClick={()=>setShowSettingsModal(true)} className="text-gray-300 dark:text-zinc-700 transition-all absolute top-4 right-4 hover:text-gray-500 dark:hover:text-gray-400">
-            <IconSettings2/>
+          <button
+            aria-label="settings"
+            onClick={() => setShowSettingsModal(true)}
+            className="text-gray-300 dark:text-zinc-700 transition-all absolute top-4 right-4 hover:text-gray-500 dark:hover:text-gray-400"
+          >
+            <IconSettings2 />
           </button>
           {toClock(time).map((s, i) => (
             <span
@@ -111,8 +120,12 @@ export default function Display({ time, realMaxTime, active }: Props) {
           ))}
         </div>
       </main>
-      <Modal show={showSettingsModal} setShow={setShowSettingsModal} className='!max-w-sm'>
-        <Settings/>
+      <Modal
+        show={showSettingsModal}
+        setShow={setShowSettingsModal}
+        className="!max-w-sm"
+      >
+        <Settings />
       </Modal>
     </div>
   );

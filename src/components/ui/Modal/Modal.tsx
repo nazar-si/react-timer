@@ -2,13 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { classNames } from '../../../utls/classnames';
 import { IconPlus } from '@tabler/icons-react';
-import css from "./Modal.module.css"
+import css from './Modal.module.css';
 
 type Props = {
   children?: React.ReactNode;
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
-  className?: string
+  className?: string;
 };
 
 const style = {
@@ -28,12 +28,16 @@ function Modal(props: Props) {
     if (e.target !== ref.current) return;
     props.setShow(false);
   };
-  useEffect(()=>{
-    document.body.classList.toggle('overflow-hidden', props.show) // remove scroll
-    const layout = document.querySelector("#layout") as Element;
-    if (!props.show || (props.show && document.documentElement.scrollHeight > window.innerHeight)) // if has scrollbar
-      layout.classList.toggle('pr-[18px]', props.show) // compensate removed scroll
-  }, [props.show])
+  useEffect(() => {
+    document.body.classList.toggle('overflow-hidden', props.show); // remove scroll
+    const layout = document.querySelector('#layout') as Element;
+    if (
+      !props.show ||
+      (props.show && document.documentElement.scrollHeight > window.innerHeight)
+    )
+      // if has scrollbar
+      layout.classList.toggle('pr-[18px]', props.show); // compensate removed scroll
+  }, [props.show]);
   return createPortal(
     <div
       ref={ref}
@@ -41,7 +45,13 @@ function Modal(props: Props) {
       className={classNames(style.wrapper, !props.show && style.wrapperClosed)}
       onClick={handleOusideClick}
     >
-      <div className={classNames(style.container, !props.show && style.containerClosed, props.className)}>
+      <div
+        className={classNames(
+          style.container,
+          !props.show && style.containerClosed,
+          props.className,
+        )}
+      >
         <button
           aria-label="close modal"
           className={style.closeButton}
@@ -49,9 +59,7 @@ function Modal(props: Props) {
         >
           <IconPlus strokeWidth={2} size={16} />
         </button>
-        <div className={css.innerDiv}>
-          {props.children}
-        </div>
+        <div className={css.innerDiv}>{props.children}</div>
       </div>
     </div>,
     document.body,

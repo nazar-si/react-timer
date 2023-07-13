@@ -1,13 +1,15 @@
 import { screen, render } from '@testing-library/react';
 import Footer from '../Footer';
 
-const MockLayout = ()=> <div id="layout">
-  <Footer />
-</div>
+const MockLayout = () => (
+  <div id="layout">
+    <Footer />
+  </div>
+);
 
 describe('Footer', () => {
   it("should contain link to author's github", () => {
-    render(<MockLayout/>);
+    render(<MockLayout />);
     expect(screen.getByText(/Nazar Si/i)).toHaveAttribute(
       'href',
       'https://github.com/nazar-si/',
