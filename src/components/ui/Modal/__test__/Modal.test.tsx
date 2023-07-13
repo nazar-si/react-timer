@@ -1,12 +1,19 @@
 import { render, screen, act } from '@testing-library/react';
 import React from 'react';
 import Modal from '../Modal';
+import { beforeEach } from 'vitest';
+
+beforeEach(()=>{
+  Object.defineProperty(window, "innerHeight", {value: ()=>0});
+})
 
 describe('Modal', () => {
   it('should display same children', () => {
+    
     render(
       <Modal show={true} setShow={(a) => a}>
         TEST HERE
+        <div id="layout"></div>
       </Modal>,
     );
     expect(screen.getByRole('dialog')).toHaveTextContent('TEST HERE');
@@ -17,6 +24,7 @@ describe('Modal', () => {
       return (
         <Modal show={show} setShow={setShow}>
           TEST HERE
+          <div id="layout"></div>
         </Modal>
       );
     };
@@ -34,6 +42,7 @@ describe('Modal', () => {
       const [show, setShow] = React.useState(true);
       return (
         <Modal show={show} setShow={setShow}>
+          <div id="layout"></div>
           TEST HERE
         </Modal>
       );
@@ -53,6 +62,7 @@ describe('Modal', () => {
       const [show, setShow] = React.useState(true);
       return (
         <Modal show={show} setShow={setShow}>
+          <div id="layout"></div>
           <button aria-label="do nothing">Test</button>
         </Modal>
       );

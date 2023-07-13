@@ -1,0 +1,35 @@
+.line{
+    height: 1px;
+    flex: 1;
+    @apply bg-zinc-300;
+    &.gradient:first-of-type{
+        @apply bg-gradient-to-r;
+    }
+    &.gradient:last-of-type{
+        @apply bg-gradient-to-l;
+    }
+    &.gradient{
+        @apply bg-transparent from-transparent via-zinc-300 to-zinc-300;
+    }
+}
+:global(.dark) .line {
+    @apply bg-zinc-600;
+    &.gradient{
+        @apply via-zinc-600 to-zinc-600;
+    }
+}
+.divider{
+    width: auto;
+    @apply flex items-center text-zinc-500;
+    &.hoverable:hover, &.hoverable:focus-within{
+        @apply text-blue-500;
+        .line{
+            @apply !bg-blue-500;
+            &.gradient{
+                @apply !bg-transparent !via-blue-300 !to-blue-300;
+            }
+        }
+    }
+}
+
+.container{}

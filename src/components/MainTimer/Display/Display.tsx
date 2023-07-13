@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { IconClockExclamation, IconSettings2 } from '@tabler/icons-react';
 import Modal from '../../ui/Modal/Modal';
 import { useState } from 'react';
+import Settings from '../Settings/Settings';
 
 type Props = {
   time: number;
@@ -111,9 +112,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
         </div>
       </main>
       <Modal show={showSettingsModal} setShow={setShowSettingsModal} className='!max-w-sm'>
-        <div className="w-full flex justify-center items-center">
-          <span className="font-medium">Settings</span>: Comming soon
-        </div>
+        <Settings/>
       </Modal>
     </div>
   );

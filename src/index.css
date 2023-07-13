@@ -26,3 +26,4 @@ body::-webkit-scrollbar-thumb {
 body.dark::-webkit-scrollbar-thumb {
     @apply border-zinc-900;
 }
+
