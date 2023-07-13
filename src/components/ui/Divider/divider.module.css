@@ -1,7 +1,7 @@
 .line{
     height: 1px;
     flex: 1;
-    @apply bg-gray-300;
+    @apply bg-zinc-300;
     &.gradient:first-of-type{
         @apply bg-gradient-to-r;
     }
@@ -9,18 +9,24 @@
         @apply bg-gradient-to-l;
     }
     &.gradient{
-        @apply bg-transparent from-transparent via-gray-300 to-gray-300;
+        @apply bg-transparent from-transparent via-zinc-300 to-zinc-300;
+    }
+}
+:global(.dark) .line {
+    @apply bg-zinc-600;
+    &.gradient{
+        @apply via-zinc-600 to-zinc-600;
     }
 }
 .divider{
     width: auto;
-    @apply flex items-center text-gray-500;
+    @apply flex items-center text-zinc-500;
     &.hoverable:hover, &.hoverable:focus-within{
-        @apply text-primary-500;
+        @apply text-blue-500;
         .line{
-            @apply !bg-primary-500;
+            @apply !bg-blue-500;
             &.gradient{
-                @apply !bg-transparent !via-primary-300 !to-primary-300;
+                @apply !bg-transparent !via-blue-300 !to-blue-300;
             }
         }
     }

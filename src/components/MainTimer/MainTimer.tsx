@@ -69,7 +69,7 @@ export default function MainTimer() {
     if (!active) return;
     if (time == 0) {
       wakeLockRef.current.release();
-      plays['digital']();
+      if (settings.playAlarm) plays['digital']();
       if (!settings.allowOverdue) {
         setActive(false);
         setTime(0);
