@@ -1,3 +1,4 @@
+import { clearInterval } from 'worker-timers';
 import React from 'react';
 import { TFunction } from 'i18next';
 import toClock from '../Display/toClock';
@@ -10,7 +11,7 @@ export type Context = {
   modeName: string;
   t: TFunction<'translation', undefined>;
   wakeLockRef: React.MutableRefObject<any>;
-  intervalRef: React.MutableRefObject<number | NodeJS.Timer | null>;
+  intervalRef: React.MutableRefObject<number | null>;
   settings: ISettingsStore;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
   setTime: React.Dispatch<React.SetStateAction<number>>;

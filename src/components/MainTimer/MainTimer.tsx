@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { clearInterval, setInterval } from 'worker-timers';
 
 import Button from '../ui/Button/Button';
 import ThemeSwitch from '../ui/ThemeSwitch/ThemeSwitch';
@@ -40,7 +41,7 @@ export default function MainTimer() {
   const [active, setActive] = React.useState(false);
 
   // interval used to update UI
-  const intervalRef = React.useRef<number | null | NodeJS.Timer>(null);
+  const intervalRef = React.useRef<number | null>(null);
   const wakeLockRef = React.useRef<any>(null);
 
   React.useEffect(() => {
