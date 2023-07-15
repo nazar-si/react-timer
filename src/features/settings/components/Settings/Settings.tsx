@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import ClockInput from '../../ui/ClockInput/ClockInput';
-import useTimerStore from '../../../store/timer/timer';
+import React from 'react';
+import ClockInput from '../ClockInput/ClockInput';
+import useTimerStore from '../../../../store/timer/timer';
 import { useTranslation } from 'react-i18next';
-import Divider from '../../ui/Divider/Divider';
-import Switch, { Props as SwitchProps } from '../../ui/Switch/Switch';
-import useSetttingsStore from '../../../store/settings';
+import Divider from '../../../../components/ui/Divider/Divider';
+import Switch, {
+  Props as SwitchProps,
+} from '../../../../components/ui/Switch/Switch';
+import useSetttingsStore from '../../store/settings';
 import { IconHelpSquareRounded } from '@tabler/icons-react';
 
 type HProps = { children: React.ReactNode };
@@ -42,13 +44,19 @@ export default function Settings() {
     <div>
       <div className="text-xl font-bold -mt-1">{t('settings.title')}</div>
       <H>{t('settings.duration-focus')}</H>
-      <ClockInput value={focusTime} setValue={(a) => setDuration('focus', a)} />
+      <ClockInput
+        value={focusTime}
+        setValue={(a: number) => setDuration('focus', a)}
+      />
       <H>{t('settings.duration-break')}</H>
-      <ClockInput value={breakTime} setValue={(a) => setDuration('break', a)} />
+      <ClockInput
+        value={breakTime}
+        setValue={(a: number) => setDuration('break', a)}
+      />
       <H>{t('settings.duration-longBreak')}</H>
       <ClockInput
         value={longBreakTime}
-        setValue={(a) => setDuration('longBreak', a)}
+        setValue={(a: number) => setDuration('longBreak', a)}
       />
       <Divider>{t('settings.other.title')}</Divider>
 

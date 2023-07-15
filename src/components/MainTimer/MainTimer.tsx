@@ -1,30 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
-import Button from '../ui/Button/Button';
-import ThemeSwitch from '../ui/ThemeSwitch/ThemeSwitch';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import Button from '@ui/Button/Button';
+import ThemeSwitch from '@ui/ThemeSwitch/ThemeSwitch';
 import ModeSwitch from '../ModeSwitch/ModeSwitch';
-import useTimerStore from '../../store/timer/timer';
-import TaskList from '../TaskList/TaskList';
-import useTasksStore from '../../store/tasks';
-import { REFRESH_DELAY } from './refresh';
-import { addTime, diff } from './moment';
 import Display from './Display/Display';
 import Title from './Title/Title';
-import toClock from './Display/toClock';
-import plays from './audio';
-import { useTranslation } from 'react-i18next';
-import useSetttingsStore from '../../store/settings';
-import {
-  IconChartAreaLine,
-  IconChartAreaLineFilled,
-  IconChartBar,
-  IconChartDonut,
-  IconChartHistogram,
-  IconChartInfographic,
-  IconHistory,
-} from '@tabler/icons-react';
-import { IconGraph } from '@tabler/icons-react';
-import Select from '../ui/Select/Select';
-import { Listbox } from '@headlessui/react';
+import Analytics from '@/features/analytics/components/Analytics/Analytics';
+import TaskList from '@/features/tasks/components/TaskList/TaskList';
+import { IconChartAreaLine } from '@tabler/icons-react';
+
+import useTimerStore from '@/store/timer/timer';
+import useTasksStore from '../../features/tasks/store/tasks';
+import useSetttingsStore from '@/features/settings/store/settings';
+
+import { REFRESH_DELAY } from './utils/refresh';
+import { addTime, diff } from './utils/moment';
+import { updateTimer } from './utils/updateTimer';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },
@@ -33,27 +25,30 @@ const addMoreTime = [
 ];
 
 export default function MainTimer() {
+  const { t } = useTranslation();
+
   const maxTime = useTimerStore((state) => state.duration[state.mode]);
   const mode = useTimerStore((state) => state.mode);
-  const { t } = useTranslation();
-  const modeName = t(mode);
+  const anyTasks = useTasksStore((state) => state.tasks.length > 0);
   const settings = useSetttingsStore((s) => s);
 
-  const [finishDate, setFinishDate] = useState(new Date());
-  const [realMaxTime, setRealMaxTime] = useState(maxTime);
-  const [time, setTime] = useState(maxTime);
-  const [active, setActive] = useState(false);
+  const [showAnalytics, setShowAnalytics] = React.useState(false);
+  const modeName = t(mode);
+
+  const [finishDate, setFinishDate] = React.useState(new Date());
+  const [realMaxTime, setRealMaxTime] = React.useState(maxTime);
+  const [time, setTime] = React.useState(maxTime);
+  const [active, setActive] = React.useState(false);
 
   // interval used to update UI
-  const intervalRef = useRef<number | null | NodeJS.Timer>(null);
-  const wakeLockRef = useRef<any>(null);
-  const anyTasks = useTasksStore((state) => state.tasks.length > 0);
+  const intervalRef = React.useRef<number | null | NodeJS.Timer>(null);
+  const wakeLockRef = React.useRef<any>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     Reset();
   }, [mode, maxTime]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     clearInterval(intervalRef.current!);
     const getWakeLock = async () => {
       return await navigator.wakeLock?.request();
@@ -67,23 +62,18 @@ export default function MainTimer() {
     }
   }, [active, finishDate]);
 
-  useEffect(() => {
-    document.title =
-      active && time > 0
-        ? `${modeName} - ${toClock(time).join(':')}`
-        : time <= 0
-        ? `${modeName} - ${t('timer.overdue')}`
-        : 'Pomodoro';
-    if (!active) return;
-    if (time == 0) {
-      wakeLockRef.current.release();
-      if (settings.playAlarm) plays['digital']();
-      if (!settings.allowOverdue) {
-        setActive(false);
-        setTime(0);
-        clearInterval(intervalRef.current!);
-      }
-    }
+  React.useEffect(() => {
+    updateTimer({
+      active,
+      setActive,
+      time,
+      setTime,
+      modeName,
+      wakeLockRef,
+      intervalRef,
+      settings,
+      t,
+    });
   }, [time, active]);
 
   const Reset = () => {
@@ -93,6 +83,12 @@ export default function MainTimer() {
     setActive(false);
     wakeLockRef.current?.release();
     clearInterval(intervalRef.current!);
+  };
+
+  const handleStart = () => {
+    if (time <= 0) return Reset();
+    setActive((active) => !active);
+    if (!active) setFinishDate(addTime(new Date(), time));
   };
 
   return (
@@ -110,29 +106,18 @@ export default function MainTimer() {
         realMaxTime={realMaxTime}
       />
       <div className="flex gap-4">
-        {/* <Button className='w-10 h-10'>
-          <IconChartBar strokeWidth={1.5}/>
+        {/* <Button className="w-10 h-10" onClick={() => setShowAnalytics(true)}>
+          <IconChartAreaLine strokeWidth={1.5} />
         </Button> */}
-        <Button
-          className="flex-1"
-          onClick={() => {
-            if (time <= 0) {
-              Reset();
-              return;
-            }
-            setActive((active) => !active);
-            if (!active) {
-              setFinishDate(addTime(new Date(), time));
-            }
-          }}
-        >
+        <Analytics show={showAnalytics} setShow={setShowAnalytics} />
+        <Button className="flex-1" onClick={handleStart}>
           {active
             ? t('timer.stop')
             : time <= 0
             ? t('timer.repeat')
             : t('timer.start')}
         </Button>
-        <Button className="flex-1" onClick={() => Reset()}>
+        <Button className="flex-1" onClick={Reset}>
           {t('timer.reset')}
         </Button>
         <ThemeSwitch updateClass />

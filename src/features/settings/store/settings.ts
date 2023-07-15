@@ -1,6 +1,6 @@
 import { persist } from 'zustand/middleware';
 import { create } from 'zustand';
-import { IDuration } from './timer/migration.pipline';
+import { IDuration } from '../../../store/timer/migration.pipline';
 
 export interface ISettingsStore {
   // can timer calculate negative time

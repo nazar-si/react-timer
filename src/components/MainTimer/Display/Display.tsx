@@ -1,11 +1,14 @@
-import useTimerStore from '../../../store/timer/timer';
-import toClock from './toClock';
-import { classNames } from '../../../utls/classnames';
-import { useTranslation } from 'react-i18next';
-import { IconClockExclamation, IconSettings2 } from '@tabler/icons-react';
-import Modal from '../../ui/Modal/Modal';
 import { useState } from 'react';
-import Settings from '../Settings/Settings';
+
+import Modal from '../../ui/Modal/Modal';
+import Settings from '@/features/settings/components/Settings/Settings';
+import { IconClockExclamation, IconSettings2 } from '@tabler/icons-react';
+
+import useTimerStore from '@/store/timer/timer';
+import { useTranslation } from 'react-i18next';
+
+import toClock from './toClock';
+import { classNames } from '@/utls/classnames';
 
 type Props = {
   time: number;
@@ -50,13 +53,6 @@ export default function Display({ time, realMaxTime, active }: Props) {
   return (
     <div
       className="p-[2px] rounded-[1.1rem] relative"
-      // style={{
-      //   background: `conic-gradient(${
-      //     time <= 0 ? '#f040' : modes[mode].color
-      //   }, ${time <= 0 ? '#f040' : modes[mode].color} ${
-      //     100 - (time / realMaxTime) * 100
-      //   }%, #0000 ${102 - (time / realMaxTime) * 102}%, #0000)`,
-      // }}
       style={{
         background:
           time <= 0
