@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { IconClockExclamation, IconSettings2 } from '@tabler/icons-react';
 import Modal from '../../ui/Modal/Modal';
 import { useState } from 'react';
-import Settings from '../Settings/Settings';
+import Settings from '../../../features/settings/components/Settings/Settings';
 
 type Props = {
   time: number;

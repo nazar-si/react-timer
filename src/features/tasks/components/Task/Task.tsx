@@ -1,14 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import Button from '../../ui/Button/Button';
-import useTasksStore, { Task } from '../../../store/tasks';
+import React, { useRef } from 'react';
+import Button from '@/components/ui/Button/Button';
+import useTasksStore, { Task } from '../../store/tasks';
 import {
   IconCheck,
   IconCornerDownRight,
   IconGripVertical,
-  IconIndentIncrease,
   IconTrash,
 } from '@tabler/icons-react';
-import { classNames } from '../../../utls/classnames';
+import { classNames } from '@/utls/classnames';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { useTranslation } from 'react-i18next';

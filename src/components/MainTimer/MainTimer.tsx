@@ -3,8 +3,8 @@ import Button from '../ui/Button/Button';
 import ThemeSwitch from '../ui/ThemeSwitch/ThemeSwitch';
 import ModeSwitch from '../ModeSwitch/ModeSwitch';
 import useTimerStore from '../../store/timer/timer';
-import TaskList from '../TaskList/TaskList';
-import useTasksStore from '../../store/tasks';
+import TaskList from '@/features/tasks/components/TaskList/TaskList';
+import useTasksStore from '../../features/tasks/store/tasks';
 import { REFRESH_DELAY } from './refresh';
 import { addTime, diff } from './moment';
 import Display from './Display/Display';
@@ -12,12 +12,9 @@ import Title from './Title/Title';
 import toClock from './Display/toClock';
 import plays from './audio';
 import { useTranslation } from 'react-i18next';
-import useSetttingsStore from '../../store/settings';
+import useSetttingsStore from '@/features/settings/store/settings';
 import { IconChartAreaLine } from '@tabler/icons-react';
-import { IconGraph } from '@tabler/icons-react';
-import Select from '../ui/Select/Select';
-import { Listbox } from '@headlessui/react';
-import Analytics from '../../features/analytics/components/Analytics';
+import Analytics from '@/features/analytics/components/Analytics';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },

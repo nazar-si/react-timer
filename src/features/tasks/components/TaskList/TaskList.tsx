@@ -1,14 +1,13 @@
-import { IconPlus, IconTrash } from '@tabler/icons-react';
-import React, { useCallback, useEffect } from 'react';
+import { IconPlus } from '@tabler/icons-react';
+import React, { useEffect } from 'react';
 import useTasksStore from '../../store/tasks';
-import Task from './Task/Task';
+import Task from '../Task/Task';
 import { DndContext, DragEndEvent, closestCenter } from '@dnd-kit/core';
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { useTranslation } from 'react-i18next';
-import Button from '../ui/Button/Button';
 
 export default function TaskList() {
   const [creating, setCreating] = React.useState(false);
@@ -18,7 +17,6 @@ export default function TaskList() {
   const tasks = useTasksStore((s) => s.tasks);
   const addTask = useTasksStore((s) => s.addTask);
   const moveTask = useTasksStore((s) => s.moveTask);
-  const removeTask = useTasksStore((s) => s.removeTask);
 
   const { t } = useTranslation();
 
