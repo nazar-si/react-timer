@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      includeAssets: ['**/*'],
       manifest: {
         theme_color: '#f1f1f1',
         background_color: '#f1f1f1',
