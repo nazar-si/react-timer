@@ -106,9 +106,9 @@ export default function MainTimer() {
         realMaxTime={realMaxTime}
       />
       <div className="flex gap-4">
-        <Button className="w-10 h-10" onClick={() => setShowAnalytics(true)}>
+        {/* <Button className="w-10 h-10" onClick={() => setShowAnalytics(true)}>
           <IconChartAreaLine strokeWidth={1.5} />
-        </Button>
+        </Button> */}
         <Analytics show={showAnalytics} setShow={setShowAnalytics} />
         <Button className="flex-1" onClick={handleStart}>
           {active
