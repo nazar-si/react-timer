@@ -20,7 +20,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@features/*": ["./src/features/*"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@ui/*": ["./src/components/ui/*"],
     }
   },
   "include": ["src"],

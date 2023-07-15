@@ -1,20 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
-import Button from '../ui/Button/Button';
-import ThemeSwitch from '../ui/ThemeSwitch/ThemeSwitch';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import Button from '@ui/Button/Button';
+import ThemeSwitch from '@ui/ThemeSwitch/ThemeSwitch';
 import ModeSwitch from '../ModeSwitch/ModeSwitch';
-import useTimerStore from '../../store/timer/timer';
-import TaskList from '@/features/tasks/components/TaskList/TaskList';
-import useTasksStore from '../../features/tasks/store/tasks';
-import { REFRESH_DELAY } from './refresh';
-import { addTime, diff } from './moment';
 import Display from './Display/Display';
 import Title from './Title/Title';
+import Analytics from '@/features/analytics/components/Analytics';
+import TaskList from '@/features/tasks/components/TaskList/TaskList';
+import { IconChartAreaLine } from '@tabler/icons-react';
+
+import useTimerStore from '@/store/timer/timer';
+import useTasksStore from '../../features/tasks/store/tasks';
+import useSetttingsStore from '@/features/settings/store/settings';
+
+import { REFRESH_DELAY } from './refresh';
+import { addTime, diff } from './moment';
 import toClock from './Display/toClock';
 import plays from './audio';
-import { useTranslation } from 'react-i18next';
-import useSetttingsStore from '@/features/settings/store/settings';
-import { IconChartAreaLine } from '@tabler/icons-react';
-import Analytics from '@/features/analytics/components/Analytics';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },
@@ -23,28 +26,30 @@ const addMoreTime = [
 ];
 
 export default function MainTimer() {
+  const { t } = useTranslation();
+
   const maxTime = useTimerStore((state) => state.duration[state.mode]);
   const mode = useTimerStore((state) => state.mode);
-  const { t } = useTranslation();
-  const modeName = t(mode);
+  const anyTasks = useTasksStore((state) => state.tasks.length > 0);
   const settings = useSetttingsStore((s) => s);
-  const [showAnalytics, setShowAnalytics] = useState(false);
 
-  const [finishDate, setFinishDate] = useState(new Date());
-  const [realMaxTime, setRealMaxTime] = useState(maxTime);
-  const [time, setTime] = useState(maxTime);
-  const [active, setActive] = useState(false);
+  const [showAnalytics, setShowAnalytics] = React.useState(false);
+  const modeName = t(mode);
+
+  const [finishDate, setFinishDate] = React.useState(new Date());
+  const [realMaxTime, setRealMaxTime] = React.useState(maxTime);
+  const [time, setTime] = React.useState(maxTime);
+  const [active, setActive] = React.useState(false);
 
   // interval used to update UI
-  const intervalRef = useRef<number | null | NodeJS.Timer>(null);
-  const wakeLockRef = useRef<any>(null);
-  const anyTasks = useTasksStore((state) => state.tasks.length > 0);
+  const intervalRef = React.useRef<number | null | NodeJS.Timer>(null);
+  const wakeLockRef = React.useRef<any>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     Reset();
   }, [mode, maxTime]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     clearInterval(intervalRef.current!);
     const getWakeLock = async () => {
       return await navigator.wakeLock?.request();
@@ -58,7 +63,7 @@ export default function MainTimer() {
     }
   }, [active, finishDate]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.title =
       active && time > 0
         ? `${modeName} - ${toClock(time).join(':')}`
