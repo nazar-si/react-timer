@@ -14,10 +14,9 @@ import useTimerStore from '@/store/timer/timer';
 import useTasksStore from '../../features/tasks/store/tasks';
 import useSetttingsStore from '@/features/settings/store/settings';
 
-import { REFRESH_DELAY } from './refresh';
-import { addTime, diff } from './moment';
-import toClock from './Display/toClock';
-import plays from './audio';
+import { REFRESH_DELAY } from './utils/refresh';
+import { addTime, diff } from './utils/moment';
+import { updateTimer } from './utils/updateTimer';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },
@@ -64,22 +63,17 @@ export default function MainTimer() {
   }, [active, finishDate]);
 
   React.useEffect(() => {
-    document.title =
-      active && time > 0
-        ? `${modeName} - ${toClock(time).join(':')}`
-        : time <= 0
-        ? `${modeName} - ${t('timer.overdue')}`
-        : 'Pomodoro';
-    if (!active) return;
-    if (time == 0) {
-      wakeLockRef.current.release();
-      if (settings.playAlarm) plays['digital']();
-      if (!settings.allowOverdue) {
-        setActive(false);
-        setTime(0);
-        clearInterval(intervalRef.current!);
-      }
-    }
+    updateTimer({
+      active,
+      setActive,
+      time,
+      setTime,
+      modeName,
+      wakeLockRef,
+      intervalRef,
+      settings,
+      t,
+    });
   }, [time, active]);
 
   const Reset = () => {
@@ -89,6 +83,12 @@ export default function MainTimer() {
     setActive(false);
     wakeLockRef.current?.release();
     clearInterval(intervalRef.current!);
+  };
+
+  const handleStart = () => {
+    if (time <= 0) return Reset();
+    setActive((active) => !active);
+    if (!active) setFinishDate(addTime(new Date(), time));
   };
 
   return (
@@ -110,26 +110,14 @@ export default function MainTimer() {
           <IconChartAreaLine strokeWidth={1.5} />
         </Button>
         <Analytics show={showAnalytics} setShow={setShowAnalytics} />
-        <Button
-          className="flex-1"
-          onClick={() => {
-            if (time <= 0) {
-              Reset();
-              return;
-            }
-            setActive((active) => !active);
-            if (!active) {
-              setFinishDate(addTime(new Date(), time));
-            }
-          }}
-        >
+        <Button className="flex-1" onClick={handleStart}>
           {active
             ? t('timer.stop')
             : time <= 0
             ? t('timer.repeat')
             : t('timer.start')}
         </Button>
-        <Button className="flex-1" onClick={() => Reset()}>
+        <Button className="flex-1" onClick={Reset}>
           {t('timer.reset')}
         </Button>
         <ThemeSwitch updateClass />

@@ -1,5 +1,5 @@
 import React from 'react';
-import ClockInput from '../../../../components/ui/ClockInput/ClockInput';
+import ClockInput from '../ClockInput/ClockInput';
 import useTimerStore from '../../../../store/timer/timer';
 import { useTranslation } from 'react-i18next';
 import Divider from '../../../../components/ui/Divider/Divider';
@@ -44,13 +44,19 @@ export default function Settings() {
     <div>
       <div className="text-xl font-bold -mt-1">{t('settings.title')}</div>
       <H>{t('settings.duration-focus')}</H>
-      <ClockInput value={focusTime} setValue={(a) => setDuration('focus', a)} />
+      <ClockInput
+        value={focusTime}
+        setValue={(a: number) => setDuration('focus', a)}
+      />
       <H>{t('settings.duration-break')}</H>
-      <ClockInput value={breakTime} setValue={(a) => setDuration('break', a)} />
+      <ClockInput
+        value={breakTime}
+        setValue={(a: number) => setDuration('break', a)}
+      />
       <H>{t('settings.duration-longBreak')}</H>
       <ClockInput
         value={longBreakTime}
-        setValue={(a) => setDuration('longBreak', a)}
+        setValue={(a: number) => setDuration('longBreak', a)}
       />
       <Divider>{t('settings.other.title')}</Divider>
 
