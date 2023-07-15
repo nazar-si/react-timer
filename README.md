@@ -1,4 +1,4 @@
-# [Pomodoro Timer](https://timer.nazarsi.com)
+# [React Pomodoro Timer](https://timer.nazarsi.com)
 The Pomodoro Timer is a simple yet powerful tool designed to enhance productivity and create a more focused work environment. Inspired by the Pomodoro Technique, this timer helps you break down your work into manageable intervals, allowing you to work with laser-like focus and take regular breaks to recharge.
 
 ![Pomodoro Timer](./docs/images/caption.png)
@@ -12,6 +12,7 @@ The Pomodoro Timer is a simple yet powerful tool designed to enhance productivit
 - **Notification System (*Coming Soon*)**: Never miss a work session or break with the Pomodoro Timer's notification system. Receive timely reminders and alerts, ensuring that you stay on track and maintain a consistent work rhythm.
 - **Task Groups (*Coming Soon*)**: Organize your tasks into groups or categories, allowing you to focus on specific projects or areas of work. Easily switch between task groups, streamlining your workflow and increasing efficiency.
 - **Save Settings Presets Locally (*Coming Soon*)**: Save your preferred timer settings as presets, making it effortless to switch between different work routines or share your preferred configurations with others.
+- **Progressive Web App (PWA)**: Experience enhanced accessibility and speed with our PWA feature. This allows you to install the Pomodoro Timer as a standalone app on your device, enabling offline access and improving load times. Leveraging service workers, the app caches essential resources, ensuring you have continued productivity even in unstable network conditions. With the PWA version, you're always just one click away from an optimized focus session.
 
 ## Technologies Used
 The Pomodoro Timer project is built using the following technologies:
