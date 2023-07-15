@@ -6,7 +6,7 @@ import ThemeSwitch from '@ui/ThemeSwitch/ThemeSwitch';
 import ModeSwitch from '../ModeSwitch/ModeSwitch';
 import Display from './Display/Display';
 import Title from './Title/Title';
-import Analytics from '@/features/analytics/components/Analytics';
+import Analytics from '@/features/analytics/components/Analytics/Analytics';
 import TaskList from '@/features/tasks/components/TaskList/TaskList';
 import { IconChartAreaLine } from '@tabler/icons-react';
 

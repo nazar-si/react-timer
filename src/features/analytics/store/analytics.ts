@@ -1,5 +1,6 @@
 import { persist } from 'zustand/middleware';
 import { create } from 'zustand';
+
 export interface IEvent {
   mode: 'focus' | 'break' | 'longBreak';
   startTime: Date;

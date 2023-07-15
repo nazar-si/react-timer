@@ -1,5 +1,6 @@
 import React from 'react';
-import Modal from '../../../components/ui/Modal/Modal';
+import Modal from '@/components/ui/Modal/Modal';
+import TestChart from '../TestChart/TestChart';
 
 type Props = {
   show: boolean;
@@ -7,5 +8,9 @@ type Props = {
 };
 
 export default function Analytics({ show, setShow }: Props) {
-  return <Modal {...{ show, setShow }}>Test</Modal>;
+  return (
+    <Modal {...{ show, setShow }}>
+      <TestChart />
+    </Modal>
+  );
 }
