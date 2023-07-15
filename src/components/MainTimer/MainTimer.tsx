@@ -1,14 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Button from '@ui/Button/Button';
-import ThemeSwitch from '@ui/ThemeSwitch/ThemeSwitch';
+import Button from '../ui/Button/Button';
+import ThemeSwitch from '../ui/ThemeSwitch/ThemeSwitch';
 import ModeSwitch from '../ModeSwitch/ModeSwitch';
 import Display from './Display/Display';
 import Title from './Title/Title';
 import Analytics from '@/features/analytics/components/Analytics/Analytics';
 import TaskList from '@/features/tasks/components/TaskList/TaskList';
-import { IconChartAreaLine } from '@tabler/icons-react';
 
 import useTimerStore from '@/store/timer/timer';
 import useTasksStore from '../../features/tasks/store/tasks';

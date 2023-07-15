@@ -1,11 +1,9 @@
 import React from 'react';
 import ClockInput from '../ClockInput/ClockInput';
-import useTimerStore from '../../../../store/timer/timer';
+import useTimerStore from '@/store/timer/timer';
 import { useTranslation } from 'react-i18next';
-import Divider from '../../../../components/ui/Divider/Divider';
-import Switch, {
-  Props as SwitchProps,
-} from '../../../../components/ui/Switch/Switch';
+import Divider from '@/components/ui/Divider/Divider';
+import Switch, { Props as SwitchProps } from '@/components/ui/Switch/Switch';
 import useSetttingsStore from '../../store/settings';
 import { IconHelpSquareRounded } from '@tabler/icons-react';
 

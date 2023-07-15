@@ -7,3 +7,5 @@ expect.extend(matchers);
 afterEach(() => {
   cleanup();
 });
+
+global.ResizeObserver = require('resize-observer-polyfill');
