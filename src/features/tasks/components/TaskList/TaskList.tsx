@@ -2,7 +2,15 @@ import { IconPlus } from '@tabler/icons-react';
 import React, { useEffect } from 'react';
 import useTasksStore from '../../store/tasks';
 import Task from '../Task/Task';
-import { DndContext, DragEndEvent, closestCenter } from '@dnd-kit/core';
+import {
+  DndContext,
+  DragEndEvent,
+  MouseSensor,
+  TouchSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -55,9 +63,14 @@ export default function TaskList() {
     moveTask(activeIndex, overIndex);
   };
 
+  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
   return (
     <div className="w-full">
-      <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
+      <DndContext
+        collisionDetection={closestCenter}
+        onDragEnd={onDragEnd}
+        sensors={sensors}
+      >
         <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
           {tasks.map((task, index) => (
             <Task task={task} key={task.id.toString()} index={index} />
