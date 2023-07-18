@@ -65,7 +65,22 @@ export default function TestChart() {
         colors={['cyan', 'green', 'purple']}
         valueFormatter={dataFormatter}
       />
-
+      <div className="grid grid-rows-[repeat(7,1fr)] grid-flow-col w-fit gap-1  ">
+        {state.map((s, i) => (
+          <div
+            className={`w-3 h-3 rounded-sm border border-blue-300/25`}
+            style={{ background: `#38f${Math.floor(s.focus / 100)}` }}
+          ></div>
+        ))}
+        {Array(220 - state.length)
+          .fill(0)
+          .map((_, i) => (
+            <div
+              className={`w-3 h-3 rounded-sm border border-zinc-700 bg-[#333]`}
+            ></div>
+          ))}
+      </div>
+      <br />
       <Button
         className="mr-4"
         onClick={() => {
