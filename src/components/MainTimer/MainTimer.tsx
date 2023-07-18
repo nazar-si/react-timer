@@ -17,6 +17,7 @@ import useSetttingsStore from '@/features/settings/store/settings';
 import { REFRESH_DELAY } from './utils/refresh';
 import { addTime, diff } from './utils/moment';
 import { updateTimer } from './utils/updateTimer';
+import { IconChartAreaLine } from '@tabler/icons-react';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },
@@ -106,9 +107,9 @@ export default function MainTimer() {
         realMaxTime={realMaxTime}
       />
       <div className="flex gap-4">
-        {/* <Button className="w-10 h-10" onClick={() => setShowAnalytics(true)}>
+        <Button className="w-10 h-10" onClick={() => setShowAnalytics(true)}>
           <IconChartAreaLine strokeWidth={1.5} />
-        </Button> */}
+        </Button>
         <Analytics show={showAnalytics} setShow={setShowAnalytics} />
         <Button className="flex-1" onClick={handleStart}>
           {active
