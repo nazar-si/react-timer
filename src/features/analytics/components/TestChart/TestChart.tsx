@@ -1,5 +1,8 @@
 import { AreaChart, Title } from '@tremor/react';
 import React from 'react';
+import useAnalyticsStore from '../../store/analytics';
+import Button from '@/components/ui/Button/Button';
+import MapJSON from '@/utls/mapJSON';
 
 const chartdata = [
   {
@@ -39,6 +42,12 @@ const dataFormatter = (number: number) => {
 };
 
 export default function TestChart() {
+  const events = useAnalyticsStore((s) => s.events);
+  const actions = useAnalyticsStore((s) => ({
+    dispatchEvent: s.dispatchEvent,
+    addTimeToEvent: s.addTimeToEvent,
+    stopEvent: s.stopEvent,
+  }));
   return (
     <>
       <Title>Newsletter revenue over time (USD)</Title>
