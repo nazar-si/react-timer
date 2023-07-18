@@ -17,55 +17,41 @@ export interface IAnalyticsStore {
   stopEvent: (eventId: number) => void;
 }
 
-const useAnalyticsStore = create(
-  persist<IAnalyticsStore>(
-    (set, get) => ({
-      events: new Map(),
-      globalId: 0,
-      dispatchEvent: (mode) => {
-        set({
-          events: new Map(
-            [...get().events.entries()].concat([
-              get().globalId + 1,
-              {
-                mode,
-                startTime: new Date(),
-                countedTime: 0,
-              },
-            ]),
-          ),
-          globalId: get().globalId + 1,
-        });
-        return get().globalId + 1;
-      },
-      addTimeToEvent: (eventId, time) => {
-        const e = get().events.get(eventId);
-        if (!e) return;
-        set({
-          events: new Map([
-            ...get().events.entries(),
-            [
-              eventId,
-              {
-                ...e,
-                countedTime: e.countedTime + time,
-              },
-            ],
-          ]),
-        });
-      },
-      stopEvent: (eventId) =>
-        set({
-          events: new Map(
-            [...get().events.entries()].filter(([id, _]) => id !== eventId),
-          ),
-        }),
-    }),
-    {
-      name: 'analytics-store',
-      version: 1,
-    },
-  ),
-);
+const useAnalyticsStore = create<IAnalyticsStore>((set, get) => ({
+  events: new Map(),
+  globalId: 0,
+  dispatchEvent: (mode) => {
+    console.log(get().events);
+    set((s) => ({
+      events: new Map(s.events).set(s.globalId + 1, {
+        mode,
+        startTime: new Date(),
+        countedTime: 0,
+      }),
+      globalId: s.globalId + 1,
+    }));
+    return get().globalId + 1;
+  },
+  addTimeToEvent: (eventId, time) => {
+    const e = get().events.get(eventId);
+    if (!e) return;
+    set((s) => ({
+      events: new Map(s.events).set(eventId, {
+        ...e,
+        countedTime: e.countedTime + time,
+      }),
+    }));
+  },
+  stopEvent: (eventId) => {
+    const e = get().events.get(eventId);
+    if (!e) return;
+    set((s) => ({
+      events: new Map(s.events).set(eventId, {
+        ...e,
+        finishTime: new Date(),
+      }),
+    }));
+  },
+}));
 
 export default useAnalyticsStore;
