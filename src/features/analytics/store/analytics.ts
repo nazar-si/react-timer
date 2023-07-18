@@ -10,30 +10,32 @@ export interface IEvent {
   countedTime: number;
 }
 
+export type Statistics = Array<Record<modeType, number> & { date: string }>;
+
 export interface IAnalyticsStore {
   globalId: number;
   events: Map<number, IEvent>;
-  dispatchEvent: (mode: modeType) => number;
+  dispatchEvent: (mode: modeType, date?: Date) => number;
   addTimeToEvent: (eventId: number, time: number) => void;
   stopEvent: (eventId: number) => void;
+  getTotalTime: (mode: modeType, day: Date) => number;
+  getStatistics: () => Statistics;
 }
-
 const useAnalyticsStore = create(
   persist<IAnalyticsStore>(
     (set, get) => ({
       events: new Map(),
       globalId: 3,
-      dispatchEvent: (mode) => {
-        console.log(get().events);
+      dispatchEvent: (mode, date) => {
         set((s) => ({
           events: new Map(s.events).set(s.globalId + 1, {
             mode,
-            startTime: new Date(),
+            startTime: date ? date : new Date(),
             countedTime: 0,
           }),
           globalId: s.globalId + 1,
         }));
-        return get().globalId + 1;
+        return get().globalId;
       },
       addTimeToEvent: (eventId, time) => {
         const e = get().events.get(eventId);
@@ -53,6 +55,42 @@ const useAnalyticsStore = create(
             ...e,
             finishTime: new Date(),
           }),
+        }));
+      },
+      getTotalTime: (mode, day) => {
+        const events = Array.from(get().events.values());
+        const total = events
+          .filter(
+            (e) =>
+              e.finishTime &&
+              e.startTime.toDateString() === day.toDateString() &&
+              e.mode === mode,
+          )
+          .reduce((a, b) => ({
+            ...a,
+            ...b,
+            countedTime: a.countedTime + b.countedTime,
+          })).countedTime;
+        return total;
+      },
+      getStatistics: () => {
+        const events = Array.from(get().events.values());
+        const dates: Record<string, Record<modeType, number>> = {};
+        events.forEach((e) => {
+          if (!e.finishTime) return;
+          const date = e.startTime.toDateString();
+          if (!(date in dates)) {
+            dates[date] = {
+              focus: 0,
+              break: 0,
+              longBreak: 0,
+            };
+          }
+          dates[date][e.mode] += e.countedTime;
+        });
+        return Object.entries(dates).map((e) => ({
+          date: e[0],
+          ...e[1],
         }));
       },
     }),

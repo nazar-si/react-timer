@@ -15,8 +15,8 @@ export function replacer(key: string, value: unknown) {
 }
 
 export function reviver(key: string, value: unknown) {
-  if (value instanceof MapReplacer) {
-    return new Map(value.value);
+  if (typeof value === 'object' && value && 'dataType' in value) {
+    return new Map((value as MapReplacer).value);
   }
   return value;
 }

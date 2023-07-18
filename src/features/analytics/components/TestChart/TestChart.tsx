@@ -1,6 +1,6 @@
 import { AreaChart, Title } from '@tremor/react';
-import React from 'react';
-import useAnalyticsStore from '../../store/analytics';
+import React, { useEffect, useState } from 'react';
+import useAnalyticsStore, { Statistics } from '../../store/analytics';
 import Button from '@/components/ui/Button/Button';
 import MapJSON from '@/utls/mapJSON';
 
@@ -43,22 +43,42 @@ const dataFormatter = (number: number) => {
 
 export default function TestChart() {
   const events = useAnalyticsStore((s) => s.events);
+  const [state, setState] = useState<Statistics>([]);
+  const [day, setDay] = useState(new Date());
   const actions = useAnalyticsStore((s) => ({
     dispatchEvent: s.dispatchEvent,
     addTimeToEvent: s.addTimeToEvent,
     stopEvent: s.stopEvent,
+    getStatistics: s.getStatistics,
   }));
+  useEffect(() => {
+    setState(actions.getStatistics());
+  }, [events]);
   return (
     <>
       <Title>Newsletter revenue over time (USD)</Title>
       <AreaChart
         className="h-72 mt-4"
-        data={chartdata}
+        data={state}
         index="date"
-        categories={['SemiAnalysis', 'The Pragmatic Engineer']}
-        colors={['indigo', 'cyan']}
+        categories={['focus']}
+        colors={['cyan']}
         valueFormatter={dataFormatter}
       />
+      <Button
+        onClick={() => {
+          const id = actions.dispatchEvent('focus', day);
+          console.log(id);
+          actions.addTimeToEvent(id, Math.round(Math.random() * 10));
+          actions.stopEvent(id);
+        }}
+      >
+        Dispatch
+      </Button>
+      {/* <Button onClick={() => {
+        const day = 
+      }}>Add day</Button> */}
+      {MapJSON.stringify(events)}
     </>
   );
 }
