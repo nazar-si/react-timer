@@ -37,7 +37,7 @@ const useAnalyticsStore = create(
         set((s) => ({
           events: new Map(s.events).set(s.globalId + 1, {
             mode,
-            startTime: date ? date : new Date(),
+            startTime: date ? new Date(date) : new Date(),
             countedTime: 0,
           }),
           globalId: s.globalId + 1,

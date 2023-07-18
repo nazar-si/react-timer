@@ -38,7 +38,7 @@ const chartdata = [
 ];
 
 const dataFormatter = (number: number) => {
-  return '$ ' + Intl.NumberFormat('us').format(number).toString();
+  return Intl.NumberFormat('us').format(number).toString() + ' min';
 };
 
 export default function TestChart() {
@@ -56,29 +56,47 @@ export default function TestChart() {
   }, [events]);
   return (
     <>
-      <Title>Newsletter revenue over time (USD)</Title>
+      <Title>Total time estimates</Title>
       <AreaChart
         className="h-72 mt-4"
         data={state}
         index="date"
-        categories={['focus']}
-        colors={['cyan']}
+        categories={['focus', 'break', 'longBreak']}
+        colors={['cyan', 'green', 'purple']}
         valueFormatter={dataFormatter}
       />
+
       <Button
+        className="mr-4"
         onClick={() => {
-          const id = actions.dispatchEvent('focus', day);
+          let id = 0;
+          for (let i = 0; i < 4; i++) {
+            id = actions.dispatchEvent('focus', day);
+            console.log(id);
+            actions.addTimeToEvent(id, 20 + Math.round(Math.random() * 10));
+            actions.stopEvent(id);
+            id = actions.dispatchEvent('break', day);
+            console.log(id);
+            actions.addTimeToEvent(id, 5 + Math.round(Math.random() * 2));
+            actions.stopEvent(id);
+          }
+          id = actions.dispatchEvent('longBreak', day);
           console.log(id);
-          actions.addTimeToEvent(id, Math.round(Math.random() * 10));
+          actions.addTimeToEvent(id, 15 + Math.round(Math.random() * 10));
           actions.stopEvent(id);
         }}
       >
-        Dispatch
+        DEBUG: Add random circle
       </Button>
-      {/* <Button onClick={() => {
-        const day = 
-      }}>Add day</Button> */}
-      {MapJSON.stringify(events)}
+      <Button
+        onClick={() => {
+          const nextDay = day;
+          nextDay.setDate(day.getDate() + 1);
+          setDay(nextDay);
+        }}
+      >
+        DEBUG: Add day
+      </Button>
     </>
   );
 }
