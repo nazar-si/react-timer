@@ -1,6 +1,6 @@
 import { AreaChart, Title } from '@tremor/react';
 import React, { useEffect, useState } from 'react';
-import useAnalyticsStore, { Statistics } from '../../store/analytics';
+import useAnalyticsStore, { Statistics, modeType } from '../../store/analytics';
 import Button from '@/components/ui/Button/Button';
 import MapJSON from '@/utls/mapJSON';
 
@@ -37,8 +37,13 @@ const chartdata = [
   },
 ];
 
-const dataFormatter = (number: number) => {
-  return Intl.NumberFormat('us').format(number).toString() + ' min';
+const Formatter = (n: number) => {
+  const mins = n % 60;
+  const hours = Math.floor(n / 60);
+  const hoursFrac = Math.floor(mins / 6) / 10;
+  if (hours === 0) return `${mins} min`;
+  if (hours <= 5) return `${hours} h ${mins} min`;
+  return `${Math.round(hours + hoursFrac)} h`;
 };
 
 export default function TestChart() {
@@ -54,16 +59,30 @@ export default function TestChart() {
   useEffect(() => {
     setState(actions.getStatistics());
   }, [events]);
+
+  const names: Record<modeType, string> = {
+    focus: 'Focus',
+    break: 'Break',
+    longBreak: 'Long Break',
+  };
+
   return (
     <>
       <Title>Total time estimates</Title>
       <AreaChart
+        stack={true}
+        curveType="natural"
         className="h-72 mt-4"
-        data={state}
+        data={state.map((a) => ({
+          [names.focus]: a.focus,
+          [names.break]: a.break,
+          [names.longBreak]: a.longBreak,
+          date: a.date,
+        }))}
         index="date"
-        categories={['focus', 'break', 'longBreak']}
+        categories={Object.values(names)}
         colors={['cyan', 'green', 'purple']}
-        valueFormatter={dataFormatter}
+        valueFormatter={Formatter}
       />
       <div className="grid grid-rows-[repeat(7,1fr)] grid-flow-col w-fit gap-1  ">
         {state.map((s, i) => (
