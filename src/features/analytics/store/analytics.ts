@@ -10,6 +10,13 @@ export interface IEvent {
   countedTime: number;
 }
 
+function toDateString(d: string | Date) {
+  if (d instanceof Date) {
+    return d.toDateString();
+  }
+  return new Date(d).toDateString();
+}
+
 export type Statistics = Array<Record<modeType, number> & { date: string }>;
 
 export interface IAnalyticsStore {
@@ -63,7 +70,7 @@ const useAnalyticsStore = create(
           .filter(
             (e) =>
               e.finishTime &&
-              e.startTime.toDateString() === day.toDateString() &&
+              toDateString(e.startTime) === day.toDateString() &&
               e.mode === mode,
           )
           .reduce((a, b) => ({
@@ -78,7 +85,7 @@ const useAnalyticsStore = create(
         const dates: Record<string, Record<modeType, number>> = {};
         events.forEach((e) => {
           if (!e.finishTime) return;
-          const date = e.startTime.toDateString();
+          const date = toDateString(e.startTime);
           if (!(date in dates)) {
             dates[date] = {
               focus: 0,
