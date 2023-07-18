@@ -17,6 +17,7 @@ import useSetttingsStore from '@/features/settings/store/settings';
 import { REFRESH_DELAY } from './utils/refresh';
 import { addTime, diff } from './utils/moment';
 import { updateTimer } from './utils/updateTimer';
+import { IconChartAreaLine } from '@tabler/icons-react';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },
