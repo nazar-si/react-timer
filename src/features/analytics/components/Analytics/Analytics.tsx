@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from '@/components/ui/Modal/Modal';
 import TestChart from '../TestChart/TestChart';
+import { Suspense } from 'react';
 
 type Props = {
   show: boolean;
@@ -10,7 +11,9 @@ type Props = {
 export default function Analytics({ show, setShow }: Props) {
   return (
     <Modal {...{ show, setShow }}>
-      <TestChart />
+      <Suspense>
+        <TestChart />
+      </Suspense>
     </Modal>
   );
 }
