@@ -16,8 +16,14 @@ function toDateString(d: string | Date) {
   }
   return new Date(d).toDateString();
 }
+function ensureDate(d: string | Date) {
+  if (typeof d === 'string') {
+    return new Date(d);
+  }
+  return d;
+}
 
-export type Statistics = Array<Record<modeType, number> & { date: string }>;
+export type Statistics = Array<Record<modeType, number> & { date: Date }>;
 
 export interface IAnalyticsStore {
   globalId: number;
@@ -99,7 +105,7 @@ const useAnalyticsStore = create(
             dates[date][e.mode] += e.countedTime;
           });
           return Object.entries(dates).map((e) => ({
-            date: e[0],
+            date: ensureDate(e[0]),
             ...e[1],
           }));
         },
