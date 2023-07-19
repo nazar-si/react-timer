@@ -18,6 +18,7 @@ import { REFRESH_DELAY } from './utils/refresh';
 import { addTime, diff } from './utils/moment';
 import { updateTimer } from './utils/updateTimer';
 import { IconChartAreaLine } from '@tabler/icons-react';
+import useAnalyticsStore from '@/features/analytics/store/analytics';
 
 const addMoreTime = [
   { time: 20, label: '+ 20', measure: 'sec' },
@@ -32,6 +33,7 @@ export default function MainTimer() {
   const mode = useTimerStore((state) => state.mode);
   const anyTasks = useTasksStore((state) => state.tasks.length > 0);
   const settings = useSetttingsStore((s) => s);
+  const eventActions = useAnalyticsStore((s) => s.actions());
 
   const [showAnalytics, setShowAnalytics] = React.useState(false);
   const modeName = t(mode);
@@ -44,26 +46,32 @@ export default function MainTimer() {
   // interval used to update UI
   const intervalRef = React.useRef<number | null>(null);
   const wakeLockRef = React.useRef<any>(null);
+  // current listening analytics event
+  const eventRef = React.useRef<number | null>(null);
 
   React.useEffect(() => {
     Reset();
   }, [mode, maxTime]);
 
   React.useEffect(() => {
-    clearInterval(intervalRef.current!);
+    if (intervalRef.current) clearInterval(intervalRef.current);
     const getWakeLock = async () => {
       return await navigator.wakeLock?.request();
     };
     if (wakeLockRef.current) wakeLockRef.current.release();
     if (active) {
       getWakeLock().then((r) => (wakeLockRef.current = r));
+      eventRef.current = eventActions.dispatchEvent(mode);
       intervalRef.current = setInterval(() => {
-        setTime(diff(finishDate, new Date()));
+        const newTime = diff(finishDate, new Date());
+        if (newTime !== time) setTime(newTime);
       }, REFRESH_DELAY);
     }
   }, [active, finishDate]);
 
   React.useEffect(() => {
+    if (eventRef.current)
+      eventActions.setEventTime(eventRef.current, (realMaxTime - time) / 60);
     updateTimer({
       active,
       setActive,
@@ -74,6 +82,8 @@ export default function MainTimer() {
       intervalRef,
       settings,
       t,
+      eventRef,
+      stopEvent: eventActions.stopEvent,
     });
   }, [time, active]);
 
@@ -82,8 +92,9 @@ export default function MainTimer() {
     setFinishDate(addTime(new Date(), maxTime));
     setTime(maxTime);
     setActive(false);
+    if (eventRef.current) eventActions.stopEvent(eventRef.current);
     wakeLockRef.current?.release();
-    clearInterval(intervalRef.current!);
+    if (intervalRef.current) clearInterval(intervalRef.current);
   };
 
   const handleStart = () => {

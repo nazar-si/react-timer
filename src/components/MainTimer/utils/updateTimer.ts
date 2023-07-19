@@ -15,6 +15,8 @@ export type Context = {
   settings: ISettingsStore;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
   setTime: React.Dispatch<React.SetStateAction<number>>;
+  eventRef: React.MutableRefObject<number | null>;
+  stopEvent: (eventId: number) => void;
 };
 export function updateTimer(ctx: Context) {
   document.title =
@@ -28,6 +30,7 @@ export function updateTimer(ctx: Context) {
     ctx.wakeLockRef.current.release();
     if (ctx.settings.playAlarm) plays['digital']();
     if (!ctx.settings.allowOverdue) {
+      if (ctx.eventRef.current) ctx.stopEvent(ctx.eventRef.current);
       ctx.setActive(false);
       ctx.setTime(0);
       clearInterval(ctx.intervalRef.current!);

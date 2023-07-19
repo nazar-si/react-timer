@@ -23,6 +23,8 @@ function ensureDate(d: string | Date) {
   return d;
 }
 
+if (import.meta.env.PROD) console.log = (...s: any[]) => null;
+
 export type Statistics = Array<Record<modeType, number> & { date: Date }>;
 
 export interface IAnalyticsStore {
@@ -41,9 +43,14 @@ const useAnalyticsStore = create(
   persist<IAnalyticsStore>(
     (set, get) => ({
       events: new Map(),
-      globalId: 3,
+      globalId: 1,
       actions: () => ({
         dispatchEvent: (mode, date) => {
+          console.log(
+            `Event #${
+              get().globalId
+            } dispatched: mode:${mode}, time:${date?.toTimeString()}`,
+          );
           set((s) => ({
             events: new Map(s.events).set(s.globalId + 1, {
               mode,
@@ -55,6 +62,7 @@ const useAnalyticsStore = create(
           return get().globalId;
         },
         addTimeToEvent: (eventId, time) => {
+          console.log(`Event #${eventId} added time : ${time}`);
           const e = get().events.get(eventId);
           if (!e) return;
           set((s) => ({
@@ -65,6 +73,7 @@ const useAnalyticsStore = create(
           }));
         },
         setEventTime: (eventId, time) => {
+          console.log(`Event #${eventId} set time : ${time}`);
           const e = get().events.get(eventId);
           if (!e) return;
           set((s) => ({
@@ -76,7 +85,8 @@ const useAnalyticsStore = create(
         },
         stopEvent: (eventId) => {
           const e = get().events.get(eventId);
-          if (!e) return;
+          console.log(`Event #${eventId} stopped`);
+          if (!e || e.finishTime) return;
           set((s) => ({
             events: new Map(s.events).set(eventId, {
               ...e,

@@ -18,7 +18,7 @@ export default function TestChart() {
     month: 'short',
   });
   const valueFormatter = (n: number) => {
-    const mins = n % 60;
+    const mins = Math.floor(n) % 60;
     const hours = Math.floor(n / 60);
     if (hours === 0) return `${mins} ${t('timer.min')}`;
     if (mins) return `${hours} ${t('timer.hours')} ${mins} ${t('timer.min')}`;
