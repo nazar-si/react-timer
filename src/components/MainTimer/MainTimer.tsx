@@ -118,11 +118,9 @@ export default function MainTimer() {
         realMaxTime={realMaxTime}
       />
       <div className="flex gap-4">
-        {import.meta.env.VITE_EXP_ANALYTICS && (
-          <Button className="w-10 h-10" onClick={() => setShowAnalytics(true)}>
-            <IconChartAreaLine strokeWidth={1.5} />
-          </Button>
-        )}
+        <Button className="w-10 h-10" onClick={() => setShowAnalytics(true)}>
+          <IconChartAreaLine strokeWidth={1.5} />
+        </Button>
         <Analytics show={showAnalytics} setShow={setShowAnalytics} />
         <Button className="flex-1" onClick={handleStart}>
           {active

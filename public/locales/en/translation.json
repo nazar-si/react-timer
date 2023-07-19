@@ -3,6 +3,7 @@
   "focus": "Focus",
   "break": "Break",
   "longBreak": "Long Break",
+  "experimental": "experimentel",
   "timer" : {
     "start": "Start",
     "repeat": "Repeat",

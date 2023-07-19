@@ -33,7 +33,10 @@ export default function TestChart() {
 
   return (
     <>
-      <Title>{t('analtyics.title')}</Title>
+      <Title>
+        {t('analtyics.title')}{' '}
+        <span className="opacity-50">({t('experimental')})</span>
+      </Title>
       <AreaChart
         stack={false}
         curveType="natural"

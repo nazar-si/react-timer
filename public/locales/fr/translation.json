@@ -3,6 +3,7 @@
   "focus": "Travail",
   "break": "Pause",
   "longBreak": "Détente",
+  "experimental": "expérimental",
   "timer" : {
     "start": "Debut",
     "repeat": "Répéter",

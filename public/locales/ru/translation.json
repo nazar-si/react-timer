@@ -3,6 +3,7 @@
   "focus": "Фокус",
   "break": "Перерыв",
   "longBreak": "Отдых",
+  "experimental": "прототип",
   "timer" : {
     "start": "Старт",
     "reset": "Сбросить",
