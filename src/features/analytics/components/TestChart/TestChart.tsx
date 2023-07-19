@@ -55,7 +55,7 @@ export default function TestChart() {
       <br />
       {!import.meta.env.PROD && (
         <>
-          <Button
+          {/* <Button
             className="mr-4"
             onClick={() => {
               let id = 0;
@@ -82,7 +82,7 @@ export default function TestChart() {
             }}
           >
             DEBUG: Add day
-          </Button>
+          </Button> */}
         </>
       )}
     </>
