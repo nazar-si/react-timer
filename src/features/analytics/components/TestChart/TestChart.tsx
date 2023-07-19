@@ -2,7 +2,6 @@ import { AreaChart, Title } from '@tremor/react';
 import React, { useEffect, useState } from 'react';
 import useAnalyticsStore, { Statistics, modeType } from '../../store/analytics';
 import Button from '@/components/ui/Button/Button';
-import MapJSON from '@/utls/mapJSON';
 
 const Formatter = (n: number) => {
   const mins = n % 60;
@@ -16,13 +15,9 @@ export default function TestChart() {
   const events = useAnalyticsStore((s) => s.events);
   const [state, setState] = useState<Statistics>([]);
   const [day, setDay] = useState(new Date());
-  const actions = useAnalyticsStore((s) => ({
-    dispatchEvent: s.dispatchEvent,
-    addTimeToEvent: s.addTimeToEvent,
-    stopEvent: s.stopEvent,
-    getStatistics: s.getStatistics,
-  }));
+  const actions = useAnalyticsStore((s) => s.actions());
   useEffect(() => {
+    console.log(actions);
     setState(actions.getStatistics());
   }, [events]);
 
