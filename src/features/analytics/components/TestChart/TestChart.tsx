@@ -4,46 +4,12 @@ import useAnalyticsStore, { Statistics, modeType } from '../../store/analytics';
 import Button from '@/components/ui/Button/Button';
 import MapJSON from '@/utls/mapJSON';
 
-const chartdata = [
-  {
-    date: 'Jan 22',
-    SemiAnalysis: 2890,
-    'The Pragmatic Engineer': 2338,
-  },
-  {
-    date: 'Feb 22',
-    SemiAnalysis: 2756,
-    'The Pragmatic Engineer': 2103,
-  },
-  {
-    date: 'Mar 22',
-    SemiAnalysis: 3322,
-    'The Pragmatic Engineer': 2194,
-  },
-  {
-    date: 'Apr 22',
-    SemiAnalysis: 3470,
-    'The Pragmatic Engineer': 2108,
-  },
-  {
-    date: 'May 22',
-    SemiAnalysis: 3475,
-    'The Pragmatic Engineer': 1812,
-  },
-  {
-    date: 'Jun 22',
-    SemiAnalysis: 3129,
-    'The Pragmatic Engineer': 1726,
-  },
-];
-
 const Formatter = (n: number) => {
   const mins = n % 60;
   const hours = Math.floor(n / 60);
-  const hoursFrac = Math.floor(mins / 6) / 10;
   if (hours === 0) return `${mins} min`;
-  if (hours <= 5) return `${hours} h ${mins} min`;
-  return `${Math.round(hours + hoursFrac)} h`;
+  if (mins) return `${hours} h ${mins} min`;
+  return `${hours} h`;
 };
 
 export default function TestChart() {
