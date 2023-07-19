@@ -114,7 +114,6 @@ const useAnalyticsStore = create(
           const events = Array.from(get().events.values());
           const dates: Record<string, Record<modeType, number>> = {};
           events.forEach((e) => {
-            if (!e.finishTime) return;
             const date = toDateString(e.startTime);
             if (!(date in dates)) {
               dates[date] = {
