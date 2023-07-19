@@ -10,6 +10,7 @@
     "stop": "Stoppen",
     "sec": "sek",
     "min": "min",
+    "hours": "h",
     "overdue": "Zeit ist abgelaufen!"
   },
   "tasks": {
@@ -46,5 +47,8 @@
       "allowOverdueHint": "Nach 00:00 Uhr zählt der Timer die überfällige Zeit weiter",
       "playAlarm": "Play alarm"
     }
+  },
+  "analtyics" : {
+    "title": "Geschätzte Gesamtzeit"
   }
 }

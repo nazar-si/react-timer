@@ -10,6 +10,7 @@
     "stop": "Stop",
     "sec": "sec",
     "min": "min",
+    "hours": "h",
     "overdue": "Time is up!"
   },
   "tasks": {
@@ -46,5 +47,8 @@
       "allowOverdueHint": "After 00:00 the timer will continues to count overdue time",
       "playAlarm": "Wecker abspielen"
     }
+  },
+  "analtyics" : {
+    "title": "Total time estimates"
   }
 }

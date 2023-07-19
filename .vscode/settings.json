@@ -1,0 +1,18 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "i18n-ally.localesPaths": [
+        "public/locales"
+    ],
+    "i18n-ally.enabledFrameworks": [
+        "react-i18next",
+        "general"
+    ],
+    "i18n-ally.namespace": true,
+    "i18n-ally.pathMatcher": "{locale}/translation.json",
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.keysInUse": [
+        "description.part2_whatever"
+    ],
+}
