@@ -47,5 +47,8 @@
       "allowOverdueHint": "Nach 00:00 Uhr zählt der Timer die überfällige Zeit weiter",
       "playAlarm": "Play alarm"
     }
+  },
+  "analtyics" : {
+    "title": "Geschätzte Gesamtzeit"
   }
 }

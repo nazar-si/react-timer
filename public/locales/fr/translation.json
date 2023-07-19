@@ -47,5 +47,8 @@
       "allowOverdueHint": "Après 00:00, le minuteur continuera à compter le temps en retard",
       "playAlarm": "Jouer le son de l'alarme"
     }
+  },
+  "analtyics" : {
+    "title": "Estimations du temps total"
   }
 }

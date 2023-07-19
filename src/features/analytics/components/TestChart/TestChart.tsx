@@ -33,7 +33,7 @@ export default function TestChart() {
 
   return (
     <>
-      <Title>Total time estimates</Title>
+      <Title>{t('analtyics.title')}</Title>
       <AreaChart
         stack={false}
         curveType="natural"
