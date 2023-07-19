@@ -31,6 +31,7 @@ export interface IAnalyticsStore {
   actions: () => {
     dispatchEvent: (mode: modeType, date?: Date) => number;
     addTimeToEvent: (eventId: number, time: number) => void;
+    setEventTime: (eventId: number, time: number) => void;
     stopEvent: (eventId: number) => void;
     getTotalTime: (mode: modeType, day: Date) => number;
     getStatistics: () => Statistics;
@@ -60,6 +61,16 @@ const useAnalyticsStore = create(
             events: new Map(s.events).set(eventId, {
               ...e,
               countedTime: e.countedTime + time,
+            }),
+          }));
+        },
+        setEventTime: (eventId, time) => {
+          const e = get().events.get(eventId);
+          if (!e) return;
+          set((s) => ({
+            events: new Map(s.events).set(eventId, {
+              ...e,
+              countedTime: time,
             }),
           }));
         },

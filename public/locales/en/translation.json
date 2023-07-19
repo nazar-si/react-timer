@@ -10,6 +10,7 @@
     "stop": "Stop",
     "sec": "sec",
     "min": "min",
+    "hours": "h",
     "overdue": "Time is up!"
   },
   "tasks": {

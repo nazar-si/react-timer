@@ -2,32 +2,33 @@ import { AreaChart, Title } from '@tremor/react';
 import React, { useEffect, useState } from 'react';
 import useAnalyticsStore, { Statistics, modeType } from '../../store/analytics';
 import Button from '@/components/ui/Button/Button';
-
-const valueFormatter = (n: number) => {
-  const mins = n % 60;
-  const hours = Math.floor(n / 60);
-  if (hours === 0) return `${mins} min`;
-  if (mins) return `${hours} h ${mins} min`;
-  return `${hours} h`;
-};
-const DateFormatter = new Intl.DateTimeFormat('en', {
-  day: 'numeric',
-  month: 'short',
-});
+import { useTranslation } from 'react-i18next';
 
 export default function TestChart() {
   const events = useAnalyticsStore((s) => s.events);
+  const { t, i18n } = useTranslation();
   const [state, setState] = useState<Statistics>([]);
   const [day, setDay] = useState(new Date());
   const actions = useAnalyticsStore((s) => s.actions());
   useEffect(() => {
     setState(actions.getStatistics());
   }, [events]);
+  const DateFormatter = new Intl.DateTimeFormat(i18n.language, {
+    day: 'numeric',
+    month: 'short',
+  });
+  const valueFormatter = (n: number) => {
+    const mins = n % 60;
+    const hours = Math.floor(n / 60);
+    if (hours === 0) return `${mins} ${t('timer.min')}`;
+    if (mins) return `${hours} ${t('timer.hours')} ${mins} ${t('timer.min')}`;
+    return `${hours} ${t('timer.hours')}`;
+  };
 
   const names: Record<modeType, string> = {
-    focus: 'Focus',
-    break: 'Break',
-    longBreak: 'Long Break',
+    focus: t('focus'),
+    break: t('break'),
+    longBreak: t('longBreak'),
   };
 
   return (

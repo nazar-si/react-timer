@@ -10,6 +10,7 @@
     "stop": "Stoppen",
     "sec": "sek",
     "min": "min",
+    "hours": "h",
     "overdue": "Zeit ist abgelaufen!"
   },
   "tasks": {
