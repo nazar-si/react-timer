@@ -50,34 +50,38 @@ export default function TestChart() {
         valueFormatter={valueFormatter}
       />
       <br />
-      <Button
-        className="mr-4"
-        onClick={() => {
-          let id = 0;
-          for (let i = 0; i < 4; i++) {
-            id = actions.dispatchEvent('focus', day);
-            actions.addTimeToEvent(id, 20 + Math.round(Math.random() * 10));
-            actions.stopEvent(id);
-            id = actions.dispatchEvent('break', day);
-            actions.addTimeToEvent(id, 5 + Math.round(Math.random() * 2));
-            actions.stopEvent(id);
-          }
-          id = actions.dispatchEvent('longBreak', day);
-          actions.addTimeToEvent(id, 15 + Math.round(Math.random() * 10));
-          actions.stopEvent(id);
-        }}
-      >
-        DEBUG: Add random circle
-      </Button>
-      <Button
-        onClick={() => {
-          const nextDay = day;
-          nextDay.setDate(day.getDate() + 1);
-          setDay(nextDay);
-        }}
-      >
-        DEBUG: Add day
-      </Button>
+      {!import.meta.env.PROD && (
+        <>
+          <Button
+            className="mr-4"
+            onClick={() => {
+              let id = 0;
+              for (let i = 0; i < 4; i++) {
+                id = actions.dispatchEvent('focus', day);
+                actions.addTimeToEvent(id, 20 + Math.round(Math.random() * 10));
+                actions.stopEvent(id);
+                id = actions.dispatchEvent('break', day);
+                actions.addTimeToEvent(id, 5 + Math.round(Math.random() * 2));
+                actions.stopEvent(id);
+              }
+              id = actions.dispatchEvent('longBreak', day);
+              actions.addTimeToEvent(id, 15 + Math.round(Math.random() * 10));
+              actions.stopEvent(id);
+            }}
+          >
+            DEBUG: Add random circle
+          </Button>
+          <Button
+            onClick={() => {
+              const nextDay = day;
+              nextDay.setDate(day.getDate() + 1);
+              setDay(nextDay);
+            }}
+          >
+            DEBUG: Add day
+          </Button>
+        </>
+      )}
     </>
   );
 }
