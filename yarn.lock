@@ -1420,16 +1420,16 @@
     "@swc/core-win32-ia32-msvc" "1.3.69"
     "@swc/core-win32-x64-msvc" "1.3.69"
 
-"@tabler/icons-react@^2.25.0":
-  version "2.25.0"
-  resolved "https://registry.npmjs.org/@tabler/icons-react/-/icons-react-2.25.0.tgz"
+"@tabler/icons-react@^2.26.0":
+  version "2.26.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-2.26.0.tgz#f1062831ced722466daf1d17b16f086c2fd0cab6"
   dependencies:
-    "@tabler/icons" "2.25.0"
+    "@tabler/icons" "2.26.0"
     prop-types "^15.7.2"
 
-"@tabler/icons@2.25.0":
-  version "2.25.0"
-  resolved "https://registry.npmjs.org/@tabler/icons/-/icons-2.25.0.tgz"
+"@tabler/icons@2.26.0":
+  version "2.26.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.26.0.tgz#2ec4c30cda1964fcfca473a1334a1254727fbe17"
 
 "@testing-library/dom@^9.0.0":
   version "9.3.1"
