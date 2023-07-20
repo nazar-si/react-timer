@@ -90,6 +90,7 @@ export default function TestChart() {
                 }))}
               category="time"
               valueFormatter={valueFormatter}
+              colors={['cyan', 'green', 'purple']}
             />
           </TabPanel>
         </TabPanels>
