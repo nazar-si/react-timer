@@ -50,6 +50,8 @@
     }
   },
   "analtyics" : {
-    "title": "Geschätzte Gesamtzeit"
+    "title": "Geschätzte Gesamtzeit",
+    "time-plot": "Zeit pro Tag",
+    "total-time": "Gesamtzeit"
   }
 }
