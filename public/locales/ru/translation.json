@@ -49,7 +49,7 @@
       "playAlarm": "Проигровать звуковой сигнал"
     }
   },
-  "analtyics" : {
+  "analytics" : {
     "title": "Оценка времени",
     "time-plot": "Время в день",
     "total-time": "Общее время"

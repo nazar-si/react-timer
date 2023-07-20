@@ -49,7 +49,7 @@
       "playAlarm": "Jouer le son de l'alarme"
     }
   },
-  "analtyics" : {
+  "analytics" : {
     "title": "Estimations du temps total",
     "time-plot": "Temps par jour",
     "total-time": "Temps total"

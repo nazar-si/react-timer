@@ -44,7 +44,7 @@ export default function TestChart() {
   return (
     <>
       <Title>
-        {t('analtyics.title')}{' '}
+        {t('analytics.title')}{' '}
         <span className="opacity-50">({t('experimental')})</span>
       </Title>
       <TabGroup>

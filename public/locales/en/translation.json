@@ -49,7 +49,7 @@
       "playAlarm": "Wecker abspielen"
     }
   },
-  "analtyics" : {
+  "analytics" : {
     "title": "Total time estimates",
     "time-plot": "Time per day",
     "total-time": "Total time"
