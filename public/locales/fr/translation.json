@@ -51,7 +51,7 @@
   },
   "analtyics" : {
     "title": "Estimations du temps total",
-    "time-plot": "Time plot",
-    "total-time": "Total time chart"
+    "time-plot": "Temps par jour",
+    "total-time": "Temps total"
   }
 }

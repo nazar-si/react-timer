@@ -51,7 +51,7 @@
   },
   "analtyics" : {
     "title": "Оценка времени",
-    "time-plot": "Time plot",
-    "total-time": "Total time chart"
+    "time-plot": "Время в день",
+    "total-time": "Общее время"
   }
 }
