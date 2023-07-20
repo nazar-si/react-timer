@@ -50,6 +50,8 @@
     }
   },
   "analtyics" : {
-    "title": "Total time estimates"
+    "title": "Total time estimates",
+    "time-plot": "Time plot",
+    "total-time": "Total time chart"
   }
 }

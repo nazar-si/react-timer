@@ -1,8 +1,18 @@
-import { AreaChart, DonutChart, Title } from '@tremor/react';
+import {
+  AreaChart,
+  DonutChart,
+  Tab,
+  TabGroup,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Title,
+} from '@tremor/react';
 import React, { useEffect, useState } from 'react';
 import useAnalyticsStore, { Statistics, modeType } from '../../store/analytics';
 import Button from '@/components/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { IconChartAreaLine, IconChartDonut } from '@tabler/icons-react';
 
 export default function TestChart() {
   const events = useAnalyticsStore((s) => s.events);
@@ -37,41 +47,53 @@ export default function TestChart() {
         {t('analtyics.title')}{' '}
         <span className="opacity-50">({t('experimental')})</span>
       </Title>
-      <AreaChart
-        stack={false}
-        curveType="natural"
-        className="h-72 mt-4"
-        data={state.map((a) => ({
-          [names.focus]: a.focus,
-          [names.break]: a.break,
-          [names.longBreak]: a.longBreak,
-          date: DateFormatter.format(a.date),
-        }))}
-        index="date"
-        categories={Object.values(names)}
-        colors={['cyan', 'green', 'purple']}
-        valueFormatter={valueFormatter}
-      />
-      <DonutChart
-        data={Object.entries(
-          state.reduce(
-            (a, b) => ({
-              date: b.date,
-              focus: a.focus + b.focus,
-              break: a.break + b.break,
-              longBreak: a.longBreak + b.longBreak,
-            }),
-            { date: new Date(), focus: 0, break: 0, longBreak: 0 },
-          ),
-        )
-          .filter((a) => a[0] != 'date')
-          .map((a) => ({
-            name: t(a[0]),
-            time: a[1],
-          }))}
-        category="time"
-        valueFormatter={valueFormatter}
-      />
+      <TabGroup>
+        <TabList>
+          <Tab icon={IconChartAreaLine}>{t('analytics.time-plot')}</Tab>
+          <Tab icon={IconChartDonut}>{t('analytics.total-time')}</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <AreaChart
+              stack={false}
+              curveType="natural"
+              className="h-72 mt-4"
+              data={state.map((a) => ({
+                [names.focus]: a.focus,
+                [names.break]: a.break,
+                [names.longBreak]: a.longBreak,
+                date: DateFormatter.format(a.date),
+              }))}
+              index="date"
+              categories={Object.values(names)}
+              colors={['cyan', 'green', 'purple']}
+              valueFormatter={valueFormatter}
+            />
+          </TabPanel>
+          <TabPanel>
+            <DonutChart
+              data={Object.entries(
+                state.reduce(
+                  (a, b) => ({
+                    date: b.date,
+                    focus: a.focus + b.focus,
+                    break: a.break + b.break,
+                    longBreak: a.longBreak + b.longBreak,
+                  }),
+                  { date: new Date(), focus: 0, break: 0, longBreak: 0 },
+                ),
+              )
+                .filter((a) => a[0] != 'date')
+                .map((a) => ({
+                  name: t(a[0]),
+                  time: a[1],
+                }))}
+              category="time"
+              valueFormatter={valueFormatter}
+            />
+          </TabPanel>
+        </TabPanels>
+      </TabGroup>
       <br />
       {!import.meta.env.PROD && (
         <>

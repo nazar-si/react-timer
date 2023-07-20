@@ -50,6 +50,8 @@
     }
   },
   "analtyics" : {
-    "title": "Geschätzte Gesamtzeit"
+    "title": "Geschätzte Gesamtzeit",
+    "time-plot": "Time plot",
+    "total-time": "Total time chart"
   }
 }
