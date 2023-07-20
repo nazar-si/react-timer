@@ -1,4 +1,4 @@
-import { AreaChart, Title } from '@tremor/react';
+import { AreaChart, DonutChart, Title } from '@tremor/react';
 import React, { useEffect, useState } from 'react';
 import useAnalyticsStore, { Statistics, modeType } from '../../store/analytics';
 import Button from '@/components/ui/Button/Button';
@@ -52,10 +52,30 @@ export default function TestChart() {
         colors={['cyan', 'green', 'purple']}
         valueFormatter={valueFormatter}
       />
+      <DonutChart
+        data={Object.entries(
+          state.reduce(
+            (a, b) => ({
+              date: b.date,
+              focus: a.focus + b.focus,
+              break: a.break + b.break,
+              longBreak: a.longBreak + b.longBreak,
+            }),
+            { date: new Date(), focus: 0, break: 0, longBreak: 0 },
+          ),
+        )
+          .filter((a) => a[0] != 'date')
+          .map((a) => ({
+            name: t(a[0]),
+            time: a[1],
+          }))}
+        category="time"
+        valueFormatter={valueFormatter}
+      />
       <br />
       {!import.meta.env.PROD && (
         <>
-          {/* <Button
+          <Button
             className="mr-4"
             onClick={() => {
               let id = 0;
@@ -82,7 +102,7 @@ export default function TestChart() {
             }}
           >
             DEBUG: Add day
-          </Button> */}
+          </Button>
         </>
       )}
     </>
