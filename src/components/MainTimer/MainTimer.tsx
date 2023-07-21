@@ -70,7 +70,7 @@ export default function MainTimer() {
   }, [active, finishDate]);
 
   React.useEffect(() => {
-    if (eventRef.current)
+    if (eventRef.current && active)
       eventActions.setEventTime(eventRef.current, (realMaxTime - time) / 60);
     updateTimer({
       active,
