@@ -52,6 +52,7 @@
   "analytics" : {
     "title": "Estimations du temps total",
     "time-plot": "Temps par jour",
-    "total-time": "Temps total"
+    "total-time": "Temps total",
+    "no-data": "Pas de données"
   }
 }

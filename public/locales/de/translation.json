@@ -52,6 +52,7 @@
   "analytics" : {
     "title": "Geschätzte Gesamtzeit",
     "time-plot": "Zeit pro Tag",
-    "total-time": "Gesamtzeit"
+    "total-time": "Gesamtzeit",
+    "no-data": "Keine Daten"
   }
 }

@@ -28,13 +28,17 @@ export default function TestChart() {
     month: 'short',
   });
   const valueFormatter = (n: number) => {
+    const nbsp = '\u00A0';
     const mins = Math.floor(n) % 60;
     const hours = Math.floor(n / 60);
     const sec = Math.floor(n * 60);
-    if (n < 1) return `${sec} ${t('timer.sec')}`;
-    if (hours === 0) return `${mins} ${t('timer.min')}`;
-    if (mins) return `${hours} ${t('timer.hours')} ${mins} ${t('timer.min')}`;
-    return `${hours} ${t('timer.hours')}`;
+    if (n < 1) return `${sec}${nbsp}${t('timer.sec')[0]}`;
+    if (hours === 0) return `${mins}${nbsp}${t('timer.min')}`;
+    if (mins)
+      return `${hours}${nbsp}${t('timer.hours')}${nbsp}${mins}${nbsp}${
+        t('timer.min')[0]
+      }`;
+    return `${hours}${nbsp}${t('timer.hours')}`;
   };
 
   const names: Record<modeType, string> = {
@@ -66,6 +70,7 @@ export default function TestChart() {
                 [names.longBreak]: a.longBreak,
                 date: DateFormatter.format(a.date),
               }))}
+              noDataText={t('analytics.no-data')}
               index="date"
               categories={Object.values(names)}
               colors={['cyan', 'green', 'purple']}
@@ -74,6 +79,8 @@ export default function TestChart() {
           </TabPanel>
           <TabPanel>
             <DonutChart
+              noDataText={t('analytics.no-data')}
+              animationDuration={400}
               data={Object.entries(
                 state.reduce(
                   (a, b) => ({
