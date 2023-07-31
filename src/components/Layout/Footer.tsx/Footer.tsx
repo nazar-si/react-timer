@@ -17,9 +17,9 @@ export default function Footer() {
             aria-label="language switch"
             className="uppercase"
           >
-            {window.localStorage.getItem('i18nextLng')}
+            {window.localStorage.getItem('i18nextLng')?.slice(0, 2)}
           </Menu.Button>
-          <Menu.Items className="absolute bottom-8">
+          <Menu.Items className="absolute bottom-8 flex flex-col gap-1">
             {['fr', 'ru', 'en', 'de'].map((lang) => (
               <Menu.Item
                 key={lang}
