@@ -50,9 +50,14 @@ export default function Display({ time, realMaxTime, active }: Props) {
 
   const [showSettingsModal, setShowSettingsModal] = useState(false);
 
+  const round = false; // useSettingsStore(s=>s.roundedDisplay)
+
   return (
     <div
-      className="p-[2px] rounded-[1.1rem] relative"
+      className={classNames(
+        'p-[2px] rounded-[1.1rem] relative self-center w-full',
+        round && '!w-48 h-48 rounded-full flex items-center justify-center',
+      )}
       style={{
         background:
           time <= 0
@@ -63,7 +68,10 @@ export default function Display({ time, realMaxTime, active }: Props) {
       }}
     >
       <div
-        className="absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10"
+        className={classNames(
+          'absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10',
+          round && 'rounded-full',
+        )}
         style={{
           background: `conic-gradient(${
             time <= 0 ? '#f040' : modes[mode].color
@@ -73,12 +81,16 @@ export default function Display({ time, realMaxTime, active }: Props) {
         }}
       ></div>
       <div
-        className="absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10 bg-red-500 opacity-0 duration-500 transition-all"
+        className={classNames(
+          'absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10 bg-red-500 opacity-0 duration-500 transition-all',
+          round && 'rounded-full',
+        )}
         style={{ opacity: time <= 0 ? '1' : '0' }}
       ></div>
       <main
         className={classNames(
-          'shadow-[0_0_10px_#0003,0_0_0_#0000] p-4 rounded-2xl',
+          'shadow-[0_0_10px_#0003,0_0_0_#0000] p-4 rounded-2xl w-full h-full flex items-center justify-center',
+          round && 'rounded-full',
           'bg-white border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all duration-300 border',
           `${active ? shadowActive : time <= 0 ? shadowOut : ''}`,
         )}
@@ -86,12 +98,14 @@ export default function Display({ time, realMaxTime, active }: Props) {
         <div
           className={classNames(
             clockStile,
+            round && '!text-5xl',
             active ? clockActive : time <= 0 ? clockOut : '',
           )}
         >
           <div
             className={classNames(
               'opacity-0 absolute top-4 left-4 transition-all duration-500',
+              round && 'top-8 left-8',
               time < 0 && 'opacity-100',
             )}
           >
@@ -100,7 +114,10 @@ export default function Display({ time, realMaxTime, active }: Props) {
           <button
             aria-label="settings"
             onClick={() => setShowSettingsModal(true)}
-            className="text-gray-300 dark:text-zinc-700 transition-all absolute top-4 right-4 hover:text-gray-500 dark:hover:text-gray-400"
+            className={classNames(
+              'text-gray-300 dark:text-zinc-700 transition-all absolute top-4 right-4 hover:text-gray-500 dark:hover:text-gray-400',
+              round && 'top-8 right-8',
+            )}
           >
             <IconSettings2 />
           </button>
