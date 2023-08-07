@@ -31,7 +31,7 @@
     "react-i18next": "^13.0.3",
     "resize-observer-polyfill": "^1.5.1",
     "worker-timers": "^7.0.74",
-    "zustand": "^4.3.9"
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",
