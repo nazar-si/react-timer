@@ -30,7 +30,10 @@ export function updateTimer(ctx: Context) {
     ctx.wakeLockRef.current.release();
     if (ctx.settings.playAlarm) plays['digital']();
     if (!ctx.settings.allowOverdue) {
-      if (ctx.eventRef.current) ctx.stopEvent(ctx.eventRef.current);
+      if (ctx.eventRef.current) {
+        ctx.stopEvent(ctx.eventRef.current);
+        ctx.eventRef.current = null;
+      }
       ctx.setActive(false);
       ctx.setTime(0);
       clearInterval(ctx.intervalRef.current!);

@@ -61,7 +61,9 @@ export default function MainTimer() {
     if (wakeLockRef.current) wakeLockRef.current.release();
     if (active) {
       getWakeLock().then((r) => (wakeLockRef.current = r));
-      eventRef.current = eventActions.dispatchEvent(mode);
+      if (!eventRef.current) {
+        eventRef.current = eventActions.dispatchEvent(mode);
+      }
       intervalRef.current = setInterval(() => {
         const newTime = diff(finishDate, new Date());
         if (newTime !== time) setTime(newTime);
@@ -92,7 +94,10 @@ export default function MainTimer() {
     setFinishDate(addTime(new Date(), maxTime));
     setTime(maxTime);
     setActive(false);
-    if (eventRef.current) eventActions.stopEvent(eventRef.current);
+    if (eventRef.current) {
+      eventActions.stopEvent(eventRef.current);
+      eventRef.current = null;
+    }
     wakeLockRef.current?.release();
     if (intervalRef.current) clearInterval(intervalRef.current);
   };
