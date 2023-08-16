@@ -30,7 +30,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^13.0.3",
     "resize-observer-polyfill": "^1.5.1",
-    "worker-timers": "^7.0.74",
+    "worker-timers": "^7.0.75",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
