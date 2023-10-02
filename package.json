@@ -20,7 +20,7 @@
     "@dnd-kit/utilities": "^3.2.1",
     "@headlessui/react": "^1.7.16",
     "@headlessui/tailwindcss": "^0.2.0",
-    "@tabler/icons-react": "^2.30.0",
+    "@tabler/icons-react": "^2.38.0",
     "@tremor/react": "^3.6.1",
     "i18next": "^23.4.1",
     "i18next-browser-languagedetector": "^7.1.0",
