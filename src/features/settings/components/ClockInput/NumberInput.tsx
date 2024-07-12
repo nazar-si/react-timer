@@ -106,7 +106,7 @@ const NumberInput = Object.assign(
           >
             <IconChevronUp />
           </div>
-          <div className="text-3xl font-bold h-8 w-8 items-center justify-center flex relative bg-gray-100 overflow-hidden rounded-md dark:bg-zinc-700/50">
+          <div className="text-3xl font-semibold font-mono h-8 w-8 items-center justify-center flex relative bg-gray-100 overflow-hidden rounded-md dark:bg-zinc-700/50">
             <div className="h-2 absolute left-0 right-0 top-0 z-10 bg-gradient-to-t from-transparent to-white dark:to-zinc-800 pointer-events-none"></div>
             <div className="h-2 absolute left-0 right-0 bottom-0 z-10 bg-gradient-to-b from-transparent to-white dark:to-zinc-800 pointer-events-none"></div>
             {Array(props.max + 1)

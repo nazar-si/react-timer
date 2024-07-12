@@ -17,7 +17,7 @@ type Props = {
 };
 
 const clockStile =
-  'text-7xl sm:text-8xl font-bold text-center text-gray-700 dark:text-zinc-200 transition-all font-mono px-4';
+  'text-7xl sm:text-8xl font-semibold text-center text-gray-700 dark:text-zinc-200 transition-all font-mono px-4';
 const clockOut = '!text-red-500 dark:!text-red-300';
 const shadowOut = '!shadow-[0_0_30px_#f898] !border-red-500';
 

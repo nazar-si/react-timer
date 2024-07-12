@@ -27,6 +27,9 @@ export default {
       fontSize: {
         ...tremor.fontSize,
       },
+      fontFamily: {
+        mono: '"Source Code Pro", monospace',
+      },
     },
   },
   safelist: tremor.safelist,
