@@ -4,7 +4,7 @@ import React from 'react';
 import useTheme from '../../../hooks/useTheme';
 
 const containerStyle =
-  'rounded-md p-2 border border-gray-300 bg-white text-gray-700 shadow-sm outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 transition-all';
+  'rounded-md p-2 border border-gray-200 bg-white/50 text-gray-700 shadow-sm outline-none dark:border-white/10 dark:bg-zinc-800/50 dark:text-zinc-100 transition-all backdrop-blur-sm';
 const itemStyle = 'rounded-md p-1 transition-all';
 const activeStyle = ' bg-gray-100 dark:bg-zinc-700';
 const buttonStyle = ' relative w-10 h-10';

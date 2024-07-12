@@ -20,5 +20,5 @@
 }
 
 :global(body.dark) .innerDiv::-webkit-scrollbar-thumb{
-    @apply border-zinc-800
+    @apply border-white/10
 }

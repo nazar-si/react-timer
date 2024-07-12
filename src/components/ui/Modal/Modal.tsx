@@ -13,11 +13,11 @@ type Props = {
 
 const style = {
   wrapper:
-    'fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-white/50 dark:bg-black/50 transition-all backdrop-blur-sm',
+    'fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-white/50 dark:bg-black/50 transition-all backdrop-blur-xl',
   wrapperClosed: 'opacity-0 pointer-events-none',
   containerClosed: 'scale-75',
   container:
-    'duration-300 bg-white border border-zinc-300 dark:bg-zinc-800 dark:border-zinc-700 pt-5 pb-1 rounded-md relative max-w-xl w-full sm:w-2/3 md:w-1/2 mx-4 max-h-[90vh] overflow-hidden',
+    'duration-300 bg-white border border-zinc-300 dark:bg-zinc-800/50 dark:border-white/10 pt-5 pb-1 rounded-md relative max-w-xl w-full sm:w-2/3 md:w-1/2 mx-4 max-h-[90vh] overflow-hidden',
   closeButton:
     'absolute top-0 right-0 m-1 p-0.5 rounded-xl rotate-45 transition-all text-zinc-400 dark:text-zinc-600 hover:text-blue-500 dark:hover:text-blue-500 hover:bg-blue-500/10 dark:hover:bg-blue-500/20 dark:hover:text-blue-400',
 };

@@ -20,7 +20,7 @@ function LabeledSwitch(
       {props.hint && (
         <div className="relative text-gray-400 dark:text-zinc-500 hover:!text-blue-500 transition-all group/popup mr-2">
           <IconHelpSquareRounded />
-          <div className="absolute opacity-0 w-max max-w-xs z-20 bottom-8 transition-all left-0 rounded-md px-2 py-1 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-black dark:text-white group-hover/popup:opacity-100 pointer-events-none">
+          <div className="absolute opacity-0 w-max max-w-xs z-20 bottom-8 transition-all left-0 rounded-md px-2 py-1 bg-white dark:bg-zinc-800/50 border border-zinc-300 dark:border-white/10 text-black dark:text-white group-hover/popup:opacity-100 pointer-events-none">
             {props.hint}
           </div>
         </div>

@@ -26,7 +26,7 @@ export default function Example({
       }}
       className={classNames(
         enabled ? 'bg-blue-500' : 'bg-zinc-200 dark:bg-zinc-900',
-        'dark:ring-offset-black relative inline-flex flex-shrink-0 h-6 w-11 m-1 border border-zinc-300 dark:border-zinc-700 rounded-full cursor-pointer ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all',
+        'dark:ring-offset-black relative inline-flex flex-shrink-0 h-6 w-11 m-1 border border-zinc-300 dark:border-white/10 rounded-full cursor-pointer ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all',
       )}
       style={{ ...props.style }}
     >

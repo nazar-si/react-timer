@@ -88,7 +88,7 @@ export default function TaskList() {
           value={newTaskName}
           placeholder={t('tasks.new-task-placeholder')}
           type="text"
-          className="w-full rounded-md my-2 py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black disabled:-my-4 disabled:duration-0 disabled:opacity-0 disabled:py-0 disabled:text-transparent disabled:placeholder:text-transparent"
+          className="w-full rounded-md my-2 py-1 px-2 outline-none bg-white border border-gray-200 dark:bg-zinc-800/50 dark:border-white/10 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black disabled:-my-4 disabled:duration-0 disabled:opacity-0 disabled:py-0 disabled:text-transparent disabled:placeholder:text-transparent"
         />
         <button
           onClick={startCreating}

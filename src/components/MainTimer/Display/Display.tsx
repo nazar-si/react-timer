@@ -17,7 +17,7 @@ type Props = {
 };
 
 const clockStile =
-  'text-7xl sm:text-8xl font-semibold text-center text-gray-700 dark:text-zinc-200 transition-all font-mono px-4';
+  'text-7xl sm:text-8xl font-semibold text-center text-gray-900 dark:text-zinc-200 transition-all font-mono px-4';
 const clockOut = '!text-red-500 dark:!text-red-300';
 const shadowOut = '!shadow-[0_0_30px_#f898] !border-red-500';
 
@@ -87,11 +87,12 @@ export default function Display({ time, realMaxTime, active }: Props) {
         )}
         style={{ opacity: time <= 0 ? '1' : '0' }}
       ></div>
+      <div className="absolute inset-[2px] rounded-2xl bg-white dark:bg-black dark:inset-4" />
       <main
         className={classNames(
-          'shadow-[0_0_0px_#0000,0_0_0_#0000] p-4 rounded-2xl w-full h-full flex items-center justify-center',
+          'shadow-[0_1px_2px_0_#0001,0_0_0_#0000] p-4 rounded-2xl w-full h-full flex items-center justify-center',
           round && 'rounded-full',
-          'bg-white border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all duration-300 border',
+          'bg-white/50 border-gray-200 dark:bg-zinc-800/50 dark:border-white/10 transition-all duration-300 border backdrop-blur-lg',
           `${active ? shadowActive : time <= 0 ? shadowOut : ''}`,
         )}
       >
@@ -127,7 +128,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
                 i /** Here index is preserved between rerenders, it won't cause issues */
               }
             >
-              {i !== 0 ? <span className="opacity-50">:</span> : ''}
+              {i !== 0 ? <span className="opacity-50 font-medium">:</span> : ''}
               {s}
             </span>
           ))}

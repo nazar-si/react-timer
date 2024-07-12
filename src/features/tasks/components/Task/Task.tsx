@@ -30,7 +30,7 @@ const style = {
     'grid grid-cols-[2rem_1fr_2rem] p-1 w-full gap-2 relative ease-in-out rounded-md',
   wrapperDragged: 'opacity-50',
   input:
-    'flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black',
+    'flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-200 dark:bg-zinc-800/50 dark:border-white/10 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black',
   grip: 'absolute top-0 bottom-[2px] -left-8 !mr-10 pl-4 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-0',
   actions:
     'absolute h-fit top-1/2 -translate-y-1/2 bottom-0 -right-4 flex flex-col gap-0 items-center opacity-0 transition-all',
