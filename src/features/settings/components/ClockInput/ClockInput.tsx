@@ -8,7 +8,7 @@ type Props = {
 };
 export default function ClockInput({ value, setValue }: Props) {
   const refs = React.useRef<Array<HTMLSpanElement | null>>(Array(4).fill(null));
-  const Focus = (i: number) => {
+  const focusDigit = (i: number) => {
     refs.current[i]?.focus();
   };
   const [valueState, setValueState] = useState([0, 0, 0, 0]);
@@ -16,20 +16,24 @@ export default function ClockInput({ value, setValue }: Props) {
     const seconds = value % 60;
     const minutes = Math.floor(value / 60) % 100;
     setValueState((state) => {
-      state.splice(3, 1, seconds % 10);
-      return state;
+      const newState = [...state];
+      newState.splice(3, 1, seconds % 10);
+      return newState;
     });
     setValueState((state) => {
-      state.splice(2, 1, Math.floor(seconds / 10));
-      return state;
+      const newState = [...state];
+      newState.splice(2, 1, Math.floor(seconds / 10));
+      return newState;
     });
     setValueState((state) => {
-      state.splice(1, 1, minutes % 10);
-      return state;
+      const newState = [...state];
+      newState.splice(1, 1, minutes % 10);
+      return newState;
     });
     setValueState((state) => {
-      state.splice(0, 1, Math.floor(minutes / 10));
-      return state;
+      const newState = [...state];
+      newState.splice(0, 1, Math.floor(minutes / 10));
+      return newState;
     });
   }, [value]);
   const useSetValue = (n: number) => (v: number | ((v: number) => number)) => {
@@ -44,8 +48,9 @@ export default function ClockInput({ value, setValue }: Props) {
     }
     setValue(values[0] * 60 * 10 + values[1] * 60 + values[2] * 10 + values[3]);
     setValueState((state) => {
-      state.splice(n, 1, newV);
-      return state;
+      const newState = [...state];
+      newState.splice(n, 1, newV);
+      return newState;
     });
   };
   return (
@@ -56,17 +61,17 @@ export default function ClockInput({ value, setValue }: Props) {
       <NumberInput
         value={valueState[0]}
         setValue={useSetValue(0)}
-        max={9}
+        max={5}
         ref={(r) => (refs.current[0] = r)}
-        toNext={() => Focus(1)}
+        toNext={() => focusDigit(1)}
       />
       <NumberInput
         value={valueState[1]}
         setValue={useSetValue(1)}
         max={9}
         ref={(r) => (refs.current[1] = r)}
-        toNext={() => Focus(2)}
-        toPrevious={() => Focus(0)}
+        toNext={() => focusDigit(2)}
+        toPrevious={() => focusDigit(0)}
       />
       <span className="text-3xl font-bold opacity-50">:</span>
       <NumberInput
@@ -74,15 +79,15 @@ export default function ClockInput({ value, setValue }: Props) {
         setValue={useSetValue(2)}
         max={5}
         ref={(r) => (refs.current[2] = r)}
-        toNext={() => Focus(3)}
-        toPrevious={() => Focus(1)}
+        toNext={() => focusDigit(3)}
+        toPrevious={() => focusDigit(1)}
       />
       <NumberInput
         value={valueState[3]}
         setValue={useSetValue(3)}
         max={9}
         ref={(r) => (refs.current[3] = r)}
-        toPrevious={() => Focus(2)}
+        toPrevious={() => focusDigit(2)}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+import { classNames } from '@/utls/classnames';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import React from 'react';
 
@@ -12,8 +13,10 @@ type NumberInputProps = {
 const NumberInput = Object.assign(
   React.forwardRef<HTMLSpanElement, NumberInputProps>(
     ({ value, setValue, ...props }, ref) => {
-      const [hardSet, setHardSet] = React.useState(0); // adds 10 to value to prevent it's animation
-      const preventAnimation = () => setHardSet((s) => 1 - s);
+      const [hardSet, setHardSet] = React.useState(false); // adds 10 to value to prevent it's animation
+      const preventAnimation = () => {
+        setHardSet(true);
+      };
       const [lastPres, setLastPress] = React.useState(new Date());
       const [lastTouch, setLastTouch] = React.useState([0, 0]);
       const [lastDragTime, setLastDragTime] = React.useState(new Date());
@@ -50,6 +53,10 @@ const NumberInput = Object.assign(
         }
         if (event.key === 'ArrowLeft' && props.toPrevious) props.toPrevious();
         if (event.key === 'ArrowRight' && props.toNext) props.toNext();
+        if (event.key === 'Tab') {
+          if (props.toNext && !event.shiftKey) props.toNext();
+          else if (props.toPrevious) props.toPrevious();
+        }
         if (event.key === 'Backspace') {
           setValue(0);
           preventAnimation();
@@ -61,6 +68,9 @@ const NumberInput = Object.assign(
         else setValue(num);
         preventAnimation();
         if (props.toNext) props?.toNext();
+      };
+      const handleRelease = () => {
+        setHardSet(false);
       };
       const handleTouch = (event: React.TouchEvent<HTMLSpanElement>) => {
         const touch = [
@@ -86,6 +96,7 @@ const NumberInput = Object.assign(
           tabIndex={0}
           className="flex flex-col inline-block w-fit items-center ring-0 ring-offset-0 ring-offset-white dark:ring-offset-zinc-800 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500 rounded-md cursor-pointer outline-none"
           onKeyDown={handleKeyboard}
+          onKeyUp={handleRelease}
           onTouchMove={handleTouch}
           ref={ref}
         >
@@ -95,27 +106,30 @@ const NumberInput = Object.assign(
           >
             <IconChevronUp />
           </div>
-          <div className="text-3xl font-bold h-8 w-8 items-center justify-center flex relative overflow-hidden bg-gray-100 rounded-md dark:bg-zinc-700/50">
+          <div className="text-3xl font-bold h-8 w-8 items-center justify-center flex relative bg-gray-100 overflow-hidden rounded-md dark:bg-zinc-700/50">
             <div className="h-2 absolute left-0 right-0 top-0 z-10 bg-gradient-to-t from-transparent to-white dark:to-zinc-800 pointer-events-none"></div>
             <div className="h-2 absolute left-0 right-0 bottom-0 z-10 bg-gradient-to-b from-transparent to-white dark:to-zinc-800 pointer-events-none"></div>
-            {Array(props.max)
+            {Array(props.max + 1)
               .fill(0)
               .map((_, i) => {
+                const half = Math.floor((props.max + 1) / 2);
+                const displacement =
+                  ((value - i + half + props.max + 1) % (props.max + 1)) - half;
+
                 return (
                   <div
-                    key={((i + value) % (props.max + 1)) + hardSet * 10}
-                    className={
-                      'absolute -translate-y-1/2 transition-all duration-200 flex items-center justify-center'
-                    }
+                    key={i}
+                    className={classNames(
+                      'absolute -translate-y-1/2 transition-all flex items-center justify-center',
+                      !hardSet ? 'transition-300' : 'transition-none',
+                    )}
                     style={{
-                      top: `calc(50% - ${
-                        (i - Math.floor(props.max / 2)) * 40
-                      }px)`,
+                      top: `calc(${displacement * 40}px + 50%)`,
+                      opacity: Math.abs(displacement) > 1 ? 0 : 1,
                     }}
                   >
                     <div className="bg-transparent items-center text-center cursor-pointer caret-transparent">
-                      {(i + value + Math.floor(props.max / 2) + 2) %
-                        (props.max + 1)}
+                      {i}
                     </div>
                   </div>
                 );
