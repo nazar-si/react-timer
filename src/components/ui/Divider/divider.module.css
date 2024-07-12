@@ -32,4 +32,8 @@
     }
 }
 
+:global(.dark) .divider {
+    @apply text-zinc-400;
+}
+
 .container{}

@@ -13,7 +13,7 @@ type Props = {
 
 const style = {
   wrapper:
-    'fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-white/50 dark:bg-black/50 transition-all backdrop-blur-xl',
+    'fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-white/50 dark:bg-black/50 transition-all backdrop-blur-xl text-sm',
   wrapperClosed: 'opacity-0 pointer-events-none',
   containerClosed: 'scale-75',
   container:

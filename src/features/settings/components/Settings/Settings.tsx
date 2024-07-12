@@ -9,7 +9,11 @@ import { IconHelpSquareRounded } from '@tabler/icons-react';
 
 type HProps = { children: React.ReactNode };
 function H({ children }: HProps) {
-  return <h3 className="text-lg font-medium mt-3 -mb-8">{children}</h3>;
+  return (
+    <h3 className="text-sm font-bold mt-4 -mb-6 w-full text-center">
+      {children}
+    </h3>
+  );
 }
 
 function LabeledSwitch(

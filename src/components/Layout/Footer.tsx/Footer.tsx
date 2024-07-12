@@ -43,11 +43,11 @@ export default function Footer() {
         <p className="text-center text-zinc-500 text-sm whitespace-nowrap">
           {t('footer.created')}{' '}
           <a
-            href="https://github.com/nazar-si/"
+            href="https://github.com/EntropyConcept"
             className="font-medium hover:text-blue-500"
             target="_blank"
           >
-            Nazar Si
+            Entropy Concept
           </a>
           {/* copyright symbol */ ' '}&copy; {new Date().getFullYear()}
         </p>
