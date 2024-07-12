@@ -29,6 +29,7 @@ export default {
       },
       fontFamily: {
         mono: '"Source Code Pro", monospace',
+        sans: '"Ubuntu", sans-serif',
       },
     },
   },
