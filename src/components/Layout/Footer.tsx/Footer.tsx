@@ -40,7 +40,7 @@ export default function Footer() {
         </Menu>
       </aside>
       <main className="flex justify-center items-center gap-2 sm:gap-8 flex-1 flex-wrap">
-        <p className="text-center text-gray-400 text-sm whitespace-nowrap">
+        <p className="text-center text-zinc-500 text-sm whitespace-nowrap">
           {t('footer.created')}{' '}
           <a
             href="https://github.com/nazar-si/"
@@ -51,7 +51,7 @@ export default function Footer() {
           </a>
           {/* copyright symbol */ ' '}&copy; {new Date().getFullYear()}
         </p>
-        <p className="text-center text-gray-400 text-sm whitespace-nowrap">
+        <p className="text-center text-zinc-500 text-sm whitespace-nowrap">
           <a
             aria-label="github link"
             href="https://github.com/nazar-si/pomodoro/"
@@ -79,14 +79,14 @@ export default function Footer() {
       </main>
       <aside
         title={t('what.button-tip')}
-        className="text-gray-400 transition-all hover:text-blue-500 cursor-pointer"
+        className="text-zinc-400 transition-all hover:text-blue-500 cursor-pointer"
         onClick={() => setShowHelpModal(true)}
       >
         <IconHelpHexagonFilled />
       </aside>
       <Suspense>
         <Modal show={showHelpModal} setShow={setShowHelpModal}>
-          <div className="text-gray-500 dark:text-zinc-400">
+          <div className="text-zinc-500 dark:text-zinc-400">
             <h2 className="text-lg font-medium mb-2 text-black dark:text-white">
               {t('what.title')}
             </h2>
