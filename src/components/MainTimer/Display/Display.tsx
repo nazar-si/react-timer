@@ -89,7 +89,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
       ></div>
       <main
         className={classNames(
-          'shadow-[0_0_10px_#0003,0_0_0_#0000] p-4 rounded-2xl w-full h-full flex items-center justify-center',
+          'shadow-[0_0_0px_#0000,0_0_0_#0000] p-4 rounded-2xl w-full h-full flex items-center justify-center',
           round && 'rounded-full',
           'bg-white border-gray-300 dark:bg-zinc-800 dark:border-zinc-700 transition-all duration-300 border',
           `${active ? shadowActive : time <= 0 ? shadowOut : ''}`,
