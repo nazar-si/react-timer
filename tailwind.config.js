@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import tremor from './tremor.config';
 import ui from '@headlessui/tailwindcss';
+import stroke from '@designbycode/tailwindcss-text-stroke';
 
 export default {
   darkMode: 'class',
@@ -34,5 +35,5 @@ export default {
     },
   },
   safelist: tremor.safelist,
-  plugins: [ui],
+  plugins: [ui, stroke],
 };

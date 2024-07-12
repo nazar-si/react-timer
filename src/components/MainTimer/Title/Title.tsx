@@ -1,8 +1,8 @@
-export default function Title({ content }: { content: string }) {
+export default function Title() {
   return (
-    <div className="flex justify-center w-80 sm:w-96">
-      <h1 className="text-7xl sm:text-8xl text-center lg:text-8xl mb-2 font-bold text-gray-200 dark:text-black/50 pointer-events-none select-none">
-        {content}
+    <div className="text-center font-bold flex justify-center text-gray-500/30 dark:text-white/30 w-80 sm:w-96">
+      <h1 className=" mb-2 sm:text-7xl text-6xl pointer-events-none select-none ">
+        <span className="text-gray-700/60 dark:text-white/75">Zei</span>ter
       </h1>
     </div>
   );
