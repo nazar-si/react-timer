@@ -115,7 +115,7 @@ export default function MainTimer() {
         transform: `translateY(calc(${anyTasks ? '32px' : '50vh - 50%'}))`,
       }}
     >
-      <Title content="Zeiter" />
+      <Title />
       <ModeSwitch />
       <Display
         active={active && time > 0}
