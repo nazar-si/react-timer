@@ -34,6 +34,10 @@ export default function TaskList() {
   };
   useEffect(() => {
     inputRef.current?.focus();
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth',
+    });
   }, [focus]);
 
   const stopCreating = () => {
@@ -90,12 +94,16 @@ export default function TaskList() {
           type="text"
           className="w-full rounded-md my-2 py-1 px-2 outline-none bg-white border border-gray-200 dark:bg-zinc-800/50 dark:border-white/10 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black disabled:-my-4 disabled:duration-0 disabled:opacity-0 disabled:py-0 disabled:text-transparent disabled:placeholder:text-transparent"
         />
-        <button
-          onClick={startCreating}
-          className="w-full my-2 font-medium text-zinc-400 dark:text-zinc-500 flex justify-center items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-800/50 rounded-md px-2 py-1"
-        >
-          {t('tasks.add')} <IconPlus size={18} />
-        </button>
+        {tasks.length < 15 && (
+          <button
+            onClick={startCreating}
+            className="w-full my-2 font-medium text-zinc-400 dark:text-zinc-500 flex justify-center items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-800/50 rounded-md px-2 py-1"
+          >
+            {t('tasks.add')}{' '}
+            {!tasks.length && <IconPlus size={18} stroke={3} />}{' '}
+            {!!tasks.length && <span>{tasks.length} / 15</span>}
+          </button>
+        )}
         {/* {!import.meta.env.PROD && (
           <div className="flex gap-2 items-center">
             Debug:

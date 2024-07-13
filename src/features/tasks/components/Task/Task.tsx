@@ -31,7 +31,7 @@ const style = {
   wrapperDragged: 'opacity-50',
   input:
     'flex-1 rounded-md py-1 px-2 outline-none bg-white border border-gray-200 dark:bg-zinc-800/50 dark:border-white/10 transition-all ring-0 ring-offset-0 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:ring-offset-black',
-  grip: 'absolute top-0 bottom-[2px] -left-8 !mr-10 pl-4 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-0',
+  grip: 'absolute top-0 bottom-[2px] -left-8 !mr-10 pl-4 text-gray-400 dark:text-zinc-500 flex justify-center items-center cursor-grab transition-all duration-200 opacity-50 sm:opacity-0',
   actions:
     'absolute h-fit top-1/2 -translate-y-1/2 bottom-0 -right-4 flex flex-col gap-0 items-center opacity-0 transition-all',
   actionsActive: 'opacity-100 !-right-8',
@@ -40,7 +40,7 @@ const style = {
   actionButtonActive: 'm-[0.125rem] opacity-100 pointer-events-auto',
 };
 
-export default function Task({ task, index }: Props) {
+export default function TaskEntry({ task, index }: Props) {
   const setName = useTasksStore((s) => s.setName);
   const toggleTask = useTasksStore((s) => s.toggleTask);
   const removeTask = useTasksStore((s) => s.removeTask);
@@ -136,8 +136,8 @@ export default function Task({ task, index }: Props) {
         {...sortable.listeners}
         className={classNames(
           style.grip,
-          (isUsed || sortable.isDragging) && 'opacity-100',
-          !(isUsed || sortable.isDragging) && 'scale-50 -left-4',
+          (isUsed || sortable.isDragging) && '!opacity-100',
+          !(isUsed || sortable.isDragging) && '-left-4',
         )}
       >
         <IconGripVertical size={20} />

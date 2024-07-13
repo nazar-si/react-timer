@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="mt-10 mb-2 flex flex-wrap items-center w-full px-4 gap-8">
       <aside>
-        <Menu as="div" className="opacity-75 relative font-medium text-sm">
+        <Menu as="div" className="opacity-75 relative font-medium text-xs">
           <Menu.Button
             as="button"
             aria-label="language switch"
@@ -40,7 +40,7 @@ export default function Footer() {
         </Menu>
       </aside>
       <main className="flex justify-center items-center gap-2 sm:gap-8 flex-1 flex-wrap">
-        <p className="text-center text-zinc-500 text-sm whitespace-nowrap">
+        <p className="text-center text-zinc-500 text-xs sm:text-sm whitespace-nowrap">
           {t('footer.created')}{' '}
           <a
             href="https://github.com/EntropyConcept"
@@ -51,7 +51,7 @@ export default function Footer() {
           </a>
           {/* copyright symbol */ ' '}&copy; {new Date().getFullYear()}
         </p>
-        <p className="text-center text-zinc-500 text-sm whitespace-nowrap">
+        <p className="text-center text-zinc-500 text-xs sm:text-sm whitespace-nowrap">
           <a
             aria-label="github link"
             href="https://github.com/nazar-si/pomodoro/"
@@ -82,7 +82,7 @@ export default function Footer() {
         className="text-zinc-400 transition-all hover:text-blue-500 cursor-pointer"
         onClick={() => setShowHelpModal(true)}
       >
-        <IconHelpHexagonFilled />
+        <IconHelpHexagonFilled size={20} />
       </aside>
       <Suspense>
         <Modal show={showHelpModal} setShow={setShowHelpModal}>
