@@ -101,6 +101,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
             clockStile,
             round && '!text-5xl',
             active ? clockActive : time <= 0 ? clockOut : '',
+            Math.abs(time) >= 3600 && '!text-6xl sm:!text-7xl',
           )}
         >
           <div

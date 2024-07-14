@@ -3,6 +3,24 @@ import tremor from './tremor.config';
 import ui from '@headlessui/tailwindcss';
 import stroke from '@designbycode/tailwindcss-text-stroke';
 import selection from 'tailwindcss-selection-variant';
+import plugin from 'tailwindcss/plugin';
+
+const rotateX = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.-rotate-x-20': {
+      transform: 'rotateX(-20deg)',
+    },
+    '.rotate-x-20': {
+      transform: 'rotateX(20deg)',
+    },
+    '.rotate-x-40': {
+      transform: 'rotateX(20deg)',
+    },
+    '.-rotate-x-40': {
+      transform: 'rotateX(20deg)',
+    },
+  });
+});
 
 export default {
   darkMode: 'class',
@@ -38,5 +56,5 @@ export default {
     },
   },
   safelist: tremor.safelist,
-  plugins: [ui, stroke, selection],
+  plugins: [ui, stroke, selection, rotateX],
 };

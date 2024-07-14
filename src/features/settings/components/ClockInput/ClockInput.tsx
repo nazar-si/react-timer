@@ -1,6 +1,7 @@
 import { classNames } from '@/utls/classnames';
 import { OTPInput, SlotProps } from 'input-otp';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { ScrollNumber } from './ScrollNumber';
 
 type Props = {
   value: number;
@@ -56,39 +57,65 @@ export default function ClockInput({ value, setValue }: Props) {
     [setValue],
   );
 
+  const minutes = useMemo(() => Math.floor(value / 60), [value]);
+  const setMinutes = (minutes: number) => {
+    setValue((value % 60) + minutes * 60);
+  };
+  const seconds = useMemo(() => value % 60, [value]);
+  const setSeconds = (seconds: number) => {
+    setValue(value - (value % 60) + (seconds % 60));
+  };
+
   return (
-    <div className="flex gap-2 items-center relative group justify-center pt-6 my-2 selection:text-blue-500">
-      <span className="absolute right-0 top-0 text-sm text-zinc-400 dark:text-zinc-500 transition-all duration-500 opacity-0 group-focus-within:opacity-100 ">
-        {/* Use arrow keys or number input */}
-      </span>
-      <OTPInput
-        value={internalState}
-        onChange={setValueString}
-        maxLength={4}
-        inputMode="numeric"
-        pushPasswordManagerStrategy="none"
-        containerClassName="group flex items-center"
-        className="caret-transparent"
-        onBlur={() => setValueString((internalState + '0000').slice(0, 4))}
-        render={({ slots }) => (
-          <>
-            <div className="flex gap-1">
-              {slots.slice(0, 2).map((slot, idx) => (
-                <NumberSlot key={idx} {...slot} />
-              ))}
-            </div>
+    <>
+      <div className="gap-2 items-center relative group justify-center pt-6 my-2 hidden sm:flex">
+        <span className="absolute right-0 top-0 text-sm text-zinc-400 dark:text-zinc-500 transition-all duration-500 opacity-0 group-focus-within:opacity-100 ">
+          {/* Use arrow keys or number input */}
+        </span>
+        <OTPInput
+          value={internalState}
+          onChange={setValueString}
+          maxLength={4}
+          inputMode="numeric"
+          pushPasswordManagerStrategy="none"
+          containerClassName="group flex items-center"
+          className="caret-transparent"
+          onBlur={() => setValueString((internalState + '0000').slice(0, 4))}
+          render={({ slots }) => (
+            <>
+              <div className="flex gap-1">
+                {slots.slice(0, 2).map((slot, idx) => (
+                  <NumberSlot key={idx} {...slot} />
+                ))}
+              </div>
 
-            <span className="text-3xl font-bold opacity-50 mx-1 mb-1">:</span>
+              <span className="text-3xl font-bold opacity-50 mx-1 mb-1">:</span>
 
-            <div className="flex gap-1">
-              {slots.slice(2).map((slot, idx) => (
-                <NumberSlot key={idx} {...slot} />
-              ))}
-            </div>
-          </>
-        )}
-      />
-    </div>
+              <div className="flex gap-1">
+                {slots.slice(2).map((slot, idx) => (
+                  <NumberSlot key={idx} {...slot} />
+                ))}
+              </div>
+            </>
+          )}
+        />
+      </div>
+      <div className="flex sm:hidden gap-2 items-center w-full justify-center mt-10">
+        <ScrollNumber
+          value={minutes}
+          setValue={setMinutes}
+          max={100}
+          direction="left"
+        />
+        <span className="text-2xl font-bold opacity-50 -mx-3 mb-1">:</span>
+        <ScrollNumber
+          value={seconds}
+          setValue={setSeconds}
+          max={60}
+          direction="right"
+        />
+      </div>
+    </>
   );
 }
 

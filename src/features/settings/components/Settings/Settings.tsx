@@ -60,6 +60,7 @@ export default function Settings() {
         value={longBreakTime}
         setValue={(a: number) => setDuration('longBreak', a)}
       />
+      <br />
       <Divider>{t('settings.other.title')}</Divider>
 
       <LabeledSwitch
