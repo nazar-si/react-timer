@@ -69,7 +69,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
     >
       <div
         className={classNames(
-          'absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10',
+          'absolute w-full h-full top-0 left-0 rounded-2xl blur-3xl -z-10 duration-500 transition-all safari-blur-fix',
           round && 'rounded-full',
         )}
         style={{
