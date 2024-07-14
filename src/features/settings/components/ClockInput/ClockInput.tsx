@@ -68,6 +68,7 @@ export default function ClockInput({ value, setValue }: Props) {
         inputMode="numeric"
         pushPasswordManagerStrategy="none"
         containerClassName="group flex items-center"
+        className="caret-transparent"
         onBlur={() => setValueString((internalState + '0000').slice(0, 4))}
         render={({ slots }) => (
           <>
