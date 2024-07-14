@@ -33,6 +33,6 @@ body.dark::-webkit-scrollbar-thumb {
     @apply border-zinc-900;
 }
 
-h1 {
+* {
     font-synthesis: none !important;
   }

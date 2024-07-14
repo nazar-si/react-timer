@@ -116,7 +116,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
             aria-label="settings"
             onClick={() => setShowSettingsModal(true)}
             className={classNames(
-              'text-gray-300 dark:text-zinc-700 transition-all absolute top-4 right-4 hover:text-gray-500 dark:hover:text-gray-400',
+              'text-gray-300 dark:text-zinc-700 transition-all absolute top-3 right-3 hover:text-gray-500 dark:hover:text-gray-400',
               round && 'top-8 right-8',
             )}
           >

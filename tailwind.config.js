@@ -2,6 +2,7 @@
 import tremor from './tremor.config';
 import ui from '@headlessui/tailwindcss';
 import stroke from '@designbycode/tailwindcss-text-stroke';
+import selection from 'tailwindcss-selection-variant';
 
 export default {
   darkMode: 'class',
@@ -32,8 +33,10 @@ export default {
         mono: '"Source Code Pro", monospace',
         sans: '"Ubuntu", sans-serif',
       },
+      textColor: ['selection'],
+      backgroundColor: ['selection'],
     },
   },
   safelist: tremor.safelist,
-  plugins: [ui, stroke],
+  plugins: [ui, stroke, selection],
 };
