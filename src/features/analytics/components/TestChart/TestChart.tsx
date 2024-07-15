@@ -62,7 +62,8 @@ export default function TestChart() {
           <TabPanel>
             <AreaChart
               stack={false}
-              curveType="natural"
+              curveType="monotone"
+              showAnimation={false}
               className="h-72 mt-4"
               data={state.map((a) => ({
                 [names.focus]: a.focus,
@@ -73,14 +74,14 @@ export default function TestChart() {
               noDataText={t('analytics.no-data')}
               index="date"
               categories={Object.values(names)}
-              colors={['cyan', 'green', 'purple']}
+              colors={['blue', 'green', 'purple']}
               valueFormatter={valueFormatter}
             />
           </TabPanel>
           <TabPanel>
             <DonutChart
               noDataText={t('analytics.no-data')}
-              animationDuration={400}
+              showAnimation={false}
               data={Object.entries(
                 state.reduce(
                   (a, b) => ({
@@ -99,7 +100,7 @@ export default function TestChart() {
                 }))}
               category="time"
               valueFormatter={valueFormatter}
-              colors={['cyan', 'green', 'purple']}
+              colors={['blue', 'green', 'purple']}
             />
           </TabPanel>
         </TabPanels>
