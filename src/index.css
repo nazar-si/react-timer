@@ -16,7 +16,7 @@ body.dark{
     @apply bg-black text-gray-100;
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     width: 18px;
     height: 18px;
 }
@@ -31,7 +31,7 @@ body::-webkit-scrollbar-thumb {
 
 body.dark::-webkit-scrollbar-thumb {
     @apply border-zinc-900;
-}
+}  */
 
 * {
     font-synthesis: none !important;

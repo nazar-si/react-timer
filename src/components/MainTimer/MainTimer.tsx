@@ -12,7 +12,7 @@ import TaskList from '@/features/tasks/components/TaskList/TaskList';
 
 import useTimerStore from '@/store/timer/timer';
 import useTasksStore from '../../features/tasks/store/tasks';
-import useSetttingsStore from '@/features/settings/store/settings';
+import useSettingsStore from '@/features/settings/store/settings';
 
 import { REFRESH_DELAY } from './utils/refresh';
 import { addTime, diff } from './utils/moment';
@@ -32,7 +32,7 @@ export default function MainTimer() {
   const maxTime = useTimerStore((state) => state.duration[state.mode]);
   const mode = useTimerStore((state) => state.mode);
   const anyTasks = useTasksStore((state) => state.tasks.length > 0);
-  const settings = useSetttingsStore((s) => s);
+  const settings = useSettingsStore((s) => s);
   const eventActions = useAnalyticsStore((s) => s.actions());
 
   const [showAnalytics, setShowAnalytics] = React.useState(false);
@@ -115,7 +115,7 @@ export default function MainTimer() {
         transform: `translateY(calc(${anyTasks ? '32px' : '50vh - 50%'}))`,
       }}
     >
-      <Title />
+      {!settings.hideTitle && <Title />}
       <ModeSwitch />
       <Display
         active={active && time > 0}

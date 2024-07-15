@@ -87,12 +87,12 @@ export default function Display({ time, realMaxTime, active }: Props) {
         )}
         style={{ opacity: time <= 0 ? '1' : '0' }}
       ></div>
-      <div className="absolute inset-[2px] rounded-2xl bg-white dark:bg-black dark:inset-4" />
+      <div className="absolute inset-4 rounded-2xl bg-white dark:bg-black" />
       <main
         className={classNames(
           'shadow-[0_1px_2px_0_#0001,0_0_0_#0000] p-4 rounded-2xl w-full h-full flex items-center justify-center',
           round && 'rounded-full',
-          'bg-white/50 border-gray-200 dark:bg-zinc-800/50 dark:border-white/10 transition-all duration-300 border backdrop-blur-lg',
+          'bg-white/75 border-gray-200 dark:bg-zinc-800/50 dark:border-white/10 transition-all duration-300 border backdrop-blur-lg',
           `${active ? shadowActive : time <= 0 ? shadowOut : ''}`,
         )}
       >

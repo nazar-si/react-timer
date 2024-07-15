@@ -25,16 +25,16 @@ export default function Example({
         onChange?.(!enabled);
       }}
       className={classNames(
-        enabled ? 'bg-blue-500' : 'bg-zinc-200 dark:bg-zinc-900',
-        'dark:ring-offset-black relative inline-flex flex-shrink-0 h-6 w-11 m-1 border border-zinc-300 dark:border-white/10 rounded-full cursor-pointer ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all',
+        enabled ? 'bg-blue-500' : 'bg-zinc-200 dark:bg-black',
+        'dark:ring-offset-black relative inline-flex flex-shrink-0 h-4 w-8 m-1 border border-zinc-300 dark:border-white/20 rounded-full cursor-pointer ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all',
       )}
       style={{ ...props.style }}
     >
       <span className="sr-only">Use setting</span>
       <span
         className={classNames(
-          enabled ? 'translate-x-5' : 'translate-x-0',
-          'pointer-events-none relative inline-block h-5 w-5 m-[1px] rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200',
+          enabled ? 'translate-x-4' : 'translate-x-0',
+          'pointer-events-none relative inline-block h-3 w-3 m-[1px] rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200',
         )}
       >
         <span

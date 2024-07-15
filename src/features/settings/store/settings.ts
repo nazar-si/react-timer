@@ -9,11 +9,14 @@ export interface ISettingsStore {
   // show icons instead of button names
   playAlarm: boolean;
   setPlayAlarm: (v: boolean) => void;
+  // hides Zeiter title on screen
+  hideTitle: boolean;
+  setHideTitle: (v: boolean) => void;
   // saved duration presets
   presets: Array<IDuration>;
 }
 
-const useSetttingsStore = create(
+const useSettingsStore = create(
   persist<ISettingsStore>(
     (set, get) => ({
       allowOverdue: true,
@@ -21,6 +24,8 @@ const useSetttingsStore = create(
       playAlarm: true,
       setPlayAlarm: (v) => set({ playAlarm: v }),
       presets: [],
+      hideTitle: false,
+      setHideTitle: (v) => set({ hideTitle: v }),
     }),
     {
       name: 'settings-store',
@@ -28,4 +33,4 @@ const useSetttingsStore = create(
   ),
 );
 
-export default useSetttingsStore;
+export default useSettingsStore;

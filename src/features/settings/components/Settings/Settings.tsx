@@ -4,7 +4,7 @@ import useTimerStore from '@/store/timer/timer';
 import { useTranslation } from 'react-i18next';
 import Divider from '@/components/ui/Divider/Divider';
 import Switch, { Props as SwitchProps } from '@/components/ui/Switch/Switch';
-import useSetttingsStore from '../../store/settings';
+import useSettingsStore from '../../store/settings';
 import { IconHelpSquareRounded } from '@tabler/icons-react';
 
 type HProps = { children: React.ReactNode };
@@ -64,17 +64,23 @@ export default function Settings() {
       <Divider>{t('settings.other.title')}</Divider>
 
       <LabeledSwitch
-        value={useSetttingsStore((s) => s.allowOverdue)}
-        onChange={useSetttingsStore((s) => s.setAllowOverdue)}
+        value={useSettingsStore((s) => s.allowOverdue)}
+        onChange={useSettingsStore((s) => s.setAllowOverdue)}
         hint={t('settings.other.allowOverdueHint')}
       >
         {t('settings.other.allowOverdue')}
       </LabeledSwitch>
       <LabeledSwitch
-        value={useSetttingsStore((s) => s.playAlarm)}
-        onChange={useSetttingsStore((s) => s.setPlayAlarm)}
+        value={useSettingsStore((s) => s.playAlarm)}
+        onChange={useSettingsStore((s) => s.setPlayAlarm)}
       >
         {t('settings.other.playAlarm')}
+      </LabeledSwitch>
+      <LabeledSwitch
+        value={useSettingsStore((s) => s.hideTitle)}
+        onChange={useSettingsStore((s) => s.setHideTitle)}
+      >
+        {t('settings.other.hideTitle')}
       </LabeledSwitch>
     </div>
   );
