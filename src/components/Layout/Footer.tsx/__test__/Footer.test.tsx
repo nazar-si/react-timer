@@ -10,9 +10,9 @@ const MockLayout = () => (
 describe('Footer', () => {
   it("should contain link to author's github", () => {
     render(<MockLayout />);
-    expect(screen.getByText(/Nazar Si/i)).toHaveAttribute(
+    expect(screen.getByText(/Entropy Concept/i)).toHaveAttribute(
       'href',
-      'https://github.com/nazar-si/',
+      'https://github.com/EntropyConcept',
     );
   });
   it('should contain link to github repo', () => {

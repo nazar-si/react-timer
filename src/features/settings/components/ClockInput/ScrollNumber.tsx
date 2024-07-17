@@ -20,7 +20,7 @@ export const ScrollNumber: FC<Props> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentScroll, setCurrentScroll] = useState(value);
   useEffect(() => {
-    if (!scrollRef.current) return;
+    if (!scrollRef.current || !scrollRef.current.scrollTo) return;
     const to = value * ITEM_HEIGHT + TOP_GAP;
     if (Math.abs(scrollRef.current.scrollTop - to) > ITEM_HEIGHT / 2) {
       scrollRef.current.scrollTo({
