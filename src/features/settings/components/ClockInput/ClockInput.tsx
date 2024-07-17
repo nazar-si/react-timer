@@ -67,7 +67,7 @@ export default function ClockInput({ value, setValue }: Props) {
   };
 
   return (
-    <>
+    <div className="flex flex-col items-center">
       <div className="gap-2 items-center relative group justify-center pt-6 my-2 hidden sm:flex">
         <span className="absolute right-0 top-0 text-sm text-zinc-400 dark:text-zinc-500 transition-all duration-500 opacity-0 group-focus-within:opacity-100 ">
           {/* Use arrow keys or number input */}
@@ -100,7 +100,7 @@ export default function ClockInput({ value, setValue }: Props) {
           )}
         />
       </div>
-      <div className="flex sm:hidden gap-2 items-center w-full justify-center mt-10">
+      <div className="flex sm:opacity-0 sm:absolute sm:pointer-events-none gap-2 items-center w-full justify-center mt-10">
         <ScrollNumber
           value={minutes}
           setValue={setMinutes}
@@ -115,7 +115,7 @@ export default function ClockInput({ value, setValue }: Props) {
           direction="right"
         />
       </div>
-    </>
+    </div>
   );
 }
 
