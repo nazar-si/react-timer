@@ -7,7 +7,7 @@ import css from './Modal.module.css';
 type Props = {
   children?: React.ReactNode;
   show: boolean;
-  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setShow: (show: boolean) => void;
   className?: string;
 };
 

@@ -2,6 +2,7 @@ import { classNames } from '@/utls/classnames';
 import { OTPInput, SlotProps } from 'input-otp';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollNumber } from './ScrollNumber';
+import useSettingsStore from '../../store/settings';
 
 type Props = {
   value: number;
@@ -66,13 +67,15 @@ export default function ClockInput({ value, setValue }: Props) {
     setValue(value - (value % 60) + (seconds % 60));
   };
 
+  const showSettings = useSettingsStore(settings => settings.showModal)
+
   return (
     <div className="flex flex-col items-center">
       <div className="gap-2 items-center relative group justify-center pt-6 my-2 hidden sm:flex">
         <span className="absolute right-0 top-0 text-sm text-zinc-400 dark:text-zinc-500 transition-all duration-500 opacity-0 group-focus-within:opacity-100 ">
           {/* Use arrow keys or number input */}
         </span>
-        <OTPInput
+        {showSettings && <OTPInput
           value={internalState}
           onChange={setValueString}
           maxLength={4}
@@ -98,7 +101,7 @@ export default function ClockInput({ value, setValue }: Props) {
               </div>
             </>
           )}
-        />
+        />}
       </div>
       <div className="flex sm:opacity-0 sm:absolute sm:pointer-events-none gap-2 items-center w-full justify-center mt-10">
         <ScrollNumber

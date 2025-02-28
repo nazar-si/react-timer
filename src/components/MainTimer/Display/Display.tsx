@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 import toClock from './toClock';
 import { classNames } from '@/utls/classnames';
+import useSettingsStore from '@/features/settings/store/settings';
 
 type Props = {
   time: number;
@@ -44,11 +45,11 @@ const modes = {
 
 export default function Display({ time, realMaxTime, active }: Props) {
   const mode = useTimerStore((state) => state.mode);
+  const showSettings = useSettingsStore((state) => state.showModal)
+  const setShowSettings = useSettingsStore((state) => state.setModal)
   const clockActive = `${modes[mode].text}`;
   const shadowActive = `${modes[mode].neon} ${modes[mode].border}`;
   const { t } = useTranslation();
-
-  const [showSettingsModal, setShowSettingsModal] = useState(false);
 
   const round = false; // useSettingsStore(s=>s.roundedDisplay)
 
@@ -115,7 +116,7 @@ export default function Display({ time, realMaxTime, active }: Props) {
           </div>
           <button
             aria-label="settings"
-            onClick={() => setShowSettingsModal(true)}
+            onClick={() => setShowSettings(true)}
             className={classNames(
               'text-gray-300 dark:text-zinc-700 transition-all absolute top-3 right-3 hover:text-gray-500 dark:hover:text-gray-400',
               round && 'top-8 right-8',
@@ -136,8 +137,8 @@ export default function Display({ time, realMaxTime, active }: Props) {
         </div>
       </main>
       <Modal
-        show={showSettingsModal}
-        setShow={setShowSettingsModal}
+        show={showSettings}
+        setShow={setShowSettings}
         className="!max-w-sm"
       >
         <Settings />

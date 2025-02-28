@@ -14,6 +14,9 @@ export interface ISettingsStore {
   setHideTitle: (v: boolean) => void;
   // saved duration presets
   presets: Array<IDuration>;
+  // whether settings modal is visible
+  showModal: boolean;
+  setModal: (v: boolean) => void;
 }
 
 const useSettingsStore = create(
@@ -26,6 +29,8 @@ const useSettingsStore = create(
       presets: [],
       hideTitle: false,
       setHideTitle: (v) => set({ hideTitle: v }),
+      showModal: false,
+      setModal: (v) => set({showModal: v}) 
     }),
     {
       name: 'settings-store',
