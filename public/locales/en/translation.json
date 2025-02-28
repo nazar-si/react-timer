@@ -47,6 +47,7 @@
       "allowOverdue": "Allow timer overdue",
       "allowOverdueHint": "After 00:00 the timer will continues to count overdue time",
       "playAlarm": "Play alarm sound",
+      "playAlarmOnBreak": "Alarm only during breaks",
       "hideTitle": "Hide title"
     }
   },

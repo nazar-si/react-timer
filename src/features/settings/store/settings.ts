@@ -9,6 +9,9 @@ export interface ISettingsStore {
   // show icons instead of button names
   playAlarm: boolean;
   setPlayAlarm: (v: boolean) => void;
+  // alarm will be played only on break
+  playAlarmOnBreakOnly: boolean,
+  setPlayAlarmOnBreakOnly: (v: boolean) => void;
   // hides Zeiter title on screen
   hideTitle: boolean;
   setHideTitle: (v: boolean) => void;
@@ -26,6 +29,8 @@ const useSettingsStore = create(
       setAllowOverdue: (v) => set({ allowOverdue: v }),
       playAlarm: true,
       setPlayAlarm: (v) => set({ playAlarm: v }),
+      playAlarmOnBreakOnly: true,
+      setPlayAlarmOnBreakOnly: (v) => set({ playAlarmOnBreakOnly: v }),
       presets: [],
       hideTitle: false,
       setHideTitle: (v) => set({ hideTitle: v }),

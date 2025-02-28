@@ -1,14 +1,17 @@
+import { modeType } from './../../../features/analytics/store/analytics';
 import { clearInterval } from 'worker-timers';
 import React from 'react';
 import { TFunction } from 'i18next';
 import toClock from '../Display/toClock';
 import plays from './audio';
 import { ISettingsStore } from '@/features/settings/store/settings';
+import { ITimerStoreNew } from '@/store/timer/migrations/v1';
 
 export type Context = {
   active: boolean;
   time: number;
   modeName: string;
+  mode: ITimerStoreNew['mode'],
   t: TFunction<'translation', undefined>;
   wakeLockRef: React.MutableRefObject<any>;
   intervalRef: React.MutableRefObject<number | null>;
@@ -28,7 +31,7 @@ export function updateTimer(ctx: Context) {
   if (!ctx.active) return;
   if (ctx.time == 0) {
     ctx.wakeLockRef.current.release();
-    if (ctx.settings.playAlarm) plays['digital']();
+    if (ctx.settings.playAlarm && !(ctx.settings.playAlarmOnBreakOnly && ctx.mode === 'focus')) plays['digital']();
     if (!ctx.settings.allowOverdue) {
       if (ctx.eventRef.current) {
         ctx.stopEvent(ctx.eventRef.current);

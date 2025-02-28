@@ -47,6 +47,7 @@
       "allowOverdue": "Timer überfällig zulassen",
       "allowOverdueHint": "Nach 00:00 Uhr zählt der Timer die überfällige Zeit weiter",
       "playAlarm": "Wecker abspielen",
+      "playAlarmOnBreak": "Alarm nur in den Pausen",
       "hideTitle": "Titel ausblenden"
     }
   },

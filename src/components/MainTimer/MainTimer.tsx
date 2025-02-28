@@ -80,6 +80,7 @@ export default function MainTimer() {
       time,
       setTime,
       modeName,
+      mode,
       wakeLockRef,
       intervalRef,
       settings,

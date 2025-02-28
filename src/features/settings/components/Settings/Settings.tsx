@@ -77,6 +77,13 @@ export default function Settings() {
         {t('settings.other.playAlarm')}
       </LabeledSwitch>
       <LabeledSwitch
+        disabled={useSettingsStore((s) => !s.playAlarm)}
+        value={useSettingsStore((s) => s.playAlarmOnBreakOnly)}
+        onChange={useSettingsStore((s) => s.setPlayAlarmOnBreakOnly)}
+      >
+        {t('settings.other.playAlarmOnBreak')}
+      </LabeledSwitch>
+      <LabeledSwitch
         value={useSettingsStore((s) => s.hideTitle)}
         onChange={useSettingsStore((s) => s.setHideTitle)}
       >

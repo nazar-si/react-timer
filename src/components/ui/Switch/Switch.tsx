@@ -6,12 +6,14 @@ export interface Props {
   value?: boolean;
   onChange?: (checked: boolean) => void;
   checkmark?: boolean;
+  disabled?: boolean;
   style?: React.CSSProperties;
 }
 
 export default function Example({
   value,
   onChange,
+  disabled,
   checkmark,
   ...props
 }: Props) {
@@ -20,6 +22,7 @@ export default function Example({
   return (
     <Switch
       checked={enabled}
+      disabled={disabled}
       onChange={() => {
         setEnabled(!enabled);
         onChange?.(!enabled);
@@ -27,6 +30,7 @@ export default function Example({
       className={classNames(
         enabled ? 'bg-blue-500' : 'bg-zinc-200 dark:bg-black',
         'dark:ring-offset-black relative inline-flex flex-shrink-0 h-4 w-8 m-1 border border-zinc-300 dark:border-white/20 rounded-full cursor-pointer ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all',
+        disabled && 'opacity-50 pointer-events-none'
       )}
       style={{ ...props.style }}
     >
