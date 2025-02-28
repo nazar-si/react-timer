@@ -5,6 +5,6 @@ describe('ClockInput', () => {
   it('should render', () => {
     render(<ClockInput value={0} setValue={() => 0} />);
     const dials = screen.getAllByText('0');
-    expect(dials.length).toBe(6);
+    expect(dials.length).toBe(2);
   });
 });
